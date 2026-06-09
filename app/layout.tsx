@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     template: "%s | Kensington Green",
   },
   description:
-    "Shop 200+ premium cannabis strains at Kensington Green. Exotic, Premium, AAA+, AA & Budget flower from $3/g. Toronto's uplifting dispensary at 2257 Dundas St W. Open 24 Hours.",
+    "Shop 200+ premium cannabis strains at Kensington Green. Exotic, Premium, AAA+, AA & Budget flower from $3/g. Toronto's uplifting dispensary at 2257 Dundas St W. Open Daily: 10:00 AM - 02:00 AM.",
   keywords: [
     "cannabis dispensary Toronto",
     "weed store Toronto",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     siteName: "Kensington Green",
     title: "Kensington Green — Premium Toronto Cannabis Dispensary",
     description:
-      "200+ strains from $3/g. Exotic to Budget. Toronto's uplifting dispensary at 2257 Dundas St W. Open 24 Hours.",
+      "200+ strains from $3/g. Exotic to Budget. Toronto's uplifting dispensary at 2257 Dundas St W. Open Daily: 10:00 AM - 02:00 AM.",
     images: [
       {
         url: "https://kensingtongreencannabis.com/wp-content/uploads/2026/04/46Oi5.jpg",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Kensington Green — Toronto's Uplifting Dispensary",
-    description: "200+ strains from $3/g. Open 24 Hours at 2257 Dundas St W, Toronto.",
+    description: "200+ strains from $3/g. Open Daily: 10:00 AM - 02:00 AM at 2257 Dundas St W, Toronto.",
     images: ["https://kensingtongreencannabis.com/wp-content/uploads/2026/04/46Oi5.jpg"],
   },
   robots: {
@@ -75,7 +75,7 @@ const jsonLd = {
   additionalType: "https://schema.org/Store",
   "@id": "https://kensingtongreencannabis.com",
   name: "Kensington Green",
-  description: "Cannabis dispensary at 2257 Dundas St W in Toronto, ON. Shop exotic, premium, AAA+, AA, and budget flower tiers plus edibles, prerolls, and vapes. Open 24 Hours.",
+  description: "Cannabis dispensary at 2257 Dundas St W in Toronto, ON. Shop exotic, premium, AAA+, AA, and budget flower tiers plus edibles, prerolls, and vapes. Open Daily: 10:00 AM - 02:00 AM.",
   url: "https://kensingtongreencannabis.com",
   telephone: "+14164025263",
   image: "https://kensingtongreencannabis.com/wp-content/uploads/2026/04/7Clmh.jpg",
@@ -94,13 +94,21 @@ const jsonLd = {
     longitude: -79.4521695,
   },
   openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-      opens: "00:00",
-      closes: "23:59",
-    },
-  ],
+  {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
+    "opens": "10:00",
+    "closes": "02:00"
+  }
+],
   sameAs: [
     "https://kensingtongreencannabis.com/",
     "https://kensingtongreencannabis.com/",

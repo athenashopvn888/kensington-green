@@ -128,7 +128,7 @@ export default function PostContent() {
 
         <div className={styles.cta}>
           <p>
-            <strong>Kensington Green</strong> — 2257 Dundas St W, Toronto · Open 24 Hours · (416) 402-5263
+            <strong>Kensington Green</strong> — 2257 Dundas St W, Toronto · Open Daily: 10:00 AM - 02:00 AM · (416) 402-5263
           </p>
           <Link href="/exotic" className={styles.ctaBtn}>Browse Our Menu</Link>
         </div>
