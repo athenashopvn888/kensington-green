@@ -24,7 +24,7 @@ export const gbpLocation = {
     "Accessories"
   ],
   menuUrl: "/",
-  directionsUrl: "https://kensingtongreencannabis.com/",
+  directionsUrl: "https://www.google.com/maps/search/?api=1&query=2257%20Dundas%20St%20W%2C%20Toronto%2C%20ON%20M6R%201X6",
   mapEmbedUrl: "https://maps.google.com/maps?q=Kensington%20Green%202257%20Dundas%20St%20W%2C%20Toronto%2C%20ON%20M6R%201X6&t=&z=15&ie=UTF8&iwloc=&output=embed",
   latitude: "43.6546313",
   longitude: "-79.4521695",
