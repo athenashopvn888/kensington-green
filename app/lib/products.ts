@@ -194,12 +194,12 @@ export const CATEGORY_CONFIG: Record<string, CategoryInfo> = {
   CONCENTRATES: {
     banner: "/banners/03_Concentrates.webp",
     name: "Concentrates", slug: "concentrates", color: "#f59e0b", icon: "💎",
-    seoTitle: "Cannabis Concentrates Toronto — Shatter, Wax, Hash & Live Resin",
-    seoIntro: "Premium cannabis concentrates at Kensington Green, Toronto. Shatter, wax, hash, live resin, and diamonds — all in stock.",
-    seoDescription: "Kensington Green offers a premium selection of cannabis concentrates in Toronto. From traditional hash and kief to modern extracts like shatter, wax, live resin, and THC diamonds, we carry products for every preference and potency level. Our concentrates are sourced from trusted extractors and tested for purity. Visit us at 2257 Dundas St W.",
+    seoTitle: "Cannabis Concentrates in Toronto | Kensington Green",
+    seoIntro: "Browse concentrates category information at Kensington Green in Toronto.",
+    seoDescription: "Review concentrate-related menu categories at Kensington Green in Toronto and confirm current menu details before visiting. This page is intended for general category browsing and does not promise current product availability.",
     faqs: [
-      { q: "What types of concentrates do you carry?", a: "We stock shatter, wax, budder, live resin, rosin, hash, kief, and THC diamonds from top Canadian extractors." },
-      { q: "How do I consume concentrates?", a: "Concentrates can be dabbed with a rig, vaped with a concentrate pen, or added to flower in a joint or bowl for extra potency." },
+      { q: "What concentrate information can shoppers review?", a: "Visitors can use this page to review concentrates category information and then confirm current menu details before visiting Kensington Green." },
+      { q: "Does this page guarantee current concentrate availability?", a: "No. Category details can change, so customers should confirm the current menu before visiting." },
     ],
   },
   PREROLLS: {
