@@ -5,11 +5,11 @@ import AgeGate from "./components/AgeGate";
 export const metadata: Metadata = {
   metadataBase: new URL("https://kensingtongreencannabis.com"),
   title: {
-    default: "Kensington Green — Premium Cannabis Dispensary, Toronto",
+    default: "Kensington Green Cannabis | Toronto Dispensary",
     template: "%s | Kensington Green",
   },
   description:
-    "Shop 200+ premium cannabis strains at Kensington Green. Exotic, Premium, AAA+, AA & Budget flower from $3/g. Toronto's uplifting dispensary at 2257 Dundas St W. Open Daily: 10:00 AM - 02:00 AM.",
+    "Kensington Green is a Toronto cannabis dispensary on Dundas St W with adult 19+ store info and category browsing for flower, pre-rolls, vapes, edibles, concentrates, and accessories. Open Daily: 10:00 AM - 02:00 AM.",
   keywords: [
     "cannabis dispensary Toronto",
     "weed store Toronto",
