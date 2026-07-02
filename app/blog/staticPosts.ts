@@ -25,7 +25,7 @@ export const STORE_BLOG_CONFIG = {
   storeCode: "KSC01",
   storeName: "Kensington Green",
   city: "Toronto",
-  domain: "kensingtongreencannabis.com",
+  domain: "www.kensingtongreencannabis.com",
   storePath: "/weed-dispensary-toronto",
 };
 

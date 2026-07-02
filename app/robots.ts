@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/"],
     },
-    sitemap: "https://kensingtongreencannabis.com/sitemap.xml",
+    sitemap: "https://www.kensingtongreencannabis.com/sitemap.xml",
   };
 }
