@@ -7,310 +7,257 @@ export interface StaticBlogPost {
   meta_description: string;
   h1: string;
   excerpt: string;
+  authorName: string;
+  authorHandle: string;
+  authorRole: string;
   author: string;
+  structuredAuthorName: string;
   date: string;
+  modifiedDate: string;
   category: string;
   readTime: string;
   content: string;
   faq: string;
   internal_links_used: string;
-  relatedLinks: Array<{
-    title: string;
-    url: string;
-    description: string;
-  }>;
+  relatedLinks: Array<{ title: string; url: string; description: string }>;
+  editorialRemark: { label: string; authorName: string; authorHandle: string; authorRole: string; body: string };
+  primaryKeyword: string;
+  keywords: string[];
+  oldTitle: string;
+  wordCount: number;
+  businessReviewFlags: string[];
 }
 
 export const STORE_BLOG_CONFIG = {
-  storeCode: "KSC01",
-  storeName: "Kensington Green",
-  city: "Toronto",
-  domain: "www.kensingtongreencannabis.com",
-  storePath: "/weed-dispensary-toronto",
+  "storeCode": "KGC01",
+  "storeName": "Kensington Green Cannabis",
+  "city": "Toronto",
+  "domain": "www.kensingtongreencannabis.com",
+  "storePath": "/weed-dispensary-toronto",
+  "address": "2257 Dundas St W, Toronto, ON M6R 1X6",
+  "phone": "(416) 402-5263",
+  "hours": "open daily from 10 AM to 2 AM"
 };
+
+export const BLOG_REDIRECTS: Record<string, string> = {};
 
 export const STATIC_POSTS: StaticBlogPost[] = [
   {
-    slug: "kensington-green-toronto-store-guide",
-    title: "Kensington Green Local Store Guide for Adults 19+",
-    seoTitle: "Kensington Green Guide | Toronto Adult 19+",
-    seo_title: "Kensington Green Guide | Toronto Adult 19+",
-    metaDescription: "Adult 19+ guide to Kensington Green around Dundas West / Roncesvalles / High Park, with local store-page checks, menu-category context, and safe visit planning.",
-    meta_description: "Adult 19+ guide to Kensington Green around Dundas West / Roncesvalles / High Park, with local store-page checks, menu-category context, and safe visit planning.",
-    h1: "Kensington Green Local Store Guide for Adults 19+",
-    excerpt: "Kensington Green guide for adults 19+ reviewing store information around Dundas West / Roncesvalles / High Park.",
-    author: "The Kensington Green Team",
-    date: "2026-07-02",
-    category: "Store Guide",
-    readTime: "4 min",
-    content: `## Kensington Green Local Store Guide for Adults 19+
-
-Kensington Green serves adults 19+ looking for store information around Dundas West / Roncesvalles / High Park. Use this guide to get oriented, compare the store page with menu categories, and choose the most useful next step before visiting.
-
-The focus is practical and store-specific: confirm the right storefront, browse helpful category links, and use the store page for directions, contact options, and visit planning.
-
-## Why Local Context Helps
-
-Kensington Green is tied to Dundas St W and Roncesvalles context in Toronto. Useful local content should make the page easier for shoppers to understand by connecting the store to nearby streets, neighbourhood language, and visit-planning details already supported by the site.
-
-Searchers often want to confirm that they are looking at the right storefront before they visit. A concise guide can support that decision by explaining the local context and the most helpful next steps.
-
-## Plan A Better Visit
-
-Start with the official Kensington Green store page, then use the menu/category links to browse what the site makes easy to compare. Shoppers can confirm the right storefront, directions, contact options, and local visit details in one place.
-
-If you need a quick answer before heading out, check the store page first and contact the store directly for help from staff.
-
-## Browse Menu Categories With Confidence
-
-Menu category labels help adults 19+ move quickly from general store research to the product areas they care about. Use them to compare the sections already shown on the site, such as flower, pre-rolls, vapes, edibles, concentrates, accessories, or other store categories.
-
-That makes the page easier to scan and gives shoppers a cleaner path from local research to the right store page.
-
-## Adult 19+ Visit Basics
-
-Adults 19+ should bring valid government identification, confirm the store page before leaving, and use the menu/category links to narrow down what they want to ask about in-store.
-
-The goal is simple: help real shoppers feel confident they are on the right store site and know where to find the next useful page.
-
-## FAQ
-
-### Is this guide for Kensington Green only?
-
-Yes. This guide is written for Kensington Green and the local Toronto context connected to this website.
-
-### How can shoppers check current menu details?
-
-Use the store page and menu/category links before visiting, then ask staff if you need help comparing options.
-
-### Who can use this guide?
-
-This guide is for adults 19+ who want to understand the store page before visiting.
-
-### What is the best next step after reading?
-
-Open the store page, browse the available menu/category sections, and use the contact or directions options when you are ready to plan your visit.`,
-    faq: "",
-    internal_links_used: "[Kensington Green Toronto store page](/weed-dispensary-toronto)\\n[Kensington Green homepage](/)\\n[More Kensington Green guides](/blog)",
-    relatedLinks: [
+    "slug": "kensington-green-toronto-store-guide",
+    "title": "Kensington Green Cannabis Menu Check on Dundas West",
+    "seoTitle": "Kensington Green Cannabis Menu Check on Dundas West | Toronto",
+    "seo_title": "Kensington Green Cannabis Menu Check on Dundas West | Toronto",
+    "metaDescription": "Kensington Green Cannabis Menu Check on Dundas West with address, hours, phone, menu-category checks, and practical planning notes for Toronto shoppers.",
+    "meta_description": "Kensington Green Cannabis Menu Check on Dundas West with address, hours, phone, menu-category checks, and practical planning notes for Toronto shoppers.",
+    "h1": "Kensington Green Cannabis Menu Check on Dundas West",
+    "excerpt": "A practical Toronto store-page and menu check for Kensington Green Cannabis, with address, hours, phone, and browsing tips.",
+    "authorName": "Kit Kensington",
+    "authorHandle": "@KitInKensington",
+    "authorRole": "House Writer",
+    "author": "By Kit Kensington \\u00b7 @KitInKensington",
+    "structuredAuthorName": "Kensington Green Cannabis Editorial Team",
+    "date": "2026-07-02",
+    "modifiedDate": "2026-07-11",
+    "category": "Store Guide",
+    "readTime": "4 min",
+    "content": "Quick answer: Kensington Green Cannabis is listed at 2257 Dundas St W, Toronto, ON M6R 1X6. The listed phone number is (416) 402-5263, and the site lists the store as open daily from 10 AM to 2 AM. If you are checking a weed dispensary in Toronto, start with the store page, then move into the menu category that matches the trip. That keeps the browse clean and keeps old screenshots from bossing you around.\n\n## Start With The Right Store Page\n\nThe local anchor is Dundas St W in Toronto. Use that as the first sanity check before you compare anything else. The web gets messy when store names, neighbourhood names, and old tabs start floating around. The easiest fix is not fancy: match the address, match the phone number, then browse from the current site navigation.\n\nBecause the site lists late hours, it can be useful for people searching for an open late cannabis store or weed dispensary in Toronto. Check the live page before leaving, because hours are only useful when they are current. This is especially true if you are trying to make a quick stop. A stale menu tab can make a simple cannabis store run feel like a treasure hunt, and nobody needs that extra drama.\n\n## Browse By Product Lane\n\nThe fastest path is to pick the lane first. Flower shoppers can start with Budget, AA, AAA+, Premium, or Exotic flower. People looking for something already rolled can jump into pre-rolls. Edibles, THC vapes, concentrates, accessories, and cigarettes each deserve their own check instead of being mashed into one giant scroll.\n\nIf cheap weed or affordable weed is the point, begin in Budget and AA before comparing the higher flower tiers. If premium flower or exotic flower is the mood, go straight there and compare the current listings. The point is not to memorize every page. The point is to stop wandering through pages that were never your lane.\n\n## What To Check Before Leaving\n\nBring valid government ID. Confirm the address, hours, and phone number on the store page. If you need one exact item, check the live category page and call the listed number when a yes-or-no answer matters. Menu pages can change, and that is normal; the current page beats a saved tab every time.\n\nOne extra check helps for Toronto: keep the store page open until the trip is actually happening, so the address, phone, hours, and category links are still the current version instead of whatever an old browser tab remembered.\n\nFor a Toronto cannabis dispensary search, this guide is the calm version of the checklist: verify the store, choose the lane, then use the live page for the details. Use the live store pages for the current information before visiting.\n\n## FAQ\n\n### Where is Kensington Green Cannabis?\nKensington Green Cannabis is listed at 2257 Dundas St W, Toronto, ON M6R 1X6.\n\n### What hours are listed?\nThe site lists Kensington Green Cannabis as open daily from 10 AM to 2 AM.\n\n### Does this article confirm current stock?\nNo. Use the current menu and category pages for current listings before visiting.\n\n### What should shoppers bring?\nBring valid government identification and use the store page for the current visit details.",
+    "faq": "",
+    "internal_links_used": "[Flower menu](/premium)\\n[Current menu categories](/)\\n[Kensington Green Cannabis store page](/weed-dispensary-toronto)\\n[Kensington Green Cannabis blog](/blog)",
+    "relatedLinks": [
       {
-            "title": "Kensington Green Toronto store page",
-            "url": "https://kensingtongreencannabis.com/weed-dispensary-toronto",
-            "description": "Primary store-specific destination for current store details after reading the guide."
+        "title": "Flower menu",
+        "url": "/premium",
+        "description": "Start with a flower tier if you already know flower is the lane."
       },
       {
-            "title": "Kensington Green homepage",
-            "url": "https://kensingtongreencannabis.com/",
-            "description": "Store-scoped general navigation for adults 19+."
+        "title": "Current menu categories",
+        "url": "/",
+        "description": "Use the homepage navigation to jump into the current category pages."
       },
       {
-            "title": "More Kensington Green guides",
-            "url": "https://kensingtongreencannabis.com/blog",
-            "description": "Store-scoped blog index for future approved posts."
+        "title": "Kensington Green Cannabis store page",
+        "url": "/weed-dispensary-toronto",
+        "description": "Check the Toronto store page for address, phone, hours, and visit details."
+      },
+      {
+        "title": "Kensington Green Cannabis blog",
+        "url": "/blog",
+        "description": "Browse the store guide archive and future menu notes."
       }
-],
-  },
-  {
-    slug: "kensington-green-price-flower-tier-guide",
-    title: "Kensington Green Price and Flower Tier Guide",
-    seoTitle: "Kensington Green Price Tier Guide",
-    seo_title: "Kensington Green Price Tier Guide",
-    metaDescription: "Kensington Green guide to flower tiers, weight choices, unit value, and store visit planning in Toronto.",
-    meta_description: "Kensington Green guide to flower tiers, weight choices, unit value, and store visit planning in Toronto.",
-    h1: "Kensington Green Price and Flower Tier Guide",
-    excerpt: "A simple guide to Kensington Green flower tiers, weights, and unit value.",
-    author: "The Kensington Green Team",
-    date: "2026-07-09",
-    category: "Price Guide",
-    readTime: "4 min",
-    content: `## Kensington Green Price and Flower Tier Guide
-
-Kensington Green makes flower shopping easier by organizing the menu into clear tiers. Start with the tier that matches the kind of flower you want, then choose the weight that fits your budget and visit.
-
-The simple idea is: pick the grade, compare the weight, and use the live menu before you head in. Larger weights usually improve unit value, so both the total price and the price per gram are worth checking.
-
-## Start With A Tier
-
-Use these tier pages when you want to compare the menu directly:
-
-- [Exotic flower](/exotic): a top-shelf lane for shoppers who want the highest tier first.
-- [Premium flower](/premium): a strong middle-to-top lane for shoppers balancing quality and value.
-- [AAA+ flower](/aaa): a simple quality lane with easy weight comparisons.
-- [AA flower](/aa): a value-focused lane for straightforward everyday browsing.
-- [Budget flower](/budget): the clearest low-cost lane when price is the main priority.
-
-Once the tier feels right, the live menu helps shoppers compare the current strains and weights inside that tier.
-
-## How The Weight Ladder Helps Value
-
-Moving up in weight usually improves the unit value. That means the shopper can look beyond the total price and see how the price per gram changes as the amount gets larger.
-
-Current tier examples commonly shown across the store menu include:
-
-- Exotic flower: 1g at $20/g; 3g at $40, about $13.33/g; 6g at $60, about $10/g.
-- Premium flower: 1g at $15/g; 3g at $30, about $10/g; 6g at $45, about $7.50/g.
-- AAA+ flower: 1g at $10/g; 3g at $20, about $6.67/g; 6g at $30, about $5/g.
-- AA flower: a simple value tier around $4/g where listed on the menu.
-- Budget flower: a low-cost lane around $3/g or $10/3g where listed on the menu.
-
-That structure keeps the buying path easy: choose the grade, choose the weight, and compare the unit value before visiting.
-
-## Match The Visit To The Budget
-
-If the goal is the smallest spend, start with the smaller weight options. If you already know the tier you like, compare the next weight step and see how much the unit value improves. If you want a stronger flower lane, stay in Premium or Exotic and compare from there.
-
-This is why a tiered menu works well for local storefront shopping. It keeps the decision organized, makes value easier to understand, and gives shoppers better questions to ask staff when they visit.
-
-## Use The Live Menu Before Visiting
-
-For the smoothest visit, open the Kensington Green menu before heading out. The live menu is the best place to compare current flower tiers, weights, and store-specific options. The store page is also useful for directions, contact details, and visit planning.
-
-If you are comparing flower tiers in Toronto, use this page as the simple guide, then use the live menu for the current selection.
-
-## Helpful Next Steps
-
-- Compare [Exotic flower](/exotic), [Premium flower](/premium), [AAA+ flower](/aaa), [AA flower](/aa), and [Budget flower](/budget).
-- Open the Kensington Green store page for directions, contact details, and visit planning.
-- Use the blog index for more store-specific guides.
-
-## FAQ
-
-### How do I choose the right flower tier?
-
-Start with the grade that fits the visit, then compare the weight options inside that tier. This makes it easier to balance quality, amount, and budget.
-
-### Why does unit value matter?
-
-Unit value shows the approximate price per gram at different weights. It helps shoppers see how value changes as they move from 1g to larger options like 3g or 6g.
-
-### Why link to each tier page?
-
-Each tier page gives shoppers a faster path to the exact flower lane they want instead of forcing everyone through the full menu first.
-
-### Where should shoppers check current strains?
-
-Use the live menu for current store-specific selection, then use the store page for directions, contact details, and visit planning.`,
-    faq: "",
-    internal_links_used: "[Exotic flower](/exotic)\\n[Premium flower](/premium)\\n[AAA+ flower](/aaa)\\n[AA flower](/aa)\\n[Budget flower](/budget)\\n[Kensington Green store page](/weed-dispensary-toronto)",
-    relatedLinks: [
-      {
-        title: "Exotic flower",
-        url: "https://www.kensingtongreencannabis.com/exotic",
-        description: "Top-shelf flower tier for quick comparison."
-      },
-      {
-        title: "Premium flower",
-        url: "https://www.kensingtongreencannabis.com/premium",
-        description: "Premium flower tier for quality and value comparison."
-      },
-      {
-        title: "AAA+ flower",
-        url: "https://www.kensingtongreencannabis.com/aaa",
-        description: "AAA+ flower tier for easy weight comparisons."
-      },
-      {
-        title: "AA flower",
-        url: "https://www.kensingtongreencannabis.com/aa",
-        description: "AA flower tier for straightforward value browsing."
-      },
-      {
-        title: "Budget flower",
-        url: "https://www.kensingtongreencannabis.com/budget",
-        description: "Budget flower tier for low-cost browsing."
-      },
-      {
-        title: "Kensington Green store page",
-        url: "https://www.kensingtongreencannabis.com/weed-dispensary-toronto",
-        description: "Store-specific page for directions, contact details, and visit planning."
-      }
-    ]
-  },
-  {
-    slug: "kensington-green-local-visit-guide-2026",
-    title: "Kensington Green Local Visit Guide for Adults 19+",
-    seoTitle: "Kensington Green Local Visit Guide | Toronto Adult 19+",
-    seo_title: "Kensington Green Local Visit Guide | Toronto Adult 19+",
-    metaDescription: "Plan a visit to Kensington Green in Toronto with adult 19+ store-page checks, menu-category paths, and local directions context.",
-    meta_description: "Plan a visit to Kensington Green in Toronto with adult 19+ store-page checks, menu-category paths, and local directions context.",
-    h1: "Kensington Green Local Visit Guide for Adults 19+",
-    excerpt: "Kensington Green guide for adults 19+ checking local context, store pages, and menu-category paths around Dundas West / Roncesvalles / High Park.",
-    author: "The Kensington Green Team",
-    date: "2026-07-09",
-    category: "Local Guide",
-    readTime: "5 min",
-    content: `Use this guide to confirm the right Kensington Green storefront around Dundas West / Roncesvalles / High Park, understand nearby street context, and choose the most useful store page or menu path before visiting.
-
-For current details, start with the official store page or contact staff before leaving.
-
-## Confirm The Right Storefront
-
-Kensington Green is tied to Dundas West, Roncesvalles, High Park, west Toronto. Local shoppers often compare several nearby search results, so the first job of this page is to make the store identity, area context, and next click easy to understand.
-
-That matters for local SEO because the page is not just repeating a city name. It gives adults 19+ a practical way to recognize the correct store and move from search intent to the right owned page.
-
-## Use The Menu Before Visiting
-
-The store page and menu/category links are the cleanest starting point when a shopper wants to compare broad sections before visiting. Use them for category browsing, then contact the store or ask staff if a specific product question matters.
-
-For item-specific questions, shoppers should use the current menu experience where available, contact the store, or ask staff before visiting. The guide helps them find the right path and understand the store context.
-
-## What To Check Before You Go
-
-- The exact store page and map destination.
-- Current hours, directions, and contact options.
-- Menu categories you want to compare before asking staff.
-- Valid adult 19+ identification for the visit.
-
-## Why The Local Context Matters
-
-Searches near Dundas West / Roncesvalles / High Park usually come from shoppers who already have a real-world route in mind. Mentioning nearby streets, neighbourhood language, and local travel context helps the page match how people actually search without inventing claims.
-
-It also gives the store a useful internal link target for Google and for real shoppers. The page connects the homepage, blog, and store page instead of sitting as an orphaned direct URL.
-
-## Helpful Next Steps
-
-- Open the Kensington Green store page: [https://www.kensingtongreencannabis.com/weed-dispensary-toronto](https://www.kensingtongreencannabis.com/weed-dispensary-toronto)
-- Browse more local guides from the blog: [https://www.kensingtongreencannabis.com/blog](https://www.kensingtongreencannabis.com/blog)
-- Confirm store-specific details before heading out.
-
-## FAQ
-
-### Is this guide only for Kensington Green?
-
-Yes. This page is written for Kensington Green and the Dundas West / Roncesvalles / High Park area.
-
-### How can shoppers check current product details?
-
-Use the current menu experience where available or contact the store before visiting. This guide helps with local planning and points shoppers to the current store path.
-
-### What should shoppers check first?
-
-Start with the official store page, confirm the location context, then use category links or staff help for product questions.
-
-### Why mention nearby streets and areas?
-
-Local shoppers search with neighbourhood and street language. Clear local context helps them confirm they are looking at the right store.`,
-    faq: "Adult 19+ visit planning, store-page checks, menu-category browsing, and local area context.",
-    internal_links_used: "/weed-dispensary-toronto, /blog, /blog/kensington-green-local-visit-guide-2026",
-    relatedLinks:     [
-          {
-                "title": "Kensington Green store page",
-                "url": "https://www.kensingtongreencannabis.com/weed-dispensary-toronto",
-                "description": "Official Kensington Green page for local visit planning."
-          },
-          {
-                "title": "Kensington Green homepage",
-                "url": "https://www.kensingtongreencannabis.com/",
-                "description": "Start from the Kensington Green homepage."
-          },
-          {
-                "title": "More Kensington Green guides",
-                "url": "https://www.kensingtongreencannabis.com/blog",
-                "description": "Browse more store-specific guides and updates."
-          }
     ],
+    "editorialRemark": {
+      "label": "Another House Writer Adds",
+      "authorName": "Olive Green",
+      "authorHandle": "@OliveKensington",
+      "authorRole": "House Writer",
+      "body": "The address check is not boring; it is the part that saves the trip. Store names and old tabs can blur together, so matching Dundas St W, the phone number, and the current page is worth the minute. Use the live page before visiting."
+    },
+    "primaryKeyword": "weed dispensary in Toronto",
+    "keywords": [
+      "weed dispensary in Toronto",
+      "cannabis store in Toronto",
+      "Toronto weed store",
+      "open late cannabis store",
+      "weed store",
+      "cannabis dispensary"
+    ],
+    "oldTitle": "Kensington Green Toronto Store Guide",
+    "wordCount": 536,
+    "businessReviewFlags": []
   },
+  {
+    "slug": "kensington-green-price-flower-tier-guide",
+    "title": "How to Read the Kensington Green Flower Menu",
+    "seoTitle": "How to Read the Kensington Green Flower Menu | Toronto",
+    "seo_title": "How to Read the Kensington Green Flower Menu | Toronto",
+    "metaDescription": "How to Read the Kensington Green Flower Menu with natural notes on Budget, AA, AAA+, Premium, and Exotic flower for Toronto shoppers.",
+    "meta_description": "How to Read the Kensington Green Flower Menu with natural notes on Budget, AA, AAA+, Premium, and Exotic flower for Toronto shoppers.",
+    "h1": "How to Read the Kensington Green Flower Menu",
+    "excerpt": "A cleaner way to compare Kensington Green Cannabis flower tiers, from budget weed to premium and exotic flower.",
+    "authorName": "Olive Green",
+    "authorHandle": "@OliveKensington",
+    "authorRole": "House Writer",
+    "author": "By Olive Green \\u00b7 @OliveKensington",
+    "structuredAuthorName": "Kensington Green Cannabis Editorial Team",
+    "date": "2026-07-09",
+    "modifiedDate": "2026-07-11",
+    "category": "Flower Guide",
+    "readTime": "4 min",
+    "content": "Flower menus get easier when you stop reading them like a novel. At Kensington Green Cannabis, the useful first move is to choose the flower lane: Budget, AA, AAA+, Premium, or Exotic. Once the lane is right, compare the current strains and weights on the live page.\n\nThat is the whole advantage of a tiered cannabis menu. It lets someone looking for cheap weed in Toronto start low without apology, while someone chasing premium flower or exotic flower can skip straight to the higher shelves. Same menu, less wandering.\n\n## The Flower Lanes\n\nBudget is the value lane. It is the place to start when affordable weed is the main mission and the exact strain can come second. AA is still value-minded, but it gives shoppers another step above the lowest price lane. AAA+ is the middle lane for people who want stronger flower-page filtering without immediately jumping into the top tiers.\n\nPremium flower is for shoppers who want the menu to feel a little more selective. Exotic flower is the top lane and should be checked when the first question is not simply price. None of those labels replace the live product listing. They organize the browse so you know where to look first.\n\n## Read Price And Weight Together\n\nA flower price only tells half the story if you do not look at the weight beside it. The menu structure commonly shows smaller single-gram pricing and larger bundle-style weights, so compare the total spend and the approximate value per gram before deciding. That is where weed deals become clearer without turning the page into math class.\n\nBudget and AA can make sense for routine value shopping. AAA+ often works as the comparison lane when you want more strength from the menu without going straight to the top. Premium and Exotic are where quality-first shoppers usually start. If you are unsure, open two tiers side by side and compare the current listings instead of guessing from the label alone.\n\n## Local Search, Real Page\n\nKensington Green Cannabis is listed at 2257 Dundas St W, Toronto, ON M6R 1X6, with the site listing the store as open daily from 10 AM to 2 AM. If you are comparing a weed store in Toronto, use those details to confirm you are in the right place, then let the flower tiers do the sorting.\n\nThe clean move: choose Budget for cheap weed, AA or AAA+ for value-plus browsing, Premium for a stronger flower lane, and Exotic when top-tier flower is the point. Then check the live page before visiting, because cannabis menus change and pretending otherwise is how people end up annoyed at a counter. Use the live store pages for the current information before visiting.\n\n## FAQ\n\n### Which flower tier should I check first?\nStart with the tier that matches the trip: Budget for value, AA or AAA+ for middle-lane browsing, Premium for higher-grade flower, and Exotic for the top lane.\n\n### Does this guide guarantee prices or stock?\nNo. It explains how to read the menu structure. Use the live category page for current listings.\n\n### Why do weights matter?\nDifferent weights can change the practical value. Compare the total price and the amount before choosing.\n\n### Is this useful for local Toronto shoppers?\nYes. It is written for people checking Kensington Green Cannabis and its current flower menu before visiting.",
+    "faq": "",
+    "internal_links_used": "[Budget flower](/budget)\\n[Premium flower](/premium)\\n[Exotic flower](/exotic)\\n[Kensington Green Cannabis store page](/weed-dispensary-toronto)\\n[Kensington Green Cannabis blog](/blog)",
+    "relatedLinks": [
+      {
+        "title": "Budget flower",
+        "url": "/budget",
+        "description": "Start here when affordable weed or budget flower is the priority."
+      },
+      {
+        "title": "Premium flower",
+        "url": "/premium",
+        "description": "Compare the premium flower lane before moving up or down the menu."
+      },
+      {
+        "title": "Exotic flower",
+        "url": "/exotic",
+        "description": "Use this lane when exotic flower is the first thing you want to compare."
+      },
+      {
+        "title": "Kensington Green Cannabis store page",
+        "url": "/weed-dispensary-toronto",
+        "description": "Check the Toronto store page for address, phone, hours, and visit details."
+      },
+      {
+        "title": "Kensington Green Cannabis blog",
+        "url": "/blog",
+        "description": "Browse the store guide archive and future menu notes."
+      }
+    ],
+    "editorialRemark": {
+      "label": "Another House Writer Adds",
+      "authorName": "Kensington Green Desk",
+      "authorHandle": "@KensingtonGreenDesk",
+      "authorRole": "Store Editorial Desk",
+      "body": "One thing I would add: the flower tier is a starting point, not the finish line. If budget is tight, compare Budget and AA first, then move up only when the current listing gives you a reason. Use the live store pages for the current information before visiting."
+    },
+    "primaryKeyword": "flower menu Toronto",
+    "keywords": [
+      "weed dispensary in Toronto",
+      "cannabis store in Toronto",
+      "Toronto weed store",
+      "cheap weed",
+      "affordable weed",
+      "budget weed",
+      "premium flower",
+      "exotic flower",
+      "weed deals"
+    ],
+    "oldTitle": "Kensington Green Price and Flower Tier Guide",
+    "wordCount": 554,
+    "businessReviewFlags": []
+  },
+  {
+    "slug": "kensington-green-local-visit-guide-2026",
+    "title": "Kensington Green Cannabis Menu Guide for Late Toronto Browsing",
+    "seoTitle": "Kensington Green Cannabis Menu Guide for Late Toronto Browsing | Toronto",
+    "seo_title": "Kensington Green Cannabis Menu Guide for Late Toronto Browsing | Toronto",
+    "metaDescription": "Kensington Green Cannabis Menu Guide for Late Toronto Browsing covering flower, edibles, pre-rolls, THC vapes, concentrates, accessories, and store-page checks.",
+    "meta_description": "Kensington Green Cannabis Menu Guide for Late Toronto Browsing covering flower, edibles, pre-rolls, THC vapes, concentrates, accessories, and store-page checks.",
+    "h1": "Kensington Green Cannabis Menu Guide for Late Toronto Browsing",
+    "excerpt": "A practical menu guide for Kensington Green Cannabis: flower, edibles, pre-rolls, THC vapes, concentrates, accessories, and cigarettes.",
+    "authorName": "Kensington Green Desk",
+    "authorHandle": "@KensingtonGreenDesk",
+    "authorRole": "Store Editorial Desk",
+    "author": "By Kensington Green Desk \\u00b7 @KensingtonGreenDesk",
+    "structuredAuthorName": "Kensington Green Cannabis Editorial Team",
+    "date": "2026-07-09",
+    "modifiedDate": "2026-07-11",
+    "category": "Menu Guide",
+    "readTime": "4 min",
+    "content": "Kensington Green Cannabis has a menu that is easier to use when you stop treating every category like the same errand. Flower, edibles, pre-rolls, THC vapes, concentrates, accessories, and cigarettes solve different shopping problems. Pick the problem first, then pick the page.\n\nQuick summary: use flower tiers when price or grade matters, pre-rolls when convenience matters, edibles when format matters, THC vapes when device style matters, and concentrates when the category is already familiar. If you are checking delivery or cigarettes, use those pages directly instead of hoping they appear in the middle of another menu.\n\n## Flower Is The Main Map\n\nFlower has the clearest structure because the tiers give you a natural starting point. Budget and AA help shoppers looking for affordable weed. AAA+ is a strong middle lane. Premium and Exotic are the higher lanes for shoppers who want to compare quality first. It is menu navigation, not a personality test.\n\nThat matters for local cannabis dispensary searches because people are rarely searching in the abstract. Someone looking for a weed dispensary in Toronto usually wants to know whether the store is relevant right now: where it is, what broad categories are easy to browse, and whether the trip is worth making.\n\n## Categories That Save Time\n\nPre-rolls are the shortcut when rolling is not on the agenda. Edibles keep gummies, chocolates, drinks, and similar formats in their own lane. THC vapes separate cartridge-style shopping from flower. Concentrates get their own space because they are not a casual substitute for every shopper. Accessories are listed separately from cannabis product categories, which keeps the menu cleaner.\n\nCigarettes are also split into their own category on the site. If you are comparing cheap cigarettes or native cigarettes, check the live cigarettes page directly instead of relying on a passing mention in a cannabis article. Category pages are useful because they keep different errands from stepping on each other.\n\n## Store Details Before The Trip\n\nKensington Green Cannabis is listed at 2257 Dundas St W, Toronto, ON M6R 1X6. The listed phone number is (416) 402-5263, and the site lists the store as open daily from 10 AM to 2 AM. For a Toronto weed store check, those details are the anchor. After that, the menu categories are the working map: flower tiers for cannabis flower, item categories for formats, and the store page for address and contact details.\n\nIf one exact product matters, call the listed phone number or check the live page before you leave. If the goal is just to browse, start broad, narrow the lane, and let the current menu do the last bit. Use the live store pages for the current information before visiting.\n\n## FAQ\n\n### What menu category should I start with?\nStart with the category that matches the product type: flower, pre-rolls, edibles, THC vapes, concentrates, accessories, or cigarettes.\n\n### Does this guide list current inventory?\nNo. It explains how to use the current menu pages without claiming live stock.\n\n### Where should local shoppers confirm store details?\nUse the Kensington Green Cannabis store page for address, phone, listed hours, and visit details.\n\n### Is delivery confirmed here?\nNo. If the site shows delivery options, use the current delivery page or contact the store for current details.",
+    "faq": "",
+    "internal_links_used": "[Pre-rolls](/items/prerolls)\\n[Edibles](/items/edibles)\\n[THC vapes](/items/vapes)\\n[Concentrates](/items/concentrates)\\n[Kensington Green Cannabis store page](/weed-dispensary-toronto)\\n[Kensington Green Cannabis blog](/blog)",
+    "relatedLinks": [
+      {
+        "title": "Pre-rolls",
+        "url": "/items/prerolls",
+        "description": "Jump straight to pre-rolls when convenience is the shopping lane."
+      },
+      {
+        "title": "Edibles",
+        "url": "/items/edibles",
+        "description": "Use the edibles page for gummies, chocolates, drinks, and other listed edible formats."
+      },
+      {
+        "title": "THC vapes",
+        "url": "/items/vapes",
+        "description": "Browse the THC vape category and confirm current options before visiting."
+      },
+      {
+        "title": "Concentrates",
+        "url": "/items/concentrates",
+        "description": "Check concentrates separately so they do not get lost inside the full menu."
+      },
+      {
+        "title": "Kensington Green Cannabis store page",
+        "url": "/weed-dispensary-toronto",
+        "description": "Check the Toronto store page for address, phone, hours, and visit details."
+      },
+      {
+        "title": "Kensington Green Cannabis blog",
+        "url": "/blog",
+        "description": "Browse the store guide archive and future menu notes."
+      }
+    ],
+    "editorialRemark": {
+      "label": "Another House Writer Adds",
+      "authorName": "Kit Kensington",
+      "authorHandle": "@KitInKensington",
+      "authorRole": "House Writer",
+      "body": "The category split is doing more work than people notice. A shopper looking for pre-rolls, edibles, THC vapes, or cigarettes should not have to dig through flower lanes first. Use the live page before visiting."
+    },
+    "primaryKeyword": "cannabis menu Toronto",
+    "keywords": [
+      "weed dispensary in Toronto",
+      "cannabis store in Toronto",
+      "Toronto weed store",
+      "pre-rolls",
+      "edibles",
+      "THC vapes",
+      "concentrates",
+      "cheap cigarettes",
+      "delivery"
+    ],
+    "oldTitle": "Kensington Green Local Visit Guide for Adults 19+",
+    "wordCount": 537,
+    "businessReviewFlags": []
+  }
 ];
-export function getStaticPost(slug: string) {
+
+export function getStaticPost(slug: string): StaticBlogPost | undefined {
   return STATIC_POSTS.find((post) => post.slug === slug);
+}
+
+export function getBlogRedirect(slug: string): string | undefined {
+  return BLOG_REDIRECTS[slug];
 }
