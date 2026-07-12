@@ -137,7 +137,7 @@ export function GBPLandingPage() {
         </p>
         <p className={styles.infoText}>
           For a fuller local overview, read the{" "}
-          <Link href="/blog/kensington-green-toronto-store-guide">Kensington Green store guide</Link>.
+          <Link href="/">Home</Link>.
         </p>
         <div className={styles.btnRow}>
           <Link href={gbpLocation.menuUrl} className={`${styles.btn} ${styles.btnPrimary}`}>
