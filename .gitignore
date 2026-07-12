@@ -43,6 +43,8 @@ onhand_template.csv
 
 # image source (banners are in public/banners/)
 /image/
+public/banners/ksc-real/cache/
+public/banners/ksc-real/preview-grid.webp
 
 # typescript
 *.tsbuildinfo

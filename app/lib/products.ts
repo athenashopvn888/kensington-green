@@ -170,7 +170,7 @@ export const CATEGORY_CONFIG: Record<string, CategoryInfo> = {
     ],
   },
   "VAPE PENS": {
-    banner: "/banners/01_Vape_Pens.webp",
+    banner: "/banners/ksc-real/category-vape-pens.webp",
     name: "THC Vape", slug: "vapes", color: "#8b5cf6", icon: "💨",
     seoTitle: "Vape Pens Toronto — THC & Nicotine Cartridges",
     seoIntro: "Shop THC and nicotine vape pens at Kensington Green, Toronto. Cartridges, 510-thread batteries, and premium vape brands — all in stock.",
@@ -181,7 +181,7 @@ export const CATEGORY_CONFIG: Record<string, CategoryInfo> = {
     ],
   },
   "VAPE DISPOSABLE": {
-    banner: "/banners/02_Vape_Disposable.webp",
+    banner: "/banners/ksc-real/category-nic-vape.webp",
     name: "Nic Vape", slug: "vape-disposables", color: "#a78bfa", icon: "💨",
     seoTitle: "Disposable Vapes Toronto — THC Disposable Pens",
     seoIntro: "THC disposable vapes available at Kensington Green, Toronto. No charging, no refilling — just open and enjoy.",
@@ -192,7 +192,7 @@ export const CATEGORY_CONFIG: Record<string, CategoryInfo> = {
     ],
   },
   CONCENTRATES: {
-    banner: "/banners/03_Concentrates.webp",
+    banner: "/banners/ksc-real/category-concentrates.webp",
     name: "Concentrates", slug: "concentrates", color: "#f59e0b", icon: "💎",
     seoTitle: "Cannabis Concentrates in Toronto | Kensington Green",
     seoIntro: "Browse concentrates category information at Kensington Green in Toronto.",
@@ -203,7 +203,7 @@ export const CATEGORY_CONFIG: Record<string, CategoryInfo> = {
     ],
   },
   PREROLLS: {
-    banner: "/banners/04_Pre_Rolls.webp", name: "Pre-Rolls", slug: "prerolls", color: "#22c55e", icon: "🚬",
+    banner: "/banners/ksc-real/category-prerolls.webp", name: "Pre-Rolls", slug: "prerolls", color: "#22c55e", icon: "🚬",
     seoTitle: "Pre-Rolls Toronto — Ready-to-Smoke Cannabis Joints",
     seoIntro: "Pre-rolled cannabis joints at Kensington Green, Toronto. Singles, multi-packs, and infused pre-rolls — ready to light up.",
     seoDescription: "Skip the rolling and grab a pre-roll from Kensington Green in Toronto. We carry singles, multi-packs, and infused pre-rolls from premium flower. Whether you want a quick smoke or a party pack, our pre-roll selection has something for everyone. Visit us at 2257 Dundas St W — we are Open Daily: 10:00 AM - 02:00 AM.",
@@ -213,7 +213,7 @@ export const CATEGORY_CONFIG: Record<string, CategoryInfo> = {
     ],
   },
   "ADD ONS": {
-    banner: "/banners/05_Accessories.webp",
+    banner: "/banners/ksc-real/category-accessories.webp",
     name: "Accessories", slug: "add-ons", color: "#34d399", icon: "➕",
     seoTitle: "Cannabis Accessories Toronto — Grinders, Papers, Lighters & More",
     seoIntro: "Essential cannabis accessories at Kensington Green, Toronto. Grinders, rolling papers, lighters, trays, and more.",
@@ -223,6 +223,7 @@ export const CATEGORY_CONFIG: Record<string, CategoryInfo> = {
     ],
   },
   "MAGIC & OTHERS": {
+    banner: "/banners/ksc-real/category-magic.webp",
     name: "Magic Stuff", slug: "magic", color: "#64748b", icon: "*",
     seoTitle: "Magic Stuff - Specialty Items",
     seoIntro: "Browse current menu for available specialty products. Availability may vary by store.",
@@ -233,7 +234,7 @@ export const CATEGORY_CONFIG: Record<string, CategoryInfo> = {
     ],
   },
   CIGARETTES: {
-    banner: "/banners/06_Cigarettes.webp",
+    banner: "/banners/ksc-real/category-cigarettes.webp",
     name: "Cigarettes", slug: "cigarettes", color: "#78716c", icon: "🏷️",
     seoTitle: "Native Cigarettes Toronto — Discount Tobacco at Kensington Green",
     seoIntro: "Discount native cigarettes at Kensington Green, Toronto. Premium and value brands at the best prices on Toronto St.",

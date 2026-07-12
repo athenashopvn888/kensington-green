@@ -56,14 +56,14 @@ const BENTO_TIERS = [
 
 /* -- Explore Categories Config (New Banners) -- */
 const EXPLORE_CATEGORIES = [
-  { name: "Vape Pens", slug: "items/vapes", banner: "/banners/01_Vape_Pens.webp" },
-  { name: "Nic Vape", slug: "items/vape-disposables", banner: "/banners/02_Vape_Disposable.webp" },
-  { name: "Concentrates", slug: "items/concentrates", banner: "/banners/03_Concentrates.webp" },
-  { name: "Pre-Rolls", slug: "items/prerolls", banner: "/banners/04_Pre_Rolls.webp" },
-  { name: "Accessories", slug: "items/add-ons", banner: "/banners/05_Accessories.webp" },
-  { name: "Cigarettes", slug: "items/cigarettes", banner: "/banners/06_Cigarettes.webp" },
-  { name: "Magic Stuff", slug: "items/magic", banner: "/banners/09_Magic_Stuff.webp" },
-  { name: "Games Arcade", slug: "games", banner: "/banners/10_Games.webp" },
+  { name: "Vape Pens", slug: "items/vapes", banner: "/banners/ksc-real/category-vape-pens.webp" },
+  { name: "Nic Vape", slug: "items/vape-disposables", banner: "/banners/ksc-real/category-nic-vape.webp" },
+  { name: "Concentrates", slug: "items/concentrates", banner: "/banners/ksc-real/category-concentrates.webp" },
+  { name: "Pre-Rolls", slug: "items/prerolls", banner: "/banners/ksc-real/category-prerolls.webp" },
+  { name: "Accessories", slug: "items/add-ons", banner: "/banners/ksc-real/category-accessories.webp" },
+  { name: "Cigarettes", slug: "items/cigarettes", banner: "/banners/ksc-real/category-cigarettes.webp" },
+  { name: "Magic Stuff", slug: "items/magic", banner: "/banners/ksc-real/category-magic.webp" },
+  { name: "Games Arcade", slug: "games", banner: "/banners/ksc-real/category-games.webp" },
 ];
 
 /* -- Local FAQs for Jane St -- */
