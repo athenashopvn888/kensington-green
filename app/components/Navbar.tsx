@@ -18,6 +18,7 @@ const ALL_LINKS = [
   { href: "/items/magic", label: "Magic Stuff" },
   { href: "/items/cigarettes", label: "Cigarettes" },
   { href: "/items/add-ons", label: "Accessories" },
+  { href: "/resources", label: "Resources" },
   { href: "/delivery", label: "🚗 Delivery" },
   { href: "/faq", label: "FAQ" },
   { href: "/games", label: "🎮" },
