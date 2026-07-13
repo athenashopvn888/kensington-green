@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -56,14 +56,46 @@ const BENTO_TIERS = [
 
 /* -- Explore Categories Config (New Banners) -- */
 const EXPLORE_CATEGORIES = [
-  { name: "Vape Pens", slug: "items/vapes", banner: "/banners/ksc-real/category-vape-pens.webp" },
-  { name: "Nic Vape", slug: "items/vape-disposables", banner: "/banners/ksc-real/category-nic-vape.webp" },
-  { name: "Concentrates", slug: "items/concentrates", banner: "/banners/ksc-real/category-concentrates.webp" },
-  { name: "Pre-Rolls", slug: "items/prerolls", banner: "/banners/ksc-real/category-prerolls.webp" },
-  { name: "Accessories", slug: "items/add-ons", banner: "/banners/ksc-real/category-accessories.webp" },
-  { name: "Cigarettes", slug: "items/cigarettes", banner: "/banners/ksc-real/category-cigarettes.webp" },
-  { name: "Magic Stuff", slug: "items/magic", banner: "/banners/ksc-real/category-magic.webp" },
-  { name: "Games Arcade", slug: "games", banner: "/banners/ksc-real/category-games.webp" },
+  {
+    name: "Vape Pens",
+    slug: "items/vapes",
+    banner: "/banners/ksc-real/category-vape-pens.webp",
+  },
+  {
+    name: "Nic Vape",
+    slug: "items/vape-disposables",
+    banner: "/banners/ksc-real/category-nic-vape.webp",
+  },
+  {
+    name: "Concentrates",
+    slug: "items/concentrates",
+    banner: "/banners/ksc-real/category-concentrates.webp",
+  },
+  {
+    name: "Pre-Rolls",
+    slug: "items/prerolls",
+    banner: "/banners/ksc-real/category-prerolls.webp",
+  },
+  {
+    name: "Accessories",
+    slug: "items/add-ons",
+    banner: "/banners/ksc-real/category-accessories.webp",
+  },
+  {
+    name: "Cigarettes",
+    slug: "items/cigarettes",
+    banner: "/banners/ksc-real/category-cigarettes.webp",
+  },
+  {
+    name: "Magic Stuff",
+    slug: "items/magic",
+    banner: "/banners/ksc-real/category-magic.webp",
+  },
+  {
+    name: "Games Arcade",
+    slug: "games",
+    banner: "/banners/ksc-real/category-games.webp",
+  },
 ];
 
 /* -- Local FAQs for Jane St -- */
@@ -104,7 +136,12 @@ export default function HomePage() {
   const [reviewsLoading, setReviewsLoading] = useState(true);
   const [welcomeBannerError, setWelcomeBannerError] = useState(false);
   const welcomeBannerSrc: string = "/banners/welcome_banner.webp";
-  const hasWelcomeBanner = welcomeBannerSrc && welcomeBannerSrc !== "/banners/" && !welcomeBannerSrc.includes("HERO_BANNER") && !welcomeBannerSrc.includes("WELCOME_BANNER") && welcomeBannerSrc !== "";
+  const hasWelcomeBanner =
+    welcomeBannerSrc &&
+    welcomeBannerSrc !== "/banners/" &&
+    !welcomeBannerSrc.includes("HERO_BANNER") &&
+    !welcomeBannerSrc.includes("WELCOME_BANNER") &&
+    welcomeBannerSrc !== "";
 
   /* -- 1. Fetch Client-Side Google Reviews -- */
   useEffect(() => {
@@ -129,9 +166,11 @@ export default function HomePage() {
         });
 
         const skIdx = colMap["StoreKey"] !== undefined ? colMap["StoreKey"] : 0;
-        const rnIdx = colMap["ReviewerName"] !== undefined ? colMap["ReviewerName"] : 1;
+        const rnIdx =
+          colMap["ReviewerName"] !== undefined ? colMap["ReviewerName"] : 1;
         const cmIdx = colMap["Comment"] !== undefined ? colMap["Comment"] : 2;
-        const dtIdx = colMap["CreateTime"] !== undefined ? colMap["CreateTime"] : 3;
+        const dtIdx =
+          colMap["CreateTime"] !== undefined ? colMap["CreateTime"] : 3;
 
         const reviewsPool: Review[] = [];
         let totalVal: number | null = null;
@@ -145,7 +184,10 @@ export default function HomePage() {
 
           const rn = row.c[rnIdx] ? row.c[rnIdx].v || "" : "";
           if (rn === "__STATS__") {
-            const parsedTotal = parseInt(row.c[cmIdx] ? row.c[cmIdx].v : "", 10);
+            const parsedTotal = parseInt(
+              row.c[cmIdx] ? row.c[cmIdx].v : "",
+              10,
+            );
             const parsedAvg = parseFloat(row.c[dtIdx] ? row.c[dtIdx].v : "");
             if (Number.isFinite(parsedTotal) && Number.isFinite(parsedAvg)) {
               totalVal = parsedTotal;
@@ -226,10 +268,22 @@ export default function HomePage() {
         <div className={styles.heroContent}>
           {/* Brand branding */}
           <div className={styles.brandBlock}>
-            <img src="/storeFavicon.webp" alt="Kensington Green Icon" style={{ height: "60px", width: "60px", objectFit: "contain", borderRadius: "8px", marginBottom: "8px" }} />
+            <img
+              src="/storeFavicon.webp"
+              alt="Kensington Green Icon"
+              style={{
+                height: "60px",
+                width: "60px",
+                objectFit: "contain",
+                borderRadius: "8px",
+                marginBottom: "8px",
+              }}
+            />
             <h1 className={styles.brandTitle}>KENSINGTON GREEN</h1>
             <p className={styles.brandSub}>Premium Cannabis Dispensary</p>
-            <div className={styles.brandBadge}>Open Daily: 10:00 AM - 02:00 AM</div>
+            <div className={styles.brandBadge}>
+              Open Daily: 10:00 AM - 02:00 AM
+            </div>
           </div>
 
           {/* Bento Grid */}
@@ -261,7 +315,8 @@ export default function HomePage() {
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>Explore Categories</h2>
             <p className={styles.sectionSubtitle}>
-              From custom disposable vapes and concentrates to accessories and cigarettes.
+              From custom disposable vapes and concentrates to accessories and
+              cigarettes.
             </p>
           </div>
 
@@ -278,9 +333,7 @@ export default function HomePage() {
                 />
                 <div className={styles.categoryCardOverlay} />
                 <div className={styles.categoryCardContent}>
-                  <h3 className={styles.categoryCardName}>
-                    {cat.name}
-                  </h3>
+                  <h3 className={styles.categoryCardName}>{cat.name}</h3>
                 </div>
               </Link>
             ))}
@@ -294,7 +347,8 @@ export default function HomePage() {
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>Featured Strains</h2>
             <p className={styles.sectionSubtitle}>
-              Staff picks and top sellers dynamically updated from our real-time stock sheet.
+              Staff picks and top sellers dynamically updated from our real-time
+              stock sheet.
             </p>
           </div>
 
@@ -312,15 +366,28 @@ export default function HomePage() {
       <section className={styles.seoSection}>
         <div className={styles.container}>
           <div className={styles.seoPanel}>
-            <h2 className={styles.seoPanelTitle}>2257 Dundas St W & Nearby Expressway's Premier Cannabis Dispensary - Open Daily: 10:00 AM - 02:00 AM</h2>
+            <h2 className={styles.seoPanelTitle}>
+              Dundas West Cannabis Dispensary - Open Daily: 10:00 AM - 02:00 AM
+            </h2>
             <p className={styles.seoPanelText}>
-              Welcome to <strong>Kensington Green</strong>, Toronto's premier cannabis destination at 2257 Dundas St W. We carry an electrifying selection of top-shelf strains - from ultra-rare exotics to solid everyday budget picks.
+              Welcome to <strong>Kensington Green</strong>, Toronto's local
+              cannabis stop at 2257 Dundas St W. We carry an electrifying
+              selection of top-shelf strains - from ultra-rare exotics to solid
+              everyday budget picks.
             </p>
             <p className={styles.seoPanelText}>
-              We are open Open Daily: 10:00 AM - 02:00 AM - Kensington Green is here to serve you. Our live menu is constantly refreshed with the freshest drops, premium prerolls, artisan edibles, and everything in between. Whether you're winding down or stocking up for the weekend, our knowledgeable staff can help during listed store hours.
+              Kensington Green is open daily from 10:00 AM to 02:00 AM. Our
+              current menu is constantly refreshed with the freshest drops,
+              premium prerolls, artisan edibles, and everything in between.
+              Whether you're winding down or stocking up for the weekend, our
+              knowledgeable staff can help during listed store hours.
             </p>
             <p className={styles.seoPanelText}>
-              Searching for a cannabis dispensary in Toronto or the surrounding area? Kensington Green is your go-to destination for premium flower, potent prerolls, and artisan edibles. Our six-tier pricing system means quality cannabis at every budget level - starting from just $3/g.
+              Searching for a cannabis dispensary in Toronto or the surrounding
+              area? Kensington Green is your local stop for premium flower,
+              potent prerolls, and artisan edibles. Our six-tier pricing system
+              means quality cannabis at every budget level - starting from just
+              $3/g.
             </p>
           </div>
         </div>
@@ -333,7 +400,9 @@ export default function HomePage() {
             <h2 className={styles.sectionTitle}>Customer Feedback</h2>
             {reviewsStats && (
               <div className={styles.reviewsStarsSummary}>
-                <span className={styles.reviewsStars}>{"\u2605\u2605\u2605\u2605\u2605"}</span>
+                <span className={styles.reviewsStars}>
+                  {"\u2605\u2605\u2605\u2605\u2605"}
+                </span>
                 <span className={styles.reviewsAvg}>
                   {reviewsStats.avg.toFixed(1)}
                 </span>
@@ -346,7 +415,9 @@ export default function HomePage() {
 
           <div className={styles.reviewsGrid}>
             {reviewsLoading ? (
-              <div className={styles.reviewsLoading}>Loading customer feedback...</div>
+              <div className={styles.reviewsLoading}>
+                Loading customer feedback...
+              </div>
             ) : reviews.length === 0 ? (
               <div className={styles.reviewsLoading}>
                 Customer feedback is unavailable right now.
@@ -372,22 +443,26 @@ export default function HomePage() {
                     <span className={styles.rvStars}>*****</span>
                   </div>
                   <p className={styles.rvText}>
-                    {rv.comment.length > 180 ? `${rv.comment.substring(0, 177)}...` : rv.comment}
+                    {rv.comment.length > 180
+                      ? `${rv.comment.substring(0, 177)}...`
+                      : rv.comment}
                   </p>
                 </div>
               ))
             )}
           </div>
 
-          <div className={styles.reviewCtaRow}>
-          </div>
+          <div className={styles.reviewCtaRow}></div>
         </div>
       </section>
 
       {/* -- FAQS SECTION -- */}
       <section className={styles.faqSection}>
         <div className={styles.faqContainer}>
-          <h2 className={styles.sectionTitle} style={{ textAlign: "center", marginBottom: "32px" }}>
+          <h2
+            className={styles.sectionTitle}
+            style={{ textAlign: "center", marginBottom: "32px" }}
+          >
             Frequently Asked Questions
           </h2>
           {LOCAL_FAQS.map((faq, i) => (
@@ -417,7 +492,9 @@ export default function HomePage() {
               <p className={styles.storeCardText}>
                 Open 7 Days a Week
                 <br />
-                <span className={styles.storeHighlight}>Open Daily: 10:00 AM - 02:00 AM</span>
+                <span className={styles.storeHighlight}>
+                  Open Daily: 10:00 AM - 02:00 AM
+                </span>
               </p>
             </div>
             <div className={styles.storeCard}>
@@ -425,14 +502,15 @@ export default function HomePage() {
               <p className={styles.storeCardText}>
                 No appointment needed
                 <br />
-                <span className={styles.storeHighlight}>2257 Dundas St W & Nearby Expressway, Toronto</span>
+                <span className={styles.storeHighlight}>
+                  Dundas West and Roncesvalles, Toronto
+                </span>
               </p>
             </div>
           </div>
 
           {/* Map wrapper */}
-          <div className={styles.mapWrap}>
-          </div>
+          <div className={styles.mapWrap}></div>
         </div>
       </section>
 

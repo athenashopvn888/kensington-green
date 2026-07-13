@@ -33,14 +33,14 @@ export interface ItemProduct {
   promoImage: string | null;
 }
 
-/* ── Data imports (static fallback) ── */
+/* Data imports (static fallback) */
 import flowersJson from "./flowers.json";
 import itemsJson from "./items.json";
 
 export const allFlowers: FlowerProduct[] = flowersJson as FlowerProduct[];
 export const allItems: ItemProduct[] = itemsJson as ItemProduct[];
 
-/* ── Live stock fetch from Apps Script ── */
+/* Live stock fetch from Apps Script */
 const APPS_SCRIPT_URL = process.env.APPS_SCRIPT_URL || "";
 
 interface LiveStockResponse {
@@ -62,7 +62,12 @@ export async function fetchLiveProducts(): Promise<{
   stockDate: string | null;
 }> {
   if (!APPS_SCRIPT_URL) {
-    return { flowers: allFlowers, items: allItems, isLive: false, stockDate: null };
+    return {
+      flowers: allFlowers,
+      items: allItems,
+      isLive: false,
+      stockDate: null,
+    };
   }
 
   try {
@@ -79,17 +84,35 @@ export async function fetchLiveProducts(): Promise<{
     };
   } catch (err) {
     console.warn("[products] Live fetch failed, using static data:", err);
-    return { flowers: allFlowers, items: allItems, isLive: false, stockDate: null };
+    return {
+      flowers: allFlowers,
+      items: allItems,
+      isLive: false,
+      stockDate: null,
+    };
   }
 }
 
 export const TIER_CONFIG: Record<
   string,
   {
-    name: string; slug: string; color: string; icon: string; tagline: string; banner: string;
-    unitPrice: number; /* $/g */
-    deal3g: { label: string; total: string; price: number } | null; /* 3g bundle pricing */
-    deal6g: { label: string; total: string; price: number } | null; /* 6g bundle pricing (top 3 only) */
+    name: string;
+    slug: string;
+    color: string;
+    icon: string;
+    tagline: string;
+    banner: string;
+    unitPrice: number /* $/g */;
+    deal3g: {
+      label: string;
+      total: string;
+      price: number;
+    } | null /* 3g bundle pricing */;
+    deal6g: {
+      label: string;
+      total: string;
+      price: number;
+    } | null /* 6g bundle pricing (top 3 only) */;
   }
 > = {
   EXOTIC: {
@@ -149,109 +172,205 @@ export const TIER_CONFIG: Record<
   },
 };
 
-/* ── Item category config ── */
+/* Item category config */
 export interface CategoryInfo {
-  name: string; slug: string; color: string; icon: string; banner?: string;
-  seoTitle: string; seoIntro: string; seoDescription: string;
+  name: string;
+  slug: string;
+  color: string;
+  icon: string;
+  banner?: string;
+  seoTitle: string;
+  seoIntro: string;
+  seoDescription: string;
   faqs: { q: string; a: string }[];
 }
 
 export const CATEGORY_CONFIG: Record<string, CategoryInfo> = {
   EDIBLES: {
     banner: "/banners/edibles_prerolls_more_banner.webp",
-    name: "Edibles", slug: "edibles", color: "#f97316", icon: "🍬",
+    name: "Edibles",
+    slug: "edibles",
+    color: "#f97316",
+    icon: "🍬",
     seoTitle: "Cannabis Edibles in Toronto | Kensington Green",
-    seoIntro: "Browse edibles category information at Kensington Green in Toronto.",
-    seoDescription: "Review edible-related menu categories at Kensington Green in Toronto and confirm current menu details before visiting. This page is intended for general category browsing and does not promise current product availability.",
+    seoIntro:
+      "Browse edibles category information at Kensington Green in Toronto.",
+    seoDescription:
+      "Review edible-related menu categories at Kensington Green in Toronto and confirm current menu details before visiting. This page is intended for general category browsing and does not promise current product availability.",
     faqs: [
-      { q: "What edible information can shoppers review?", a: "Customers can review edible-related category information and confirm current menu details before visiting Kensington Green." },
-      { q: "Does this page guarantee current edible availability?", a: "No. This page is for general category browsing; customers should confirm current menu details before visiting." },
-      { q: "How does this page help Toronto shoppers?", a: "It helps shoppers find the Kensington Green edibles category and review store/menu information in one place." },
+      {
+        q: "What edible information can shoppers review?",
+        a: "Customers can review edible-related category information and confirm current menu details before visiting Kensington Green.",
+      },
+      {
+        q: "Does this page guarantee current edible availability?",
+        a: "No. This page is for general category browsing; customers should confirm current menu details before visiting.",
+      },
+      {
+        q: "How does this page help Toronto shoppers?",
+        a: "It helps shoppers find the Kensington Green edibles category and review store/menu information in one place.",
+      },
     ],
   },
   "VAPE PENS": {
     banner: "/banners/ksc-real/category-vape-pens.webp",
-    name: "THC Vape", slug: "vapes", color: "#8b5cf6", icon: "💨",
-    seoTitle: "Vape Pens Toronto — THC & Nicotine Cartridges",
-    seoIntro: "Shop THC and nicotine vape pens at Kensington Green, Toronto. Cartridges, 510-thread batteries, and premium vape brands — all in stock.",
-    seoDescription: "Kensington Green carries a curated selection of vape pens and cartridges in Toronto. From 510-thread THC cartridges to nicotine vape pods, we stock the most popular brands and flavours. Our knowledgeable budtenders can help you choose the right cartridge and battery setup. Visit us at 2257 Dundas St W for the best vape selection in ByWard Market.",
+    name: "THC Vape",
+    slug: "vapes",
+    color: "#8b5cf6",
+    icon: "💨",
+    seoTitle: "Vape Pens Toronto THC & Nicotine Cartridges",
+    seoIntro:
+      "Shop THC and nicotine vape pens at Kensington Green, Toronto. Cartridges, 510-thread batteries, and premium vape brands available when listed on the menu.",
+    seoDescription:
+      "Kensington Green carries a curated selection of vape pens and cartridges in Toronto. From 510-thread THC cartridges to nicotine vape pods, we stock the most popular brands and flavours. Our knowledgeable budtenders can help you choose the right cartridge and battery setup. Visit us at 2257 Dundas St W for the useful vape selection in Dundas West.",
     faqs: [
-      { q: "What vape pens do you sell?", a: "We carry 510-thread THC cartridges, nicotine vape pods, disposable vapes, and compatible batteries from top Canadian brands." },
-      { q: "Do you sell vape batteries?", a: "Yes! We stock 510-thread batteries and pod systems that pair with our cartridge selection." },
+      {
+        q: "What vape pens do you sell?",
+        a: "We carry 510-thread THC cartridges, nicotine vape pods, disposable vapes, and compatible batteries from current menu brands.",
+      },
+      {
+        q: "Do you sell vape batteries?",
+        a: "Yes! We stock 510-thread batteries and pod systems that pair with our cartridge selection.",
+      },
     ],
   },
   "VAPE DISPOSABLE": {
     banner: "/banners/ksc-real/category-nic-vape.webp",
-    name: "Nic Vape", slug: "vape-disposables", color: "#a78bfa", icon: "💨",
-    seoTitle: "Disposable Vapes Toronto — THC Disposable Pens",
-    seoIntro: "THC disposable vapes available at Kensington Green, Toronto. No charging, no refilling — just open and enjoy.",
-    seoDescription: "Disposable THC vapes are the easiest way to enjoy cannabis on the go. Kensington Green stocks a wide selection of pre-charged, pre-filled disposable vape pens with various strain profiles and potencies. Perfect for beginners and experienced users alike. Visit us at 2257 Dundas St W, Toronto.",
+    name: "Nic Vape",
+    slug: "vape-disposables",
+    color: "#a78bfa",
+    icon: "💨",
+    seoTitle: "Disposable Vapes Toronto THC Disposable Pens",
+    seoIntro:
+      "THC disposable vapes available at Kensington Green, Toronto. No charging, no refilling just open and enjoy.",
+    seoDescription:
+      "Disposable THC vapes are the easiest way to enjoy cannabis on the go. Kensington Green stocks a wide selection of pre-charged, pre-filled disposable vape pens with various strain profiles and potencies. Perfect for beginners and experienced users alike. Visit us at 2257 Dundas St W, Toronto.",
     faqs: [
-      { q: "How long does a disposable vape last?", a: "Most disposable THC vapes contain 0.5g-1g of distillate and last between 100-300 puffs depending on usage." },
-      { q: "Are disposable vapes rechargeable?", a: "Most are designed for single use, but some models include a USB-C charging port to ensure you can use the full cartridge." },
+      {
+        q: "How long does a disposable vape last?",
+        a: "Most disposable THC vapes contain 0.5g-1g of distillate and last between 100-300 puffs depending on usage.",
+      },
+      {
+        q: "Are disposable vapes rechargeable?",
+        a: "Most are designed for single use, but some models include a USB-C charging port to ensure you can use the full cartridge.",
+      },
     ],
   },
   CONCENTRATES: {
     banner: "/banners/ksc-real/category-concentrates.webp",
-    name: "Concentrates", slug: "concentrates", color: "#f59e0b", icon: "💎",
+    name: "Concentrates",
+    slug: "concentrates",
+    color: "#f59e0b",
+    icon: "💎",
     seoTitle: "Cannabis Concentrates in Toronto | Kensington Green",
-    seoIntro: "Browse concentrates category information at Kensington Green in Toronto.",
-    seoDescription: "Review concentrate-related menu categories at Kensington Green in Toronto and confirm current menu details before visiting. This page is intended for general category browsing and does not promise current product availability.",
+    seoIntro:
+      "Browse concentrates category information at Kensington Green in Toronto.",
+    seoDescription:
+      "Review concentrate-related menu categories at Kensington Green in Toronto and confirm current menu details before visiting. This page is intended for general category browsing and does not promise current product availability.",
     faqs: [
-      { q: "What concentrate information can shoppers review?", a: "Visitors can use this page to review concentrates category information and then confirm current menu details before visiting Kensington Green." },
-      { q: "Does this page guarantee current concentrate availability?", a: "No. Category details can change, so customers should confirm the current menu before visiting." },
+      {
+        q: "What concentrate information can shoppers review?",
+        a: "Visitors can use this page to review concentrates category information and then confirm current menu details before visiting Kensington Green.",
+      },
+      {
+        q: "Does this page guarantee current concentrate availability?",
+        a: "No. Category details can change, so customers should confirm the current menu before visiting.",
+      },
     ],
   },
   PREROLLS: {
-    banner: "/banners/ksc-real/category-prerolls.webp", name: "Pre-Rolls", slug: "prerolls", color: "#22c55e", icon: "🚬",
-    seoTitle: "Pre-Rolls Toronto — Ready-to-Smoke Cannabis Joints",
-    seoIntro: "Pre-rolled cannabis joints at Kensington Green, Toronto. Singles, multi-packs, and infused pre-rolls — ready to light up.",
-    seoDescription: "Skip the rolling and grab a pre-roll from Kensington Green in Toronto. We carry singles, multi-packs, and infused pre-rolls from premium flower. Whether you want a quick smoke or a party pack, our pre-roll selection has something for everyone. Visit us at 2257 Dundas St W — we are Open Daily: 10:00 AM - 02:00 AM.",
+    banner: "/banners/ksc-real/category-prerolls.webp",
+    name: "Pre-Rolls",
+    slug: "prerolls",
+    color: "#22c55e",
+    icon: "🚬",
+    seoTitle: "Pre-Rolls Toronto Ready-to-Smoke Cannabis Joints",
+    seoIntro:
+      "Pre-rolled cannabis joints at Kensington Green, Toronto. Singles, multi-packs, and infused pre-rolls ready to light up.",
+    seoDescription:
+      "Skip the rolling and grab a pre-roll from Kensington Green in Toronto. We carry singles, multi-packs, and infused pre-rolls from premium flower. Whether you want a quick smoke or a party pack, our pre-roll selection has something for everyone. Visit us at 2257 Dundas St W we are open daily: 10:00 AM - 02:00 AM.",
     faqs: [
-      { q: "What pre-rolls do you carry?", a: "We stock singles, 3-packs, and multi-packs in various strains and potencies, including infused pre-rolls with concentrates." },
-      { q: "Are your pre-rolls made with quality flower?", a: "Yes! Our pre-rolls are filled with ground flower from our regular menu tiers — not shake or trim." },
+      {
+        q: "What pre-rolls do you carry?",
+        a: "We stock singles, 3-packs, and multi-packs in various strains and potencies, including infused pre-rolls with concentrates.",
+      },
+      {
+        q: "Are your pre-rolls made with quality flower?",
+        a: "Yes! Our pre-rolls are filled with ground flower from our regular menu tiers not shake or trim.",
+      },
     ],
   },
   "ADD ONS": {
     banner: "/banners/ksc-real/category-accessories.webp",
-    name: "Accessories", slug: "add-ons", color: "#34d399", icon: "➕",
-    seoTitle: "Cannabis Accessories Toronto — Grinders, Papers, Lighters & More",
-    seoIntro: "Essential cannabis accessories at Kensington Green, Toronto. Grinders, rolling papers, lighters, trays, and more.",
-    seoDescription: "Kensington Green carries all the accessories you need for the perfect smoke session. From premium grinders and rolling papers to lighters, trays, and storage containers, we have everything in stock. Visit us at 2257 Dundas St W, Toronto.",
+    name: "Accessories",
+    slug: "add-ons",
+    color: "#34d399",
+    icon: "➕",
+    seoTitle: "Cannabis Accessories Toronto Grinders, Papers, Lighters & More",
+    seoIntro:
+      "Essential cannabis accessories at Kensington Green, Toronto. Grinders, rolling papers, lighters, trays, and more.",
+    seoDescription:
+      "Kensington Green carries all the accessories you need for the perfect smoke session. From premium grinders and rolling papers to lighters, trays, and storage containers, we have everything in stock. Visit us at 2257 Dundas St W, Toronto.",
     faqs: [
-      { q: "What accessories do you sell?", a: "We carry grinders, rolling papers, filter tips, lighters, rolling trays, storage jars, and more." },
+      {
+        q: "What accessories do you sell?",
+        a: "We carry grinders, rolling papers, filter tips, lighters, rolling trays, storage jars, and more.",
+      },
     ],
   },
   "MAGIC & OTHERS": {
     banner: "/banners/ksc-real/category-magic.webp",
-    name: "Magic Stuff", slug: "magic", color: "#64748b", icon: "*",
+    name: "Magic Stuff",
+    slug: "magic",
+    color: "#64748b",
+    icon: "*",
     seoTitle: "Magic Stuff - Specialty Items",
-    seoIntro: "Browse current menu for available specialty products. Availability may vary by store.",
-    seoDescription: "Current specialty items are listed when they are carried on the menu. Product availability may vary by store and by day. Check the live menu for current selection.",
+    seoIntro:
+      "Browse current menu for available specialty products. Availability may vary by store.",
+    seoDescription:
+      "Current specialty items are listed when they are carried on the menu. Product availability may vary by store and by day. Check the current menu for current selection.",
     faqs: [
-      { q: "What specialty items are available?", a: "Selection varies by store and by day. Check the current menu for available specialty products." },
-      { q: "Does availability vary by location?", a: "Yes. Specialty item availability may vary by store, so please check the current menu for this location." },
+      {
+        q: "What specialty items are available?",
+        a: "Selection varies by store and by day. Check the current menu for available specialty products.",
+      },
+      {
+        q: "Does availability vary by location?",
+        a: "Yes. Specialty item availability may vary by store, so please check the current menu for this location.",
+      },
     ],
   },
   CIGARETTES: {
     banner: "/banners/ksc-real/category-cigarettes.webp",
-    name: "Cigarettes", slug: "cigarettes", color: "#78716c", icon: "🏷️",
-    seoTitle: "Native Cigarettes Toronto — Discount Tobacco at Kensington Green",
-    seoIntro: "Discount native cigarettes at Kensington Green, Toronto. Premium and value brands at the best prices on Toronto St.",
-    seoDescription: "Kensington Green is your go-to source for affordable native cigarettes in Toronto. We carry a wide selection of premium and value tobacco brands at competitive prices. Located at 2257 Dundas St W in the heart of 2257 Dundas St W & Nearby Expressway, we're Open Daily: 10:00 AM - 02:00 AM.",
+    name: "Cigarettes",
+    slug: "cigarettes",
+    color: "#78716c",
+    icon: "*",
+    seoTitle: "Native Cigarettes Toronto Discount Tobacco at Kensington Green",
+    seoIntro:
+      "Discount native cigarettes at Kensington Green, Toronto. Cigarette category options at the competitive prices on Dundas St W.",
+    seoDescription:
+      "Kensington Green is your go-to source for affordable native cigarettes in Toronto. We carry a wide selection of premium and value tobacco brands at competitive prices. Located at 2257 Dundas St W in the heart of Dundas West and Roncesvalles, we're Open Daily: 10:00 AM - 02:00 AM.",
     faqs: [
-      { q: "Do you sell cigarettes at Kensington Green?", a: "Yes! We carry a wide selection of native cigarette brands at competitive prices." },
-      { q: "What cigarette brands do you carry?", a: "We stock a variety of premium and value native cigarette brands. Visit us to see our full in-store selection." },
-      { q: "Are your cigarette prices competitive?", a: "Absolutely. We offer some of the best cigarette prices in the 2257 Dundas St W & Nearby Expressway area of Toronto." },
+      {
+        q: "Do you sell cigarettes at Kensington Green?",
+        a: "Yes! We carry a wide selection of native cigarette brands at competitive prices.",
+      },
+      {
+        q: "What cigarette brands do you carry?",
+        a: "We stock a variety of premium and value native cigarette brands. Visit us to see our full in-store selection.",
+      },
+      {
+        q: "Are your cigarette prices competitive?",
+        a: "Absolutely. We offer some of the best cigarette prices in the Dundas West and Roncesvalles area of Toronto.",
+      },
     ],
   },
 };
 
-/* ── Helper functions ── */
+/* Helper functions */
 export function getFlowersByTier(tier: string): FlowerProduct[] {
-  return allFlowers.filter(
-    (f) => f.tier.toUpperCase() === tier.toUpperCase()
-  );
+  return allFlowers.filter((f) => f.tier.toUpperCase() === tier.toUpperCase());
 }
 
 export function getFlowerBySlug(slug: string): FlowerProduct | undefined {
@@ -260,39 +379,42 @@ export function getFlowerBySlug(slug: string): FlowerProduct | undefined {
 
 export function getItemsByCategory(category: string): ItemProduct[] {
   return allItems.filter(
-    (i) => i.category.toUpperCase() === category.toUpperCase()
+    (i) => i.category.toUpperCase() === category.toUpperCase(),
   );
 }
 
 export function getTierFromSlug(
-  slug: string
+  slug: string,
 ): { key: string; config: (typeof TIER_CONFIG)[string] } | undefined {
-  const entry = Object.entries(TIER_CONFIG).find(
-    ([, v]) => v.slug === slug
-  );
+  const entry = Object.entries(TIER_CONFIG).find(([, v]) => v.slug === slug);
   if (!entry) return undefined;
   return { key: entry[0], config: entry[1] };
 }
 
 export function getCategoryFromSlug(
-  slug: string
+  slug: string,
 ): { key: string; config: (typeof CATEGORY_CONFIG)[string] } | undefined {
   const entry = Object.entries(CATEGORY_CONFIG).find(
-    ([, v]) => v.slug === slug
+    ([, v]) => v.slug === slug,
   );
   if (!entry) return undefined;
   return { key: entry[0], config: entry[1] };
 }
 
 export function getLowestPrice(flower: FlowerProduct): number | null {
-  const prices = [flower.price3g, flower.price5g, flower.price14g, flower.price28g]
+  const prices = [
+    flower.price3g,
+    flower.price5g,
+    flower.price14g,
+    flower.price28g,
+  ]
     .filter((p): p is PricePoint => p !== null)
     .map((p) => p.sale ?? p.regular);
   return prices.length ? Math.min(...prices) : null;
 }
 
 export function formatPrice(p: PricePoint | null): string {
-  if (!p) return "—";
+  if (!p) return "";
   if (p.sale !== null) return `$${p.sale}`;
   return `$${p.regular}`;
 }

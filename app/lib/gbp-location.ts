@@ -12,7 +12,17 @@ export const gbpLocation = {
   phone: "(416) 402-5263",
   phoneIntl: "+14164025263",
   neighborhood: "Dundas West / Roncesvalles / High Park",
-  nearbyAreas: ["Dundas St W", "Roncesvalles", "High Park", "Bloor West", "The Junction", "Parkdale", "Sorauren", "Lansdowne", "TTC"],
+  nearbyAreas: [
+    "Dundas St W",
+    "Roncesvalles",
+    "High Park",
+    "Bloor West",
+    "The Junction",
+    "Parkdale",
+    "Sorauren",
+    "Lansdowne",
+    "TTC",
+  ],
   products: [
     "Flower",
     "Pre-rolls",
@@ -21,7 +31,7 @@ export const gbpLocation = {
     "Concentrates",
     "Shatter",
     "CBD oils",
-    "Accessories"
+    "Accessories",
   ],
   menuUrl: "/",
   directionsUrl: "",
@@ -30,11 +40,15 @@ export const gbpLocation = {
   longitude: "-79.4521695",
   hours: ["Open Daily: 10:00 AM - 02:00 AM"],
   seoTitle: "Kensington Green | Weed Dispensary in Toronto",
-  metaDescription: "Kensington Green is a local weed dispensary in Toronto offering flower, pre-rolls, edibles, vapes, concentrates, CBD, and service for adults 19+.",
+  metaDescription:
+    "Kensington Green is a local weed dispensary in Toronto offering flower, pre-rolls, edibles, vapes, concentrates, CBD, and service for adults 19+.",
   localLandmarks: ["Dundas St W", "Roncesvalles", "High Park"],
-  introVariant: "If you are searching for a reliable weed dispensary in Toronto, Kensington Green at 2257 Dundas St W is your go-to destination. We serve adults 19+ with a vast selection of weed products including cannabis flower, pre-rolls, edibles, THC vapes, shatter, and CBD oils. Serving customers near Dundas West / Roncesvalles / High Park and surrounding communities like Roncesvalles, our cannabis store and weed shop is focused on quality and convenience.",
-  neighborhoodDescription: "Located in the vibrant Dundas West / Roncesvalles / High Park district, our cannabis store fits right into this active and historic community, surrounded by local retail shops and convenient transit links.",
+  introVariant:
+    "If you are searching for a reliable weed dispensary in Toronto, Kensington Green at 2257 Dundas St W is your local stop. We serve adults 19+ with a vast selection of weed products including cannabis flower, pre-rolls, edibles, THC vapes, shatter, and CBD oils. Serving customers near Dundas West / Roncesvalles / High Park and surrounding communities like Roncesvalles, our cannabis store and weed shop is focused on quality and convenience.",
+  neighborhoodDescription:
+    "Located in the vibrant Dundas West / Roncesvalles / High Park district, our cannabis store fits right into this active and historic community, surrounded by local retail shops and convenient transit links.",
   parkingNote: "Street parking is available on Dundas Street West",
-  transitNote: "Located near Dundas West Subway Station and served by local TTC routes.",
-  sectionTitle: "Serving Customers Near Dundas West and Roncesvalles"
+  transitNote:
+    "Located near Dundas West Subway Station and served by local TTC routes.",
+  sectionTitle: "Serving Customers Near Dundas West and Roncesvalles",
 };

@@ -9,12 +9,12 @@ import { SEO_PAGES, getSeoPageBySlug } from "../../lib/seoPages";
 import { TIER_CONFIG } from "../../lib/products";
 import styles from "./seo.module.css";
 
-/* ── Generate all SEO pages ── */
+/* Generate all SEO pages */
 export function generateStaticParams() {
   return SEO_PAGES.map((p) => ({ seoPage: p.slug }));
 }
 
-/* ── Metadata ── */
+/* Metadata */
 export async function generateMetadata({
   params,
 }: {
@@ -33,7 +33,7 @@ export async function generateMetadata({
   };
 }
 
-/* ── Page ── */
+/* Page */
 export default async function SeoLandingPage({
   params,
 }: {
@@ -57,11 +57,7 @@ export default async function SeoLandingPage({
       {/* Banner Image */}
       {page.banner && bannerExists && (
         <section className={styles.bannerSection}>
-          <img
-            src={page.banner}
-            alt={page.h1}
-            className={styles.bannerImg}
-          />
+          <img src={page.banner} alt={page.h1} className={styles.bannerImg} />
         </section>
       )}
 
@@ -86,7 +82,9 @@ export default async function SeoLandingPage({
 
           {/* Tier Grid */}
           <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>Our Cannabis Menu — Five Tiers of Quality</h2>
+            <h2 className={styles.sectionTitle}>
+              Our Cannabis Menu Five Tiers of Quality
+            </h2>
             <div className={styles.tierGrid}>
               {tiers.map((tier) => (
                 <Link
@@ -95,12 +93,15 @@ export default async function SeoLandingPage({
                   className={styles.tierCard}
                   style={{ "--tier-color": tier.color } as React.CSSProperties}
                 >
-                  <div className={styles.tierLabel} style={{ color: tier.color }}>
+                  <div
+                    className={styles.tierLabel}
+                    style={{ color: tier.color }}
+                  >
                     {tier.icon} {tier.name}
                   </div>
                   <div className={styles.tierPrice}>${tier.unitPrice}/g</div>
                   <p className={styles.tierDesc}>{tier.tagline}</p>
-                  <span className={styles.tierLink}>Browse {tier.name} →</span>
+                  <span className={styles.tierLink}>Browse {tier.name} </span>
                 </Link>
               ))}
             </div>
@@ -109,16 +110,16 @@ export default async function SeoLandingPage({
           {/* Map */}
           <div className={styles.section}>
             <h2 className={styles.sectionTitle}>Find Us</h2>
-            <div className={styles.mapWrap}>
-            </div>
-            <div className={styles.visitBtns}>
-            </div>
+            <div className={styles.mapWrap}></div>
+            <div className={styles.visitBtns}></div>
           </div>
 
           {/* FAQ */}
           {page.faqs.length > 0 && (
             <div className={styles.section}>
-              <h2 className={styles.sectionTitle}>Frequently Asked Questions</h2>
+              <h2 className={styles.sectionTitle}>
+                Frequently Asked Questions
+              </h2>
               {page.faqs.map((faq, i) => (
                 <details key={i} className={styles.faqItem}>
                   <summary className={styles.faqQ}>{faq.q}</summary>
