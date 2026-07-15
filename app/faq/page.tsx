@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "Frequently asked questions about Kensington Green in Toronto. Hours, location, products, pricing, bundle offers, and everything you need to know before visiting.",
   alternates: {
-    canonical: "https://kensingtongreencannabis.com/faq",
+    canonical: "https://www.kensingtongreencannabis.com/faq",
   },
 };
 
@@ -33,7 +33,7 @@ const FAQ_CATEGORIES = [
         a: "We're just 5 minutes from the highways and central transit routes. We are centrally located and easy to reach.",
       },
       {
-        q: "What's the best way to get to Kensington Green?",
+        q: "How can I get to Kensington Green?",
         a: "We're easily accessible by car, bus, or foot. We are easily accessible by car, local transit, or bus routes. Free parking is available on surrounding streets.",
       },
     ],
@@ -47,19 +47,19 @@ const FAQ_CATEGORIES = [
       },
       {
         q: "Do you have a current menu?",
-        a: "Yes! Our online menu at kensingtongreencannabis.com shows current menu details with current stock, prices, THC levels, and availability. You can check what's in stock before you visit.",
+        a: "Yes. Use the online menu to review current product names, categories, weights, and posted prices before visiting.",
       },
       {
         q: "What are your flower tiers?",
-        a: "Exotic ($10-$12/g, THC 35-39%) ultra-rare top-shelf genetics. Premium ($7-$10/g, THC 32-34%) connoisseur-grade. AAA+ ($5-$6/g, THC 30-32%) heavy hitters, our most popular tier. AA ($4/g, THC 27-29%) quality daily drivers. Budget ($3/g, THC 24-27%) reliable value flower.",
+        a: "The menu separates flower into Exotic, Premium, AAA+, AA, and Budget tiers. Open each tier page to compare its current listings and posted prices.",
       },
       {
         q: "Do you sell edibles?",
-        a: "Yes! We carry a variety of edibles including gummies, chocolates, baked goods, and more. THC content varies. Check our current menu for current availability.",
+        a: "Yes! We carry a variety of edibles including gummies, chocolates, baked goods, and more. THC content varies. Check our current menu for current menu details.",
       },
       {
         q: "Do you sell vapes?",
-        a: "Yes both disposable vapes and refillable vape pens. We carry both nicotine vapes and THC vapes from top brands.",
+        a: "The vape category pages organize disposable and cartridge formats. Review the current menu for product details.",
       },
       {
         q: "Do you sell native cigarettes?",
@@ -80,7 +80,7 @@ const FAQ_CATEGORIES = [
       },
       {
         q: "Do you have ounce deals?",
-        a: "Yes! Budget ounces from $40, AA ounces from $90, AAA+ ounces from $100. All with freshness and quality guaranteed.",
+        a: "Check the relevant flower tier page for current posted ounce options and prices.",
       },
       {
         q: "How does bundle pricing work?",
@@ -88,7 +88,7 @@ const FAQ_CATEGORIES = [
       },
       {
         q: "How does the tier pricing work?",
-        a: "Each flower strain is graded into one of five quality tiers. The tier determines the per-gram price. This transparent system means you always know exactly what you're paying no confusing markups or inconsistent pricing.",
+        a: "Each flower listing appears in one of five menu tiers. Use the tier page to compare the posted weight and price details.",
       },
     ],
   },
@@ -101,7 +101,7 @@ const FAQ_CATEGORIES = [
       },
       {
         q: "Can I order online?",
-        a: "Currently, Kensington Green is an in-store shopping experience only. You can browse our current menu online to see what's in stock before visiting.",
+        a: "Currently, Kensington Green is an in-store shopping experience only. You can browse the current menu online before visiting.",
       },
       {
         q: "Do you offer delivery?",
@@ -113,7 +113,7 @@ const FAQ_CATEGORIES = [
       },
       {
         q: "Can your staff help me choose a strain?",
-        a: "Absolutely! Our knowledgeable budtenders are here to help. Whether you're a first-time buyer or a seasoned connoisseur, we can recommend strains based on your preferences, desired effects, and budget.",
+        a: "Staff can help compare current menu categories, formats, package details, and posted prices.",
       },
       {
         q: "Is there a minimum purchase?",

@@ -31,7 +31,7 @@ export async function generateMetadata({
     title: `${flower.name} | ${tierName} ${flower.type === "indica" ? "Indica" : flower.type === "sativa" ? "Sativa" : "Hybrid"} | THC ${flower.thc} | Kensington Green Toronto`,
     description: strainData.metaDescription,
     alternates: {
-      canonical: `https://kensingtongreencannabis.com/flower/${slug}`,
+      canonical: `https://www.kensingtongreencannabis.com/flower/${slug}`,
     },
     openGraph: {
       title: `${flower.name} | Kensington Green`,
@@ -60,9 +60,8 @@ function getJsonLd(flower: FlowerProduct) {
 
   const offers: any = {
     "@type": "Offer",
-    url: `https://kensingtongreencannabis.com/flower/${flower.slug}`,
+    url: `https://www.kensingtongreencannabis.com/flower/${flower.slug}`,
     priceCurrency: "CAD",
-    availability: "https://schema.org/InStock",
     itemCondition: "https://schema.org/NewCondition",
     seller: { "@type": "Organization", name: "Kensington Green" },
     hasMerchantReturnPolicy: {
@@ -80,7 +79,7 @@ function getJsonLd(flower: FlowerProduct) {
     "@context": "https://schema.org",
     "@type": "Product",
     name: flower.name,
-    image: flower.image ? [flower.image.startsWith('http') ? flower.image : `https://kensingtongreencannabis.com${flower.image.startsWith('/') ? '' : '/'}${flower.image}`] : undefined,
+    image: flower.image ? [flower.image.startsWith('http') ? flower.image : `https://www.kensingtongreencannabis.com${flower.image.startsWith('/') ? '' : '/'}${flower.image}`] : undefined,
     description: strainData.description,
     brand: { "@type": "Brand", name: "Kensington Green" },
     sku: cleanSku(flower.sku || flower.slug),
@@ -101,19 +100,19 @@ function getBreadcrumbJsonLd(flower: FlowerProduct) {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://kensingtongreencannabis.com"
+        "item": "https://www.kensingtongreencannabis.com"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": tierName,
-        "item": `https://kensingtongreencannabis.com/${tierSlug}`
+        "item": `https://www.kensingtongreencannabis.com/${tierSlug}`
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": flower.name,
-        "item": `https://kensingtongreencannabis.com/flower/${flower.slug}`
+        "item": `https://www.kensingtongreencannabis.com/flower/${flower.slug}`
       }
     ]
   };
@@ -236,7 +235,7 @@ export default async function FlowerPage({
                 </div>
               </div>
 
-              {/* Effects */}
+              {/* Menu notes */}
               <div className={styles.effectsRow}>
                 {strainData.effects.map((e) => (
                   <span key={e.label} className={styles.effectPill}>
@@ -285,7 +284,7 @@ export default async function FlowerPage({
 
                 {bestValue && (
                   <div className={styles.valueNote}>
-                    Best value: <strong>${bestValue.perG}/g</strong> at {bestValue.label}
+                    Lowest unit price: <strong>${bestValue.perG}/g</strong> at {bestValue.label}
                   </div>
                 )}
               </div>
@@ -297,7 +296,7 @@ export default async function FlowerPage({
               </div>
 
               <div className={styles.visitCta}>
-                <p>Available in-store &middot; Walk-in welcome &middot; No appointment needed</p>
+                <p>Check the current menu &middot; Walk-in welcome &middot; No appointment needed</p>
               </div>
             </div>
           </div>

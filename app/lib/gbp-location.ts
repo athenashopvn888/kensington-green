@@ -1,7 +1,6 @@
-// Auto-generated Google Business Profile Local SEO Location Configuration
 export const gbpLocation = {
   storeName: "Kensington Green",
-  domain: "kensingtongreencannabis.com",
+  domain: "www.kensingtongreencannabis.com",
   city: "Toronto",
   province: "ON",
   country: "CA",
@@ -44,7 +43,7 @@ export const gbpLocation = {
     "Kensington Green is a local weed dispensary in Toronto offering flower, pre-rolls, edibles, vapes, concentrates, CBD, and service for adults 19+.",
   localLandmarks: ["Dundas St W", "Roncesvalles", "High Park"],
   introVariant:
-    "If you are searching for a reliable weed dispensary in Toronto, Kensington Green at 2257 Dundas St W is your local stop. We serve adults 19+ with a vast selection of weed products including cannabis flower, pre-rolls, edibles, THC vapes, shatter, and CBD oils. Serving customers near Dundas West / Roncesvalles / High Park and surrounding communities like Roncesvalles, our cannabis store and weed shop is focused on quality and convenience.",
+    "Kensington Green is a local weed dispensary at 2257 Dundas St W in Toronto. Adults 19+ can browse flower tiers and category pages for pre-rolls, edibles, vapes, concentrates, cigarettes, and accessories before visiting.",
   neighborhoodDescription:
     "Located in the vibrant Dundas West / Roncesvalles / High Park district, our cannabis store fits right into this active and historic community, surrounded by local retail shops and convenient transit links.",
   parkingNote: "Street parking is available on Dundas Street West",

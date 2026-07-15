@@ -76,7 +76,7 @@ export default function Footer() {
               </Link>
               <Link href="/contact">Contact Us</Link>
               <a
-                href="https://kensingtongreencannabis.com/"
+                href="https://www.kensingtongreencannabis.com/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -89,7 +89,7 @@ export default function Footer() {
         <div className={styles.bottom}>
           <p>
             {new Date().getFullYear()} Kensington Green. Must be 19+ to enter.
-            Please consume responsibly.
+            Please review posted store and menu information.
           </p>
         </div>
       </div>

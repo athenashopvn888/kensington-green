@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "Visit Kensington Green at 2257 Dundas St W, Toronto, ON M6R 1X6. We are open daily from 10:00 AM to 02:00 AM. Walk-ins welcome.",
   alternates: {
-    canonical: "https://kensingtongreencannabis.com/contact",
+    canonical: "https://www.kensingtongreencannabis.com/contact",
   },
   openGraph: {
     title: "Contact Kensington Green Toronto Dispensary",
@@ -108,16 +108,16 @@ export default function ContactPage() {
                 <br />
                 Just walk in and our staff will
                 <br />
-                help you find the perfect strain.
+                help you compare current menu details.
               </p>
               <div className={styles.featureList}>
                 <div className={styles.featureItem}>
                   <span className={styles.featureCheck}></span>
-                  200+ strains in stock
+                  Flower tiers and menu categories
                 </div>
                 <div className={styles.featureItem}>
                   <span className={styles.featureCheck}></span>
-                  Lab-tested &amp; safe
+                  Current package details
                 </div>
                 <div className={styles.featureItem}>
                   <span className={styles.featureCheck}></span>

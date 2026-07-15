@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Cannabis Arcade Games — Kensington Green | Toronto",
   description: "Play free online cannabis-themed games like Flappy Bud and Snake Munchies while you wait at Kensington Green.",
   alternates: {
-    canonical: "https://kensingtongreencannabis.com/games",
+    canonical: "https://www.kensingtongreencannabis.com/games",
   },
 };
 

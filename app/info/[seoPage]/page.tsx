@@ -28,7 +28,7 @@ export async function generateMetadata({
     title: page.title,
     description: page.metaDescription,
     alternates: {
-      canonical: `https://kensingtongreencannabis.com/info/${slug}`,
+      canonical: `https://www.kensingtongreencannabis.com/info/${slug}`,
     },
   };
 }

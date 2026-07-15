@@ -99,7 +99,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       {
         heading: "Resource Pages Explain The Trip, Menu Pages Confirm The Item",
         body:
-          "These pages are built to help adults 19+ choose the right next page. Product names, prices, strains, formats, and availability can move, so the current menu categories remain the source for exact shopping details.",
+          "These pages are built to help adults 19+ choose the right next page. Product names, prices, strains, formats, and menu details can move, so the current menu categories remain the source for exact shopping details.",
       },
     ],
   },
@@ -184,7 +184,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       {
         heading: "Shop By Category, Not By Guessing",
         body:
-          "Dundas West shoppers usually want a clean shortcut. Start with the category that matches the trip, then compare product names, prices, formats, and availability inside the current menu.",
+          "Dundas West shoppers usually want a clean shortcut. Start with the category that matches the trip, then compare product names, prices, formats, and menu details inside the current menu.",
         bullets: [
           "Flower: Exotic, Premium, AAA+, AA, and Budget.",
           "Quick smoke: pre-rolls before loose flower.",
@@ -207,7 +207,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       "Compare Kensington Green flower tiers including Exotic, Premium, AAA+, AA, and Budget with practical value and bundle notes.",
     eyebrow: "Flower Guide",
     intro:
-      "Kensington Green flower works best as a shelf ladder. Use the tier first, then compare the strain details, THC notes, format, and current price inside that lane.",
+      "Kensington Green flower works well as a shelf ladder. Use the tier first, then compare the strain details, item details, format, and current price inside that lane.",
     banner: "/banners/exotics_banner.webp",
     cards: [
       {
@@ -289,7 +289,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     ],
     sections: [
       {
-        heading: "Start Low, Move Up Only When It Makes Sense",
+        heading: "Start With The Value Tiers",
         body:
           "Budget and AA are the natural first stops for affordable weed near Dundas West, Roncesvalles, and Parkdale. If the current AAA+ list has the right strain and bundle, it can become the better value play.",
       },

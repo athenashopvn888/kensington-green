@@ -135,7 +135,7 @@ function ItemCard({ title, accent, items, hiIdx, preset }: {
 /* -- TICKER -- */
 const TICKER_SLIDES = [
   "🔥 Kensington Green — 2257 Dundas St W, Toronto",
-  "200+ Strains In Stock",
+  "FLOWER TIERS - MENU CATEGORIES",
   "Open Daily: 10:00 AM - 02:00 AM",
   "Pre-Rolls · Edibles · Vapes · Concentrates",
   "ALL SALES ARE FINAL",
