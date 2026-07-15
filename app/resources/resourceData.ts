@@ -87,9 +87,9 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     ],
     sections: [
       {
-        heading: "Give Kensington Green A West-End Job",
+        heading: "Plan A Kensington Green West-End Visit",
         body:
-          "For Pod 3, Kensington Green should not sound like a generic Toronto store. It should own the Dundas West, Roncesvalles, High Park, Parkdale, and Bloor West planning guide while still sending shoppers to the existing menu and visit guide.",
+          "Use this guide to plan a Kensington Green visit from Dundas West, Roncesvalles, High Park, Parkdale, or Bloor West, then continue to the current menu and store visit page.",
         bullets: [
           "Locked visit guide: /weed-dispensary-toronto.",
           "Store address: 2257 Dundas St W, Toronto, ON M6R 1X6.",
