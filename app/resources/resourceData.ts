@@ -51,7 +51,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       "Kensington Green resource hub for Dundas West, Roncesvalles, High Park, Bloor West, Parkdale, flower tiers, menu planning, TTC visits, and cigarette prices.",
     eyebrow: "Dundas West Resource Hub",
     intro:
-      "Kensington Green sits at 2257 Dundas St W, right in the west-end flow between Roncesvalles, High Park, Bloor West, Parkdale, Sorauren, and Lansdowne. Use these resources to choose the right menu lane, plan the TTC or walking route, compare flower tiers, and keep cigarette price checks separate from cannabis browsing.",
+      "Kensington Green sits at 2257 Dundas St W, right in the west-end flow between Roncesvalles, High Park, Bloor West, Parkdale, Sorauren, and Lansdowne. Use these resources to choose the right menu category, plan the TTC or walking route, compare flower tiers, and keep cigarette price checks separate from cannabis browsing.",
     banner: "/banners/welcome_banner.webp",
     cards: [
       {
@@ -62,7 +62,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       {
         title: "Roncesvalles Menu Guide",
         href: "/resources/roncesvalles-menu-guide",
-        text: "A shopper-first menu path for flower, pre-rolls, edibles, vapes, concentrates, accessories, and cigarettes.",
+        text: "A customer-friendly menu choice for flower, pre-rolls, edibles, vapes, concentrates, accessories, and cigarettes.",
       },
       {
         title: "Flower Tier Map",
@@ -89,9 +89,9 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       {
         heading: "Give Kensington Green A West-End Job",
         body:
-          "For Pod 3, Kensington Green should not sound like a generic Toronto store. It should own the Dundas West, Roncesvalles, High Park, Parkdale, and Bloor West planning lane while still sending shoppers to the existing menu and local landing page.",
+          "For Pod 3, Kensington Green should not sound like a generic Toronto store. It should own the Dundas West, Roncesvalles, High Park, Parkdale, and Bloor West planning guide while still sending shoppers to the existing menu and visit guide.",
         bullets: [
-          "Locked local landing page: /weed-dispensary-toronto.",
+          "Locked visit guide: /weed-dispensary-toronto.",
           "Store address: 2257 Dundas St W, Toronto, ON M6R 1X6.",
           "Hours shown in the store data: Open Daily 10:00 AM to 02:00 AM.",
         ],
@@ -99,7 +99,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       {
         heading: "Resource Pages Explain The Trip, Menu Pages Confirm The Item",
         body:
-          "These pages are built to help adults 19+ choose the right next page. Product names, prices, strains, formats, and availability can move, so the current category pages remain the source for exact shopping details.",
+          "These pages are built to help adults 19+ choose the right next page. Product names, prices, strains, formats, and availability can move, so the current menu categories remain the source for exact shopping details.",
       },
     ],
   },
@@ -115,9 +115,9 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     banner: "/banners/homepage_hero.webp",
     cards: [
       {
-        title: "Local Landing Page",
+        title: "Plan Your Visit",
         href: "/weed-dispensary-toronto",
-        text: "Use the protected Toronto landing page for locked store details and local search context.",
+        text: "Use the protected Toronto store page for locked store details and local search context.",
       },
       {
         title: "Menu Guide",
@@ -142,7 +142,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
         ],
       },
       {
-        heading: "Choose The Menu Lane Before The Visit",
+        heading: "Choose The Menu Category Before The Visit",
         body:
           "If the stop is quick, open the category first: flower tiers, pre-rolls, edibles, THC vape, nicotine vape, concentrates, accessories, cigarettes, or Magic Stuff. That keeps the in-store decision sharper.",
       },
@@ -156,7 +156,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       "A Kensington Green menu guide for Dundas West and Roncesvalles shoppers comparing flower, pre-rolls, vapes, edibles, concentrates, accessories, and cigarettes.",
     eyebrow: "Menu Guide",
     intro:
-      "The fastest way to shop Kensington Green is to pick a lane first. Flower shoppers compare tiers. Quick-trip shoppers use pre-rolls. Format-first shoppers can jump to edibles, THC vapes, nic vapes, concentrates, accessories, or cigarettes.",
+      "The fastest way to shop Kensington Green is to choose one category first. Flower shoppers compare tiers. Quick-trip shoppers use pre-rolls. Format-first shoppers can jump to edibles, THC vapes, nic vapes, concentrates, accessories, or cigarettes.",
     banner: "/banners/edibles_prerolls_more_banner.webp",
     cards: [
       {
@@ -260,7 +260,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     title: "Kensington Green Value Shopping Guide",
     seoTitle: "Kensington Green Value Guide | Budget Weed Dundas West Toronto",
     description:
-      "A Dundas West value guide for Kensington Green shoppers comparing Budget flower, AA flower, AAA+ bundle math, and affordable cannabis menu paths.",
+      "A Dundas West value guide for Kensington Green shoppers comparing Budget flower, AA flower, AAA+ bundle math, and affordable cannabis menu choices.",
     eyebrow: "Value Guide",
     intro:
       "Value shopping is not just the cheapest item on the page. At Kensington Green, it means starting with Budget and AA, then checking whether AAA+ bundle math makes the visit stronger.",
@@ -317,7 +317,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
         text: "Return to the store-specific visit planner.",
       },
       {
-        title: "Local Landing Page",
+        title: "Plan Your Visit",
         href: "/weed-dispensary-toronto",
         text: "Use this for locked address and local store details.",
       },

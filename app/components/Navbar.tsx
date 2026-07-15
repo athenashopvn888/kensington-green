@@ -20,6 +20,7 @@ const ALL_LINKS = [
   { href: "/items/add-ons", label: "Accessories" },
   { href: "/resources", label: "Resources" },
   { href: "/delivery", label: "🚗 Delivery" },
+  { href: "/careers/budtender", label: "Join Team", featured: true },
   { href: "/faq", label: "FAQ" },
   { href: "/games", label: "🎮" },
 ];
@@ -64,7 +65,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`${styles.pill} ${isActive ? styles.pillActive : ""}`}
+                className={`${styles.pill} ${link.featured ? styles.pillHiring : ""} ${isActive ? styles.pillActive : ""}`}
               >
                 {link.label}
               </Link>

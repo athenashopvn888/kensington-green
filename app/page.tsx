@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import Link from "next/link";
 import styles from "./page.module.css";
 import Navbar from "./components/Navbar";
@@ -260,6 +260,17 @@ export default function HomePage() {
       )}
 
       {/* -- BENTO MOSAIC HERO -- */}
+      <section className={styles.hiringCallout} aria-label="Hiring at Kensington Green" style={{ "--hire-accent": "#22c55e", "--hire-accent-soft": "rgba(34, 197, 94, 0.14)", "--hire-accent-border": "rgba(34, 197, 94, 0.32)" } as CSSProperties}>
+        <div className={styles.hiringCalloutInner}>
+          <div>
+            <span className={styles.hiringEyebrow}>Budtenders / Managers Wanted</span>
+            <h2>Join Kensington Green</h2>
+            <p>Dundas West needs friendly, reliable people who can bring good energy, learn the menu, and keep customers moving with confidence. Online applications only. Please do not call the store about hiring.</p>
+          </div>
+          <Link href="/careers/budtender" className={styles.hiringButton}>Apply Online</Link>
+        </div>
+      </section>
+
       <section className={styles.hero}>
         <div className={styles.heroBg} />
         <div className={styles.heroOverlay} />

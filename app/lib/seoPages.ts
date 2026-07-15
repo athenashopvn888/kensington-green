@@ -1,4 +1,4 @@
-// Geo-targeted SEO landing pages for Kensington Green.
+// Geo-targeted SEO store pages for Kensington Green.
 
 export interface SeoPageData {
   slug: string;

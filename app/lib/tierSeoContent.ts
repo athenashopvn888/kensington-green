@@ -143,7 +143,7 @@ export const TIER_SEO: Record<string, TierSeoData> = {
     sections: [
       {
         heading: "Affordable Cannabis Without Compromise",
-        body: "Our Budget tier proves that affordable cannabis doesn't mean low quality. With THC levels from 24% to 27%, these value strains deliver solid effects at rock-bottom prices. Budget flower helps Dundas West and Roncesvalles shoppers compare lower-spend options without guessing through the full menu.",
+        body: "Our Budget tier proves that affordable cannabis doesn't mean low quality. With THC levels from 24% to 27%, these value strains deliver solid effects at rock-bottom prices. Budget flower helps Dundas West and Roncesvalles shoppers compare lower-spend options with less back-and-forth through the full menu.",
       },
       {
         heading: "Budget Pricing From $3/g, OZs from $40",
