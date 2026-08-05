@@ -112,7 +112,7 @@ export default function DeliveryContent() {
             Can&apos;t wait? Visit us in-store at{" "}
             <strong>2257 Dundas St W, Toronto</strong>. We are{" "}
             <strong>Open Daily: 10:00 AM - 02:00 AM</strong>. Call{" "}
-            <strong>(416) 402-5263</strong>.
+            <strong>+1 (289) 514-9520</strong>.
           </p>
         </div>
       </div>

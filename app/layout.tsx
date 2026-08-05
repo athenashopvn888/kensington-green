@@ -81,7 +81,7 @@ const jsonLd = {
   description:
     "Cannabis dispensary at 2257 Dundas St W in Toronto, ON. Shop exotic, premium, AAA+, AA, and budget flower tiers plus edibles, prerolls, and vapes. Open Daily: 10:00 AM - 02:00 AM.",
   url: "https://www.kensingtongreencannabis.com",
-  telephone: "+14164025263",
+  telephone: "+12895149520",
   image:
     "https://www.kensingtongreencannabis.com/wp-content/uploads/2026/04/7Clmh.jpg",
   priceRange: "$3 - $12/g",
