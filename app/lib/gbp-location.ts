@@ -8,8 +8,8 @@ export const gbpLocation = {
   address: "2257 Dundas St W, Toronto, ON M6R 1X6",
   streetAddress: "2257 Dundas St W",
   postalCode: "M6R 1X6",
-  phone: "(416) 402-5263",
-  phoneIntl: "+14164025263",
+  phone: "+1 (289) 514-9520",
+  phoneIntl: "+12895149520",
   neighborhood: "Dundas West / Roncesvalles / High Park",
   nearbyAreas: [
     "Dundas St W",

@@ -111,7 +111,7 @@ const LOCAL_FAQS = [
   },
   {
     q: "Where is Kensington Green located?",
-    a: "We are located at 2257 Dundas St W, Toronto, ON M6R 1X6. Visit us in person or call us at (416) 402-5263. Free evening street parking is available.",
+    a: "We are located at 2257 Dundas St W, Toronto, ON M6R 1X6. Visit us in person or call us at +1 (289) 514-9520. Free evening street parking is available.",
   },
   {
     q: "What is the cheapest weed at Kensington Green?",

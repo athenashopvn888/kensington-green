@@ -187,7 +187,7 @@ export default function FAQPage() {
           <div className={styles.ctaSection}>
             <h2 className={styles.ctaTitle}>Still have questions?</h2>
             <p className={styles.ctaText}>
-              Call us at <strong>(416) 402-5263</strong> or visit us at 2257
+              Call us at <strong>+1 (289) 514-9520</strong> or visit us at 2257
               Dundas St W, Toronto.
             </p>
           </div>
