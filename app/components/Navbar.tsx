@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./Navbar.module.css";
 
 const ALL_LINKS = [
@@ -28,6 +29,9 @@ const ALL_LINKS = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const storeMenuLinks = ALL_LINKS.filter((link) => link.href.startsWith("/items/") || ["/exotic", "/premium", "/aaa", "/aa", "/budget"].includes(link.href));
+  const isStoreMenuActive = storeMenuLinks.some((link) => pathname === link.href);
+  const isDeliveryActive = pathname === "/delivery";
   const scrollBarRef = useRef<HTMLDivElement>(null);
   const [canAdvance, setCanAdvance] = useState(false);
   const updateScrollState = useCallback(() => { const scrollBar = scrollBarRef.current; if (!scrollBar) return; setCanAdvance(scrollBar.scrollWidth - scrollBar.clientWidth - scrollBar.scrollLeft > 2); }, []);
@@ -39,7 +43,7 @@ export default function Navbar() {
       {/* Top bar — logo + open now */}
       <div className={styles.topBar}>
         <Link href="/" className={styles.logo} style={{ display: "flex", alignItems: "center", gap: "8px", textDecoration: "none" }}>
-          <img src="/storeFavicon.webp" alt="Kensington Green Logo" style={{ height: "30px", width: "30px", objectFit: "contain", borderRadius: "4px" }} />
+          <Image src="/storeFavicon.webp" alt="Kensington Green Logo" width={30} height={30} style={{ objectFit: "contain", borderRadius: "4px" }} />
           <span style={{
             fontFamily: "var(--font-display)",
             fontWeight: 900,
@@ -52,6 +56,22 @@ export default function Navbar() {
           </span>
         </Link>
         <div className={styles.topBarRight}>
+          <div className={styles.menuChoices} aria-label="Choose a menu">
+            <Link
+              href="/exotic"
+              className={`${styles.menuChoice} ${isStoreMenuActive ? styles.menuChoiceActive : ""}`}
+              aria-current={isStoreMenuActive ? "page" : undefined}
+            >
+              STORE MENU
+            </Link>
+            <Link
+              href="/delivery"
+              className={`${styles.menuChoice} ${styles.deliveryMenuChoice} ${isDeliveryActive ? styles.menuChoiceActive : ""}`}
+              aria-current={isDeliveryActive ? "page" : undefined}
+            >
+              DELIVERY MENU
+            </Link>
+          </div>
           <Link href="/games" className={styles.gamesBtn}>
             🎮 Play Games
           </Link>
