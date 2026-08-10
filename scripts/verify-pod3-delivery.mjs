@@ -45,7 +45,7 @@ assert(drawer.includes('role="dialog"') && drawer.includes('aria-modal="true"'))
 assert(css.includes("grid-template-columns:repeat(2,minmax(0,1fr))") || css.includes("grid-template-columns: repeat(2, minmax(0, 1fr))"));
 assert(navbar.includes("STORE MENU") && navbar.includes("DELIVERY MENU"));
 assert(home.includes("STORE MENU") && home.includes("DELIVERY MENU"));
-assert(footer.includes('<Link href="/delivery">Delivery Menu</Link>') && !footer.includes("Delivery (Coming Soon)"));
+assert(footer.includes('<Link href="/delivery">DELIVERY MENU</Link>') && !footer.includes("Delivery (Coming Soon)"));
 assert(catalog.includes("unoptimized") && drawer.includes("unoptimized"));
 assert(nextConfig.includes('hostname: "athena-cannabis-images.vercel.app"'));
 assert(nextConfig.includes('pathname: "/products/delivery/v1/**"'));
