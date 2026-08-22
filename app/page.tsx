@@ -85,7 +85,7 @@ const EXPLORE_CATEGORIES = [
   {
     name: "Cigarettes",
     slug: "items/cigarettes",
-    banner: "/banners/ksc-real/category-cigarettes.webp",
+    banner: "/banners/native-cigarette-offer-20260822.webp",
   },
   {
     name: "Magic Stuff",
