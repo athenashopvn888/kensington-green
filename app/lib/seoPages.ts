@@ -11,6 +11,7 @@ const NATIVE_HERO_PRODUCTS = [
 export interface SeoPageData {
   slug: string;
   title: string;
+  absoluteTitle?: boolean;
   metaDescription: string;
   h1: string;
   icon: string;
@@ -18,8 +19,17 @@ export interface SeoPageData {
   heroPreview?: {
     eyebrow: string;
     intro: string;
-    products: typeof NATIVE_HERO_PRODUCTS;
-    disclosure: typeof NATIVE_HERO_DISCLOSURE;
+    products: readonly { name: string; image: string; sourceSlug?: string }[];
+    disclosure: string;
+    theme?: "cigarettes" | "nicotine";
+    menuHref?: string;
+    primaryLabel?: string;
+    secondaryLabel?: string;
+    secondaryHref?: string;
+    identityStrip?: string;
+    featuredHeading?: string;
+    featuredIntro?: string;
+    warning?: string;
   };
   banner?: string;
   sections: { heading: string; body: string }[];
@@ -102,6 +112,48 @@ export const SEO_PAGES: SeoPageData[] = [
       { heading: "Use Current Menu Pages", body: "Category and tier pages provide the public menu structure. Confirm an exact item through the current menu or with staff." },
     ],
     faqs: visitFaqs,
+  },
+  {
+    slug: "nicotine-vapes-dundas-west",
+    title: "Nicotine Vapes on Dundas West | Kensington Green",
+    absoluteTitle: true,
+    metaDescription: "Adults 19+: review six nicotine vape product pages from Kensington Green on Dundas West, then check /items/vapes for the current category. Nicotine is addictive.",
+    h1: "Nicotine Vapes at Kensington Green on Dundas West",
+    icon: "NV",
+    heroTagline: "Adults 19+ · Nicotine is addictive.",
+    heroPreview: {
+      eyebrow: "KENSINGTON GREEN • DUNDAS WEST / RONCESVALLES / HIGH PARK • ADULTS 19+",
+      intro: "Searching for nicotine vapes near me around Dundas West, Roncesvalles or High Park? This adult-only Kensington Green guide features six live-checked VAPE PENS product pages. Compare their supported names, then use /items/vapes for the current nicotine category. Product details can change. Nicotine is addictive.",
+      products: [
+        { name: "GEEK PROMAX – 5% | 30K PUFFS", image: "https://pub-eb3e1fe18a43477eabc885cfb791d97c.r2.dev/products/GEEK-PROMAX.jpg", sourceSlug: "geek-promax-5-30k-puffs" },
+        { name: "GEEK UNIVERSE 25k PUFFS", image: "https://pub-eb3e1fe18a43477eabc885cfb791d97c.r2.dev/products/geek_universe_pulse_x_25k.webp", sourceSlug: "geek-universe-25k-puffs" },
+        { name: "NEXA PIX | 30K PUFFS | MANY FLAVORS", image: "https://pub-eb3e1fe18a43477eabc885cfb791d97c.r2.dev/products/nexa_showcase_600x600.webp", sourceSlug: "nexa-pix-30k-puffs-many-flavors" },
+        { name: "OVNS 10000 – 5% | 10K PUFFS", image: "https://pub-eb3e1fe18a43477eabc885cfb791d97c.r2.dev/products/1081OVNS10000.jpg", sourceSlug: "ovns-10000-5-10k-puffs" },
+        { name: "OVNS DISPOSABLE – 5% | 8ML | MANY FLAVORS", image: "https://pub-eb3e1fe18a43477eabc885cfb791d97c.r2.dev/products/OVNS500x500HQ.webp", sourceSlug: "ovns-disposable-5-8ml-many-flavors" },
+        { name: "OVNS PIONEER – 5% | 22K PUFFS", image: "https://pub-eb3e1fe18a43477eabc885cfb791d97c.r2.dev/products/OVNS_PIONEER_5_22K_PUFFS.webp", sourceSlug: "ovns-pioneer-5-22k-puffs" },
+      ],
+      disclosure: "Featured cards are live-checked starting points, not guarantees of current stock, price or availability.",
+      theme: "nicotine",
+      menuHref: "/items/vapes",
+      primaryLabel: "Browse Nicotine Vapes",
+      secondaryLabel: "Compare the Six Featured Items",
+      secondaryHref: "#featured-vapes",
+      identityStrip: "Kensington Green | Dundas West / Roncesvalles / High Park | Adults 19+ | Nicotine is addictive.",
+      featuredHeading: "Six Live-Checked Kensington Green Vape Cards",
+      featuredIntro: "This shortlist contains six live-checked Geek, NEXA and OVNS VAPE PENS product pages. Use each card for its supported display name, then rely on /items/vapes for the current Kensington Green category listing.",
+      warning: "Adults 19+. Nicotine is addictive.",
+    },
+    sections: [
+      { heading: "Read Each Product Format Carefully", body: "One featured page explicitly identifies an OVNS disposable. Keep that description attached only to that product and do not apply the disposable label to another featured item by assumption." },
+      { heading: "Puff Counts Identify Listings", body: "Several featured names include puff counts. Use those numbers to distinguish the listings, not as guarantees of duration, performance or superiority." },
+      { heading: "Keep Nicotine and Cannabis Vape Routes Separate", body: "This adult-only Kensington Green guide uses VAPE PENS products under /items/vapes. THC and cannabis vape products under /items/vape-disposables are excluded." },
+      { heading: "Review the Current Dundas West Category", body: "Before choosing, open /items/vapes and the individual product page for current supported details. This guide does not claim prices, stock or guaranteed availability." },
+    ],
+    faqs: [
+      { q: "Where should I check Kensington Green’s current nicotine selection?", a: "Use /items/vapes. The six featured cards are live-checked starting points while the current category listing controls selection information." },
+      { q: "Does every featured item use the same format?", a: "No format should be assumed. One featured page explicitly identifies an OVNS disposable. Read each current product page for its supported format and details." },
+      { q: "Does this page include cannabis vapes?", a: "No. It covers nicotine products from the VAPE PENS category for adults 19+. THC and cannabis vape products under /items/vape-disposables are excluded." },
+    ],
   },
 ];
 
