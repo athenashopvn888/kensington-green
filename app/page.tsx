@@ -13,36 +13,36 @@ import Papa from "papaparse";
 /* -- Bento Mosaic Config -- */
 const BENTO_TIERS = [
   {
-    name: "EXOTICS",
-    slug: "exotic",
+    name: "EXOTIC WEED",
+    slug: "exotic-weed",
     price: "$10-$12/g",
     banner: "/banners/exotics_banner.webp",
     className: styles.bentoExotic,
   },
   {
-    name: "PREMIUM",
-    slug: "premium",
+    name: "PREMIUM WEED",
+    slug: "premium-weed",
     price: "$7-$10/g",
     banner: "/banners/premium_banner.webp",
     className: styles.bentoPremium,
   },
   {
-    name: "AAA+",
-    slug: "aaa",
+    name: "AAA+ WEED",
+    slug: "aaa-weed",
     price: "$5-$6/g",
     banner: "/banners/aaa_plus_banner.webp",
     className: styles.bentoTile,
   },
   {
-    name: "AA",
-    slug: "aa",
+    name: "AA WEED",
+    slug: "aa-weed",
     price: "$4/g",
     banner: "/banners/aa_banner.webp",
     className: styles.bentoTile,
   },
   {
-    name: "BUDGET",
-    slug: "budget",
+    name: "BUDGET WEED",
+    slug: "budget-weed",
     price: "$3/g",
     banner: "/banners/budget_banner.webp",
     className: styles.bentoTile,
@@ -276,8 +276,8 @@ export default function HomePage() {
               Open Daily: 10:00 AM - 02:00 AM
             </div>
             <div className={styles.homeMenuActions} aria-label="Choose a Kensington Green menu">
-              <Link href="/exotic" className={styles.homeMenuCta}>STORE MENU</Link>
-              <Link href="/delivery" className={`${styles.homeMenuCta} ${styles.homeDeliveryCta}`}>DELIVERY MENU</Link>
+              <Link href="/exotic-weed" className={styles.homeMenuCta}>STORE MENU</Link>
+              <Link href="/weed-delivery-toronto" className={`${styles.homeMenuCta} ${styles.homeDeliveryCta}`}>Explore Weed Delivery</Link>
             </div>
           </div>
 

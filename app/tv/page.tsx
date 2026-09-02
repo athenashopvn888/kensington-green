@@ -675,7 +675,7 @@ const TICKER_SLIDES = [
   "FLOWER TIERS - MENU CATEGORIES",
   "Open Daily: 10:00 AM - 02:00 AM",
   "ALL SALES ARE FINAL",
-  "DELIVERY MENU at kensingtongreencannabis.com/delivery",
+  "WEED DELIVERY at kensingtongreencannabis.com/weed-delivery-toronto",
 ];
 
 function VerticalTicker() {

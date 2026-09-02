@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
-import DeliveryContent from "./DeliveryContent";
-import menu from "./delivery-menu.json";
+import DeliveryContent from "../delivery/DeliveryContent";
+import menu from "../delivery/delivery-menu.json";
 
 export const metadata: Metadata = {
-  title: "Cannabis Delivery Menu — Kensington Green",
-  description: "Browse the Kensington Green delivery menu and start your order with the live dispatcher.",
-  alternates: { canonical: "https://www.kensingtongreencannabis.com/delivery" },
+  title: { absolute: "Weed Delivery Toronto | Kensington Green" },
+  description: "Explore Kensington Green Weed Delivery in Toronto and browse the existing delivery menu through the established ordering experience.",
+  alternates: { canonical: "https://www.kensingtongreencannabis.com/weed-delivery-toronto" },
 };
 
-export default function DeliveryPage() {
+export default function WeedDeliveryTorontoPage() {
   const structuredData = [
     {
       "@context": "https://schema.org",
       "@type": "CollectionPage",
-      name: "Kensington Green Delivery Menu",
+      name: "Kensington Green Weed Delivery Menu",
       mainEntity: {
         "@type": "ItemList",
         numberOfItems: menu.products.length,
@@ -27,7 +27,7 @@ export default function DeliveryPage() {
     {
       "@context": "https://schema.org",
       "@type": "Service",
-      name: "Kensington Green Delivery",
+      name: "Kensington Green Weed Delivery",
       serviceType: "Cannabis delivery",
       hoursAvailable: {
         "@type": "OpeningHoursSpecification",

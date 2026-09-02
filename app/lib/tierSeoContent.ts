@@ -7,7 +7,7 @@ export interface TierSeoData {
 
 export const TIER_SEO: Record<string, TierSeoData> = {
   EXOTIC: {
-    seoTitle: "Exotic Weed & Cannabis Flower in Toronto | Kensington Green",
+    seoTitle: "Exotic Weed & Cannabis Flower Toronto | Kensington Green",
     seoIntro: "Kensington Green keeps Exotic as its own cannabis flower category for adults 19+ exploring weed and flower in Toronto. The Exotic tier stays narrow and distinct from Premium, AAA+, AA and Budget while the broader Weed experience remains on the main store owner page.",
     sections: [
       { heading: "Explore Exotic Weed & Flower", body: "Use the Exotic section when you want to focus on that specific Kensington Green flower category rather than browse the full tier lineup at once." },
@@ -20,7 +20,7 @@ export const TIER_SEO: Record<string, TierSeoData> = {
     ],
   },
   PREMIUM: {
-    seoTitle: "Premium Weed & Cannabis Flower in Toronto | Kensington Green",
+    seoTitle: "Premium Weed & Cannabis Flower Toronto | Kensington Green",
     seoIntro: "Premium has its own place in the Kensington Green flower lineup for adults 19+ exploring weed and cannabis flower in Toronto. It remains a focused category alongside Exotic, AAA+, AA and Budget rather than competing with the broader Weed owner page.",
     sections: [
       { heading: "Browse Premium Weed & Flower", body: "The Premium section gives Kensington Green shoppers a dedicated place to explore that named flower tier without combining it with the rest of the lineup." },
@@ -33,7 +33,7 @@ export const TIER_SEO: Record<string, TierSeoData> = {
     ],
   },
   "AAA+": {
-    seoTitle: "AAA+ Weed & Cannabis Flower in Toronto | Kensington Green",
+    seoTitle: "AAA+ Weed & Cannabis Flower Toronto | Kensington Green",
     seoIntro: "AAA+ is a distinct Kensington Green flower category for adults 19+ who want to focus on that part of the weed and cannabis flower lineup. It stays complementary to the broader Weed owner and separate from Premium, AA, Exotic and Budget.",
     sections: [
       { heading: "Explore AAA+ Weed & Flower", body: "The AAA+ section keeps this flower category focused so shoppers can browse it independently from the surrounding Kensington Green tiers." },
@@ -46,7 +46,7 @@ export const TIER_SEO: Record<string, TierSeoData> = {
     ],
   },
   AA: {
-    seoTitle: "AA Weed & Cannabis Flower in Toronto | Kensington Green",
+    seoTitle: "AA Weed & Cannabis Flower Toronto | Kensington Green",
     seoIntro: "AA is its own Kensington Green flower category for adults 19+ exploring weed and cannabis flower in Toronto. The section remains distinct from Budget, AAA+, Premium and Exotic and stays subordinate to the broader Weed owner page.",
     sections: [
       { heading: "Browse AA Weed & Flower", body: "Use the AA section when you want to stay focused on that specific Kensington Green flower category." },
@@ -59,7 +59,7 @@ export const TIER_SEO: Record<string, TierSeoData> = {
     ],
   },
   BUDGET: {
-    seoTitle: "Budget Weed & Cannabis Flower in Toronto | Kensington Green",
+    seoTitle: "Budget Weed & Cannabis Flower Toronto | Kensington Green",
     seoIntro: "Budget is a separate Kensington Green flower category for adults 19+ exploring weed and cannabis flower in Toronto. The Budget label identifies the tier without making a current price, promotion, stock or availability claim.",
     sections: [
       { heading: "Explore Budget Weed & Flower", body: "The Budget section gives Kensington Green shoppers a dedicated flower category that stays separate from AA, AAA+, Premium and Exotic." },
