@@ -71,7 +71,7 @@ export default function Footer() {
               <Link href="/info/weed-store-near-dundas-west">
                 Dundas West Weed Store
               </Link>
-              <Link href="/weed-dispensary-toronto/">
+              <Link href="/weed-dispensary-toronto">
                 Kensington Green Weed Dispensary in Toronto
               </Link>
               <Link href="/contact">Contact Us</Link>
