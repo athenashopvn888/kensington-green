@@ -139,7 +139,7 @@ const TICKER_SLIDES = [
   "Open Daily: 10:00 AM - 02:00 AM",
   "Pre-Rolls · Edibles · Vapes · Concentrates",
   "ALL SALES ARE FINAL",
-  "DELIVERY MENU at kensingtongreencannabis.com/delivery",
+  "WEED DELIVERY at kensingtongreencannabis.com/weed-delivery-toronto",
 ];
 
 function VerticalTicker() {

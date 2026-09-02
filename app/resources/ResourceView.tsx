@@ -17,6 +17,11 @@ export default function ResourceView({ page }: ResourceViewProps) {
           <p className={styles.eyebrow}>{page.eyebrow}</p>
           <h1>{page.title}</h1>
           <p className={styles.intro}>{page.intro}</p>
+          {page.ownerLink && (
+            <Link href={page.ownerLink.href} className={styles.ownerLink}>
+              {page.ownerLink.title}
+            </Link>
+          )}
           <div className={styles.bannerFrame}>
             <img src={page.banner} alt={`${page.title} resource banner`} className={styles.bannerImg} />
           </div>
@@ -50,6 +55,19 @@ export default function ResourceView({ page }: ResourceViewProps) {
             )}
           </article>
         ))}
+        {page.faqs && page.faqs.length > 0 && (
+          <article className={styles.section}>
+            <h2>Weed Flower Guide FAQs</h2>
+            <div className={styles.faqList}>
+              {page.faqs.map((faq) => (
+                <section key={faq.question}>
+                  <h3>{faq.question}</h3>
+                  <p>{faq.answer}</p>
+                </section>
+              ))}
+            </div>
+          </article>
+        )}
       </section>
       <Footer />
     </main>

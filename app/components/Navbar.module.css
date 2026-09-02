@@ -231,7 +231,9 @@
 }
 
 @media (max-width: 486px) {
+  .logo span { display: none; }
   .topBarRight { flex: 1; }
+  .open { display: none; }
   .menuChoices { width: 100%; gap: 5px; }
   .menuChoice { min-width: 0; min-height: 44px; padding: 7px 5px; font-size: 9px; }
 }

@@ -26,7 +26,7 @@ export const weedOwner = {
   {
     "label": "Flower Tier Map",
     "description": "Understand the flower-tier choices used at Kensington Green.",
-    "href": "/resources/flower-tier-map"
+    "href": "/resources/weed-flower-guide"
   },
   {
     "label": "Value Shopping Guide",
@@ -63,7 +63,7 @@ export const weedOwner = {
   {
     "label": "Flower Tier Map",
     "description": "Understand flower-tier choices.",
-    "href": "/resources/flower-tier-map"
+    "href": "/resources/weed-flower-guide"
   },
   {
     "label": "Value Shopping Guide",
@@ -106,7 +106,6 @@ export const weedOwner = {
     text: "Kensington Green at 2257 Dundas St W gives adults 19+ a focused way to explore Weed, Cannabis and flower-tier information.",
     primaryLabel: "Explore Kensington Green Weed & Cannabis",
     secondaryLabel: "Explore the Flower Tier Map",
-    secondaryHref: "/resources/flower-tier-map",
+    secondaryHref: "/resources/weed-flower-guide",
   },
 };
-

@@ -18,8 +18,10 @@ export interface ResourcePage {
   eyebrow: string;
   intro: string;
   banner: string;
+  ownerLink?: ResourceCard;
   cards: ResourceCard[];
   sections: ResourceSection[];
+  faqs?: { question: string; answer: string }[];
 }
 
 const cigaretteLines = [
@@ -65,9 +67,9 @@ export const RESOURCE_PAGES: ResourcePage[] = [
         text: "A customer-friendly menu choice for flower, pre-rolls, edibles, vapes, concentrates, accessories, and cigarettes.",
       },
       {
-        title: "Flower Tier Map",
-        href: "/resources/flower-tier-map",
-        text: "Use Exotic, Premium, AAA+, AA, and Budget as clear shelf lanes before choosing a strain.",
+        title: "Weed Flower Guide",
+        href: "/resources/weed-flower-guide",
+        text: "Explore Exotic Weed, Premium Weed, AAA+ Weed, AA Weed and Budget Weed in one flower guide.",
       },
       {
         title: "Value Shopping Guide",
@@ -160,8 +162,8 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     banner: "/banners/edibles_prerolls_more_banner.webp",
     cards: [
       {
-        title: "Flower Tier Map",
-        href: "/resources/flower-tier-map",
+        title: "Weed Flower Guide",
+        href: "/resources/weed-flower-guide",
         text: "Use the shelf ladder before choosing individual flower.",
       },
       {
@@ -200,58 +202,76 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     ],
   },
   {
-    slug: "flower-tier-map",
-    title: "Kensington Green Flower Tier Map",
-    seoTitle: "Kensington Green Flower Tier Guide | Exotic Premium AAA AA Budget",
+    slug: "weed-flower-guide",
+    title: "Kensington Green Weed & Flower Guide",
+    seoTitle: "Weed & Cannabis Flower Guide Toronto | Kensington Green",
     description:
-      "Compare Kensington Green flower tiers including Exotic, Premium, AAA+, AA, and Budget with practical value and bundle notes.",
-    eyebrow: "Flower Guide",
+      "Explore Kensington Green’s Exotic Weed, Premium Weed, AAA+ Weed, AA Weed and Budget Weed flower collections in one concise Toronto guide.",
+    eyebrow: "Kensington Green · Dundas Street West",
     intro:
-      "Kensington Green flower works well as a shelf ladder. Use the tier first, then compare the strain details, item details, format, and current price inside that lane.",
+      "Kensington Green brings together five Weed flower collections for shoppers who want to compare different parts of the selection before choosing what to explore. Browse Exotic Weed, Premium Weed, AAA+ Weed, AA Weed and Budget Weed, then continue with the collection that interests you. For broader local Weed browsing, start with Kensington Green’s established Toronto Weed selection.",
     banner: "/banners/exotics_banner.webp",
+    ownerLink: {
+      title: "Explore Kensington Green Weed in Toronto",
+      href: "/weed-dispensary-toronto/",
+      text: "Start with Kensington Green’s broader Toronto Weed selection.",
+    },
     cards: [
       {
-        title: "Exotic",
-        href: "/exotic",
-        text: "Higher-shelf flower with 6g bundle math shown on the tier page.",
+        title: "Explore Exotic Weed",
+        href: "/exotic-weed",
+        text: "Explore Kensington Green’s Exotic Weed flower collection and the products presented within it.",
       },
       {
-        title: "Premium",
-        href: "/premium",
-        text: "A quality-focused lane that can still make sense for bundle shoppers.",
+        title: "Explore Premium Weed",
+        href: "/premium-weed",
+        text: "Browse Kensington Green’s Premium Weed flower collection.",
       },
       {
-        title: "AAA+",
-        href: "/aaa",
-        text: "A middle lane for strength and value before dropping into AA.",
+        title: "Explore AAA+ Weed",
+        href: "/aaa-weed",
+        text: "Explore Kensington Green’s AAA+ Weed flower collection.",
       },
       {
-        title: "AA",
-        href: "/aa",
-        text: "Daily-driver flower at the simpler value level.",
+        title: "Explore AA Weed",
+        href: "/aa-weed",
+        text: "Browse Kensington Green’s AA Weed flower collection.",
       },
       {
-        title: "Budget",
-        href: "/budget",
-        text: "Start here when affordable weed is the mission.",
+        title: "Explore Budget Weed",
+        href: "/budget-weed",
+        text: "Explore Kensington Green’s Budget Weed flower collection.",
       },
     ],
     sections: [
       {
-        heading: "Use The Tier To Narrow The Shelf",
+        heading: "Explore Five Weed Flower Collections",
         body:
-          "Exotic, Premium, AAA+, AA, and Budget are not just labels. They are shopper shortcuts. If you already know the spend level, open that tier first instead of scrolling the whole menu.",
+          "The five collections give shoppers different parts of the Kensington Green flower selection to explore. Start with one that interests you or compare several before narrowing your browsing.",
       },
       {
-        heading: "Bundle Math Helps The Top Lanes",
+        heading: "Weed, Cannabis and Flower at Kensington Green",
         body:
-          "The store data shows 6g bundle paths on the top three flower tiers: Exotic at $60 for 6g, Premium at $45 for 6g, and AAA+ at $30 for 6g. Use the live tier page before visiting to confirm the current offer and strain mix.",
-        bullets: [
-          "Exotic 6g bundle: $60 shown in the tier data.",
-          "Premium 6g bundle: $45 shown in the tier data.",
-          "AAA+ 6g bundle: $30 shown in the tier data.",
-          "AA and Budget remain the direct value lanes.",
-        ],
+          "Weed, cannabis, bud and flower are common terms shoppers use while browsing dispensary selections. Kensington Green uses those terms naturally while keeping the five flower collections easy to distinguish.",
+      },
+      {
+        heading: "Compare the Collections That Interest You",
+        body:
+          "You can move between Exotic Weed, Premium Weed, AAA+ Weed, AA Weed and Budget Weed and explore the information presented within each collection before deciding where to continue.",
+      },
+    ],
+    faqs: [
+      {
+        question: "What Weed flower collections can I explore at Kensington Green?",
+        answer: "Kensington Green organizes flower browsing across five collections: Exotic Weed, Premium Weed, AAA+ Weed, AA Weed and Budget Weed.",
+      },
+      {
+        question: "Where can I start if I am not looking for one specific flower collection?",
+        answer: "Start with Kensington Green’s broader Weed in Toronto section, then move into a flower collection when one interests you.",
+      },
+      {
+        question: "Can I compare more than one Weed flower collection?",
+        answer: "Yes. You can explore the five collections individually and compare the information presented within each one.",
       },
     ],
   },
@@ -267,18 +287,18 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     banner: "/banners/budget_banner.webp",
     cards: [
       {
-        title: "Budget Flower",
-        href: "/budget",
+        title: "Budget Weed",
+        href: "/budget-weed",
         text: "Start with the lowest flower lane and compare current options.",
       },
       {
-        title: "AA Flower",
-        href: "/aa",
+        title: "AA Weed",
+        href: "/aa-weed",
         text: "A clean daily-driver lane when you want simple value.",
       },
       {
-        title: "AAA+ Flower",
-        href: "/aaa",
+        title: "AAA+ Weed",
+        href: "/aaa-weed",
         text: "Check the 6g bundle path when you want more shelf without jumping too high.",
       },
       {
