@@ -4,7 +4,7 @@ export type WeedFaq = { question: string; answer: string };
 export const weedOwner = {
   storeName: "Kensington Green",
   domain: "www.kensingtongreencannabis.com",
-  ownerPath: "/weed-dispensary-toronto/",
+  ownerPath: "/weed-dispensary-toronto",
   city: "Toronto",
   streetAddress: "2257 Dundas St W",
   postalCode: "M6R 1X6",
