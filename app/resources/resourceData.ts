@@ -213,7 +213,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     banner: "/banners/exotics_banner.webp",
     ownerLink: {
       title: "Explore Kensington Green Weed in Toronto",
-      href: "/weed-dispensary-toronto/",
+      href: "/weed-dispensary-toronto",
       text: "Start with Kensington Green’s broader Toronto Weed selection.",
     },
     cards: [

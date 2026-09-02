@@ -9,13 +9,14 @@ const nextConfig = fs.readFileSync("next.config.ts", "utf8");
 const sitemap = fs.readFileSync("app/sitemap.ts", "utf8");
 const navbar = fs.readFileSync("app/components/Navbar.tsx", "utf8");
 const footer = fs.readFileSync("app/components/Footer.tsx", "utf8");
+const weedDiscovery = fs.readFileSync("app/lib/weedDiscovery.ts", "utf8");
 const delivery = fs.readFileSync("app/weed-delivery-toronto/page.tsx", "utf8");
 const deliveryCatalog = fs.readFileSync("app/delivery/DeliveryCatalog.tsx", "utf8");
 
 test("Weed flower guide is a stable support page for the protected Weed owner", () => {
   assert.match(data, /slug: "weed-flower-guide"/);
   assert.match(data, /Weed & Cannabis Flower Guide Toronto \| Kensington Green/);
-  assert.match(data, /href: "\/weed-dispensary-toronto\/"/);
+  assert.match(data, /href: "\/weed-dispensary-toronto"\/);
   for (const route of ["exotic", "premium", "aaa", "aa", "budget"]) {
     assert.match(data, new RegExp(`href: "\\/${route}-weed"`));
   }
@@ -50,6 +51,10 @@ test("tier, delivery, sitemap, and customer links use only new Weed canonicals",
     assert.match(footer, new RegExp(`href="\\/${tier}-weed"`));
   }
   assert.match(sitemap, /weed-delivery-toronto/);
+  assert.match(weedDiscovery, /ownerPath: "\/weed-dispensary-toronto"/);
+  assert.match(sitemap, /`\$\{BASE\}\/weed-dispensary-toronto`/);
+  assert.match(footer, /href="\/weed-dispensary-toronto"/);
+  assert.doesNotMatch([data, sitemap, footer, weedDiscovery].join("\\n"), /weed-dispensary-toronto\//);
   assert.match(delivery, /canonical: "https:\/\/www\.kensingtongreencannabis\.com\/weed-delivery-toronto"/);
   assert.match(navbar, /Weed Delivery/);
   assert.match(deliveryCatalog, /<h1>Weed Delivery in Toronto<\/h1>/);
