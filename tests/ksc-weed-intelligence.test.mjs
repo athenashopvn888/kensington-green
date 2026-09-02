@@ -16,7 +16,7 @@ const deliveryCatalog = fs.readFileSync("app/delivery/DeliveryCatalog.tsx", "utf
 test("Weed flower guide is a stable support page for the protected Weed owner", () => {
   assert.match(data, /slug: "weed-flower-guide"/);
   assert.match(data, /Weed & Cannabis Flower Guide Toronto \| Kensington Green/);
-  assert.match(data, /href: "\/weed-dispensary-toronto\/"/);
+  assert.match(data, /href: "\/weed-dispensary-toronto"\/);
   for (const route of ["exotic", "premium", "aaa", "aa", "budget"]) {
     assert.match(data, new RegExp(`href: "\\/${route}-weed"`));
   }
