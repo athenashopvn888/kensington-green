@@ -6,8 +6,10 @@ export interface ResourceCard {
 
 export interface ResourceSection {
   heading: string;
-  body: string;
+  body: string | string[];
   bullets?: string[];
+  afterBullets?: string[];
+  link?: ResourceCard;
 }
 
 export interface ResourcePage {
@@ -22,6 +24,7 @@ export interface ResourcePage {
   cards: ResourceCard[];
   sections: ResourceSection[];
   faqs?: { question: string; answer: string }[];
+  faqHeading?: string;
 }
 
 const cigaretteLines = [
@@ -181,6 +184,11 @@ export const RESOURCE_PAGES: ResourcePage[] = [
         href: "/resources/native-smokes-prices",
         text: "Keep cigarette brand and price checks out of the cannabis decision.",
       },
+      {
+        title: "Cannabis Dispensary and Weed Dispensary Guide",
+        href: "/resources/cannabis-dispensary-vs-weed-dispensary",
+        text: "Learn how common dispensary and near-me wording can describe related local searches.",
+      },
     ],
     sections: [
       {
@@ -198,6 +206,67 @@ export const RESOURCE_PAGES: ResourcePage[] = [
         heading: "Keep Local Intent On The Page",
         body:
           "This guide supports shoppers looking near Roncesvalles, High Park, Bloor West, Parkdale, Sorauren, and Lansdowne without changing the existing category slugs.",
+      },
+    ],
+  },
+  {
+    slug: "cannabis-dispensary-vs-weed-dispensary",
+    title: "Why People Search “Cannabis Dispensary” and “Weed Dispensary”",
+    seoTitle: "Dispensary vs Weed Dispensary | Kensington Green Toronto",
+    description:
+      "Learn how cannabis dispensary, weed dispensary, cannabis store and near-me searches relate when people look for Kensington Green in Toronto.",
+    eyebrow: "Kensington Green · Toronto",
+    intro:
+      "When someone searches locally, terminology can be more flexible than it looks. Cannabis is the formal term, weed is common conversational language, and dispensary identifies the business type people are trying to locate. That is why several different phrases can lead toward the same local-search goal.",
+    banner: "/banners/welcome_banner.webp",
+    cards: [],
+    sections: [
+      {
+        heading: "Cannabis vs. Weed",
+        body: [
+          "“Cannabis” is the broader and more formal term. “Weed” is everyday language. Adding “dispensary” makes the business-search intent clearer.",
+          "That creates a natural keyword family:",
+        ],
+        bullets: [
+          "dispensary near me",
+          "cannabis dispensary near me",
+          "weed dispensary near me",
+          "cannabis store near me",
+          "cannabis near me",
+          "weed near me",
+        ],
+        afterBullets: [
+          "These are not identical keywords. They are different ways people may express related intent.",
+        ],
+      },
+      {
+        heading: "Why the Local Page Still Leads",
+        body:
+          "The purpose of this article is educational. It explains the relationship among dispensary, cannabis dispensary, weed dispensary and cannabis store.",
+        link: {
+          title: "For store details and visiting information, see Kensington Green’s Toronto dispensary page.",
+          href: "/weed-dispensary-toronto",
+          text: "Kensington Green Toronto dispensary information",
+        },
+      },
+    ],
+    faqHeading: "Frequently Asked Questions",
+    faqs: [
+      {
+        question: "Is cannabis the same word as weed?",
+        answer: "They overlap in everyday use, but cannabis is the formal term while weed is more conversational.",
+      },
+      {
+        question: "What does dispensary mean in this context?",
+        answer: "It identifies the local business type a searcher is trying to find.",
+      },
+      {
+        question: "Can one page support several related searches?",
+        answer: "Yes. A useful page can naturally explain the connected terminology without repeating every phrase unnaturally.",
+      },
+      {
+        question: "What is the role of the local store page?",
+        answer: "It remains the main page for location and visit information, while this guide provides supporting context.",
       },
     ],
   },
