@@ -45,7 +45,9 @@ export default function ResourceView({ page }: ResourceViewProps) {
         {page.sections.map((section) => (
           <article key={section.heading} className={styles.section}>
             <h2>{section.heading}</h2>
-            <p>{section.body}</p>
+            {(Array.isArray(section.body) ? section.body : [section.body]).map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
             {section.bullets && (
               <ul>
                 {section.bullets.map((item) => (
@@ -53,11 +55,19 @@ export default function ResourceView({ page }: ResourceViewProps) {
                 ))}
               </ul>
             )}
+            {section.afterBullets?.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+            {section.link && (
+              <Link href={section.link.href} className={styles.sectionLink}>
+                {section.link.title}
+              </Link>
+            )}
           </article>
         ))}
         {page.faqs && page.faqs.length > 0 && (
           <article className={styles.section}>
-            <h2>Weed Flower Guide FAQs</h2>
+            <h2>{page.faqHeading || "Weed Flower Guide FAQs"}</h2>
             <div className={styles.faqList}>
               {page.faqs.map((faq) => (
                 <section key={faq.question}>

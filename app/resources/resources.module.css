@@ -147,6 +147,19 @@
   line-height: 1.8;
 }
 
+.section p + p {
+  margin-top: 12px;
+}
+
+.sectionLink {
+  display: inline-flex;
+  margin-top: 16px;
+  color: var(--green-dark);
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
 .section ul {
   margin: 18px 0 0;
   padding-left: 22px;
