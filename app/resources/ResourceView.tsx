@@ -9,8 +9,44 @@ type ResourceViewProps = {
 };
 
 export default function ResourceView({ page }: ResourceViewProps) {
+  const canonical = `https://www.kensingtongreencannabis.com${page.slug ? `/resources/${page.slug}` : "/resources"}`;
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": page.slug ? "Article" : "CollectionPage",
+        "@id": `${canonical}#page`,
+        url: canonical,
+        headline: page.title,
+        description: page.description,
+        isPartOf: { "@id": "https://www.kensingtongreencannabis.com/#website" },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${canonical}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://www.kensingtongreencannabis.com" },
+          { "@type": "ListItem", position: 2, name: "Resources", item: "https://www.kensingtongreencannabis.com/resources" },
+          ...(page.slug ? [{ "@type": "ListItem", position: 3, name: page.title, item: canonical }] : []),
+        ],
+      },
+      ...(page.faqs && page.faqs.length > 0
+        ? [{
+            "@type": "FAQPage",
+            "@id": `${canonical}#faq`,
+            mainEntity: page.faqs.map((faq) => ({
+              "@type": "Question",
+              name: faq.question,
+              acceptedAnswer: { "@type": "Answer", text: faq.answer },
+            })),
+          }]
+        : []),
+    ],
+  };
+
   return (
     <main className={styles.main}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <Navbar />
       <section className={styles.hero}>
         <div className={styles.wrap}>

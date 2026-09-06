@@ -1,7 +1,7 @@
 export interface TierSeoData {
   seoTitle: string;
   seoIntro: string;
-  sections: { heading: string; body: string }[];
+  sections: { heading: string; body: string; links?: { title: string; href: string }[] }[];
   faqs: { q: string; a: string }[];
 }
 
@@ -88,3 +88,113 @@ export const TIER_H1: Record<string, string> = {
   AA: "AA Weed & Cannabis Flower in Toronto",
   BUDGET: "Budget Weed & Cannabis Flower in Toronto",
 };
+
+
+const PINKY_KSC01_TIER_ADDITIONS = {
+  "EXOTIC": {
+    "heading": "What “Exotic Weed” Means at Kensington Green",
+    "body": "Exotic is broad cannabis culture and retail language. It can point toward unusual genetics, distinctive aroma, rarity, strong bag appeal or high-end positioning. It is not a regulated government grade and it does not guarantee one THC range. At Kensington Green, Exotic Weed is a separate flower collection. Use the collection to narrow the browse, then read the current product information inside it. If a product is described as exotic, the useful question is what characteristic is being highlighted: cultivar; aroma; appearance; trichomes; rarity; presentation. The word is a starting point, not the whole grade.",
+    "links": [
+      {
+        "title": "Kensington Green Weed & Flower Quality Guide",
+        "href": "/resources/weed-flower-guide",
+        "text": "Continue with Kensington Green Weed & Flower Quality Guide."
+      },
+      {
+        "title": "What Does Good Weed Mean?",
+        "href": "/resources/flower-guides/what-does-good-weed-mean",
+        "text": "Continue with What Does Good Weed Mean?."
+      },
+      {
+        "title": "Gas, Loud & Terpy",
+        "href": "/resources/flower-guides/terpenes-gas-loud-aroma",
+        "text": "Continue with Gas, Loud & Terpy."
+      }
+    ]
+  },
+  "PREMIUM": {
+    "heading": "Premium Weed Is Positioning, Not One Formula",
+    "body": "Premium usually means a product or collection is positioned above a standard or value starting point. In cannabis, that positioning can reflect a mix of: producer; genetics; aroma; trim; cure; freshness; presentation. There is no universal rule saying Premium Weed must have one exact THC percentage, bud size or growing method. At Kensington Green, Premium Weed is a separate flower collection. Use the current Premium page for current products and the Resource Centre for the quality language.",
+    "links": [
+      {
+        "title": "Kensington Green Weed & Flower Quality Guide",
+        "href": "/resources/weed-flower-guide",
+        "text": "Continue with Kensington Green Weed & Flower Quality Guide."
+      },
+      {
+        "title": "THC vs Weed Quality",
+        "href": "/resources/flower-guides/thc-vs-weed-quality",
+        "text": "Continue with THC vs Weed Quality."
+      },
+      {
+        "title": "Drying, Curing & Freshness",
+        "href": "/resources/flower-guides/drying-curing-freshness",
+        "text": "Continue with Drying, Curing & Freshness."
+      }
+    ]
+  },
+  "AAA+": {
+    "heading": "What AAA+ Weed Means at Kensington Green",
+    "body": "AAA and AAA+ are familiar Canadian cannabis retail shorthand. They are not one regulated national grading system. AAA+ generally suggests positioning above a basic AAA label, but there is no universal formula requiring one potency, aroma or visual score. At Kensington Green, AAA+ Weed is its own flower collection. Use the category to narrow the browse, then compare the current product information.",
+    "links": [
+      {
+        "title": "Top Shelf, Mids & Quads",
+        "href": "/resources/flower-guides/top-shelf-mids-quads",
+        "text": "Continue with Top Shelf, Mids & Quads."
+      },
+      {
+        "title": "Kensington Green Weed & Flower Quality Guide",
+        "href": "/resources/weed-flower-guide",
+        "text": "Continue with Kensington Green Weed & Flower Quality Guide."
+      },
+      {
+        "title": "Bag Appeal",
+        "href": "/resources/flower-guides/bag-appeal",
+        "text": "Continue with Bag Appeal."
+      }
+    ]
+  },
+  "AA": {
+    "heading": "AA Weed as a Browsing Category",
+    "body": "AA is familiar cannabis grade shorthand. It is not a government laboratory grade. At Kensington Green, AA Weed is a separate flower category. The label helps narrow the browse. It does not promise: one THC range; one aroma; one bud size; one cultivation method. Use the current AA page for current products and the Resource Centre for broader grade language.",
+    "links": [
+      {
+        "title": "Top Shelf, Mids & Quads",
+        "href": "/resources/flower-guides/top-shelf-mids-quads",
+        "text": "Continue with Top Shelf, Mids & Quads."
+      },
+      {
+        "title": "Kensington Green Weed & Flower Quality Guide",
+        "href": "/resources/weed-flower-guide",
+        "text": "Continue with Kensington Green Weed & Flower Quality Guide."
+      },
+      {
+        "title": "What Does Good Weed Mean?",
+        "href": "/resources/flower-guides/what-does-good-weed-mean",
+        "text": "Continue with What Does Good Weed Mean?."
+      }
+    ]
+  },
+  "BUDGET": {
+    "heading": "Budget Weed Means Value Positioning",
+    "body": "Budget is a value-oriented browsing term. It should not be used as shorthand for: unsafe; automatically weak; automatically stale; automatically low quality. Kensington Green's Budget Weed collection is the value-oriented flower section for adults who want to begin with value. The products inside it still have their own labels, cultivars, producers and current menu details. Use the current listing for today's price. Use the Resource Centre for the broader quality language.",
+    "links": [
+      {
+        "title": "Kensington Green Weed & Flower Quality Guide",
+        "href": "/resources/weed-flower-guide",
+        "text": "Continue with Kensington Green Weed & Flower Quality Guide."
+      },
+      {
+        "title": "THC vs Weed Quality",
+        "href": "/resources/flower-guides/thc-vs-weed-quality",
+        "text": "Continue with THC vs Weed Quality."
+      },
+      {
+        "title": "Kensington Green Value Shopping Guide",
+        "href": "/resources/value-shopping-guide",
+        "text": "Continue with Kensington Green Value Shopping Guide."
+      }
+    ]
+  }
+};
+for (const [key, section] of Object.entries(PINKY_KSC01_TIER_ADDITIONS)) TIER_SEO[key].sections.push(section);
