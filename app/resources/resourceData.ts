@@ -96,9 +96,9 @@ export const RESOURCE_PAGES: ResourcePage[] = [
         body:
           "Use this guide to plan a Kensington Green visit from Dundas West, Roncesvalles, High Park, Parkdale, or Bloor West, then continue to the current menu and store visit page.",
         bullets: [
-          "Locked visit guide: /weed-dispensary-toronto.",
+          "Toronto store page: /weed-dispensary-toronto.",
           "Store address: 2257 Dundas St W, Toronto, ON M6R 1X6.",
-          "Hours shown in the store data: Open Daily 10:00 AM to 02:00 AM.",
+          "Listed hours: Open Daily 10:00 AM to 02:00 AM.",
         ],
       },
       {
@@ -420,12 +420,12 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       {
         heading: "TTC And Walking Context",
         body:
-          "The store data places Kensington Green near Dundas West Subway Station and local TTC routes. It is also positioned for walks or short rides from Roncesvalles, High Park, Bloor West, Parkdale, Sorauren, and Lansdowne.",
+          "Kensington Green is near Dundas West Subway Station and local TTC routes. It is also positioned for walks or short rides from Roncesvalles, High Park, Bloor West, Parkdale, Sorauren, and Lansdowne.",
       },
       {
         heading: "Parking Context",
         body:
-          "The store data notes street parking on Dundas Street West. Because street parking changes by time and signage, use this as planning context and follow posted parking rules when you arrive.",
+          "Street parking is available along Dundas Street West; follow current posted signs and restrictions. Because street parking changes by time and signage, use this as planning context and follow posted parking rules when you arrive.",
       },
     ],
   },
@@ -530,7 +530,7 @@ const PINKY_KSC01_OVERRIDES: Record<string, Partial<ResourcePage>> = {
           "current listed hours;",
           "contact information;",
           "the right category or guide.",
-          "The protected Toronto store page remains the place for visit details. This resource simply explains the terminology."
+          "The Kensington Green Toronto store page remains the place for current visit details. This resource simply explains the terminology."
         ]
       },
       {
