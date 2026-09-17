@@ -132,8 +132,15 @@ export default function Catalog() {
       <main className="delivery-page" id="top">
         <section className="store-hero qlc-editorial-hero delivery-brand-hero">
           <Image src="/storeFavicon.webp" alt={`${store.name} logo`} width={240} height={240} priority />
-          <div className="store-hero-copy"><p>Kensington Green · Weed Delivery</p><h1>Weed Delivery in Toronto</h1><span>Browse Kensington Green’s Weed Delivery selection and continue with the established ordering experience.</span></div>
+          <div className="store-hero-copy"><p>Kensington Green · Neighbourhood delivery</p><h1>Cannabis Delivery for Dundas West &amp; Roncesvalles</h1><span>Delivery from Kensington Green is scoped to Dundas West, Roncesvalles, High Park South, and the Parkdale edge — not a city-wide Toronto delivery war. Adults 19+. The dispatcher confirms whether an address is in range. Walk-in directions are on /visit.</span></div>
         </section>
+        <noscript>
+          <ul>
+            {bundledProducts.map((product) => (
+              <li key={product.publicProductId}>{product.name} — {product.tier}</li>
+            ))}
+          </ul>
+        </noscript>
 
         <section className="member-loyalty" aria-labelledby="member-loyalty-title">
           <div className="member-loyalty-heading">

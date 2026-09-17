@@ -34,6 +34,7 @@ export interface SeoPageData {
   banner?: string;
   sections: { heading: string; body: string }[];
   faqs: { q: string; a: string }[];
+  suppressTierGrid?: boolean;
 }
 
 const visitFaqs = [
@@ -44,16 +45,22 @@ const visitFaqs = [
 export const SEO_PAGES: SeoPageData[] = [
   {
     slug: "dundas-west-weed-dispensary",
-    title: "Dundas West Weed Dispensary | Kensington Green",
-    metaDescription: "Plan a Kensington Green visit on Dundas Street West and browse current flower tiers and menu categories.",
-    h1: "Dundas West Weed Dispensary",
+    title: "Dundas West Weed Dispensary | How to Reach Kensington Green",
+    metaDescription: "How to reach Kensington Green at 2257 Dundas St W: Dundas West / Roncesvalles walk-in, TTC notes, evening parking, and 19+ ID. Open Daily: 10:00 AM - 02:00 AM.",
+    h1: "Dundas West Walk-In Dispensary at 2257 Dundas St W",
     icon: "*",
-    heroTagline: "A Dundas West menu and visit guide",
+    heroTagline: "How to reach Kensington Green on Dundas West / Roncesvalles",
+    suppressTierGrid: true,
     sections: [
-      { heading: "Plan A Dundas West Stop", body: "Kensington Green is located at 2257 Dundas St W near Roncesvalles. Review the current category pages before visiting." },
-      { heading: "Browse By Menu Lane", body: "Start with flower tiers or open the dedicated pages for pre-rolls, edibles, vapes, concentrates, accessories, and cigarettes." },
+      { heading: "The door is on Dundas, not a city-wide SERP", body: "Kensington Green is the walk-in shop at 2257 Dundas St W, Toronto, ON M6R 1X6. Own this stretch — Dundas West, Roncesvalles, High Park South, Parkdale edge — rather than a generic Toronto dispensary query. Call +1 (289) 514-9520. Adults 19+." },
+      { heading: "Transit and the Roncesvalles hop", body: "Ride the 505 Dundas streetcar along Dundas Street West, walk up from Roncesvalles Village, or treat Dundas West Station as a Line 2 / GO / UP Express transfer farther north toward Bloor. The 504 King car serves the village a few blocks south. Check current TTC conditions. The /visit page is the full reach guide." },
+      { heading: "Parking without blocking the streetcar", body: "Evening street parking on Dundas West and nearby laterals is the usual pattern. Read posted signs. When the corridor is busy, loop Sorauren, Indian Road, or Howard Park. No dedicated lot is claimed here." },
+      { heading: "Browse categories, then confirm at the counter", body: "Flower tiers and format pages (pre-rolls, edibles, vapes, concentrates, accessories, cigarettes) are for planning. They are not a live inventory feed. If one exact item is the reason for the trip, call during listed hours: Open Daily: 10:00 AM - 02:00 AM." },
     ],
-    faqs: visitFaqs,
+    faqs: [
+      { q: "Where is the Dundas West shop?", a: "2257 Dundas St W, Toronto, ON M6R 1X6, near Dundas and Roncesvalles / Howard Park." },
+      { q: "Is this a walk-in or a delivery page?", a: "This page is for the walk-in pin. Delivery is a separate neighbourhood-scoped URL. Directions: /visit." },
+    ],
   },
   {
     slug: "cheap-weed-dundas-west",
@@ -95,8 +102,8 @@ export const SEO_PAGES: SeoPageData[] = [
     icon: "*",
     heroTagline: "Local store information for a Dundas West visit",
     sections: [
-      { heading: "Dundas Street West Location", body: "Kensington Green is at 2257 Dundas St W in Toronto near Roncesvalles and the Dundas West corridor." },
-      { heading: "Choose A Category First", body: "Use the menu categories to narrow the visit to flower, pre-rolls, edibles, vapes, concentrates, accessories, or cigarettes." },
+      { heading: "Dundas Street West location", body: "Kensington Green is at 2257 Dundas St W, Toronto, ON M6R 1X6, on the Dundas West / Roncesvalles corridor — not a Junction pin and not a Queen West counter. Adults 19+." },
+      { heading: "How to actually get here", body: "Use /visit for streetcar, Dundas West Station walk notes, evening parking, and 19+ ID. Category pages help you plan a format; they do not reserve a jar." },
     ],
     faqs: visitFaqs,
   },

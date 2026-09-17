@@ -4,9 +4,9 @@ import Footer from "../components/Footer";
 import styles from "./faq.module.css";
 
 export const metadata: Metadata = {
-  title: "FAQ Kensington Green | Toronto Dispensary Questions",
+  title: { absolute: "FAQ | Dundas West & Roncesvalles — Kensington Green" },
   description:
-    "Frequently asked questions about Kensington Green in Toronto. Hours, location, products, pricing, bundle offers, and everything you need to know before visiting.",
+    "Hours, parking, TTC, 19+ ID, and walk-in questions for Kensington Green at 2257 Dundas St W. Adults 19+. Open Daily: 10:00 AM - 02:00 AM.",
   alternates: {
     canonical: "https://www.kensingtongreencannabis.com/faq",
   },
@@ -18,23 +18,23 @@ const FAQ_CATEGORIES = [
     faqs: [
       {
         q: "Where is Kensington Green located?",
-        a: "We are located at 2257 Dundas St W, Toronto, ON M6R 1X6. We're easily accessible by TTC bus routes and close to major highways like the 401.",
+        a: "Kensington Green is at 2257 Dundas St W, Toronto, ON M6R 1X6, on the Dundas West / Roncesvalles corridor near Howard Park. It is a walk-in pin for this stretch of Dundas — not a downtown core shop.",
       },
       {
         q: "What are your hours?",
-        a: "We are open daily from 10:00 AM to 02:00 AM. Walk in anytime no appointment needed.",
+        a: "We are open daily from 10:00 AM to 02:00 AM. Walk in anytime — no appointment needed. Adults 19+ with government-issued photo ID.",
       },
       {
         q: "Is there parking nearby?",
-        a: "Yes. Free street parking is available nearby on surrounding streets in the evenings. We're also easily accessible by local transit.",
+        a: "Evening street parking is often available on Dundas Street West and nearby side streets. Follow posted signs; restrictions change by block and hour. The visit page has the parking loop notes.",
       },
       {
-        q: "How far are you from west Toronto?",
-        a: "We're just 5 minutes from the highways and central transit routes. We are centrally located and easy to reach.",
+        q: "How far are you from Roncesvalles Village?",
+        a: "The shop sits on Dundas at the Roncesvalles / High Park South pinch. From the village you come up to Dundas rather than riding all the way downtown. How-to-reach detail is on /visit.",
       },
       {
         q: "How can I get to Kensington Green?",
-        a: "We're easily accessible by car, bus, or foot. We are easily accessible by car, local transit, or bus routes. Free parking is available on surrounding streets.",
+        a: "Use the 505 Dundas streetcar along Dundas Street West, walk from Roncesvalles Village, or treat Dundas West Station as a Line 2 / GO / UP Express transfer landmark farther north toward Bloor. Full transit and parking notes are on the visit page.",
       },
     ],
   },
@@ -105,7 +105,7 @@ const FAQ_CATEGORIES = [
       },
       {
         q: "Do you offer delivery?",
-        a: "Delivery is coming soon! Visit our delivery page to sign up for email notifications when we launch our delivery service.",
+        a: "Delivery is a separate neighbourhood-scoped service, not city-wide Toronto coverage. Use the delivery URL for Dundas West / Roncesvalles / High Park South / Parkdale-edge range. The dispatcher confirms whether an address is in range. Walk-in remains at 2257 Dundas St W.",
       },
       {
         q: "What payment methods do you accept?",
@@ -168,8 +168,8 @@ export default function FAQPage() {
         <div className={styles.content}>
           <h1 className={styles.pageTitle}>Frequently Asked Questions</h1>
           <p className={styles.pageSubtitle}>
-            Everything you need to know about Kensington Green Toronto&apos;s
-            premium dispensary at 2257 Dundas St W in Toronto.
+            Walk-in questions for Kensington Green at 2257 Dundas St W on
+            Dundas West / Roncesvalles. Adults 19+.
           </p>
 
           {FAQ_CATEGORIES.map((cat) => (
