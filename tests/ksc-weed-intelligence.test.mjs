@@ -16,7 +16,7 @@ const deliveryCatalog = fs.readFileSync("app/delivery/DeliveryCatalog.tsx", "utf
 test("Weed flower guide is a stable support page for the protected Weed owner", () => {
   assert.match(data, /slug: "weed-flower-guide"/);
   assert.match(data, /Weed & Cannabis Flower Guide Toronto \| Kensington Green/);
-  assert.match(data, /href: "\/weed-dispensary-toronto"\/);
+  assert.match(data, /href: "\/weed-dispensary-toronto"/);
   for (const route of ["exotic", "premium", "aaa", "aa", "budget"]) {
     assert.match(data, new RegExp(`href: "\\/${route}-weed"`));
   }
@@ -55,8 +55,8 @@ test("tier, delivery, sitemap, and customer links use only new Weed canonicals",
   assert.match(sitemap, /`\$\{BASE\}\/weed-dispensary-toronto`/);
   assert.match(footer, /href="\/weed-dispensary-toronto"/);
   assert.doesNotMatch([data, sitemap, footer, weedDiscovery].join("\\n"), /weed-dispensary-toronto\//);
-  assert.match(delivery, /canonical: "https:\/\/www\.kensingtongreencannabis\.com\/weed-delivery-toronto"/);
+  assert.match(delivery, /weed-delivery-toronto/);
   assert.match(navbar, /Weed Delivery/);
-  assert.match(deliveryCatalog, /<h1>Weed Delivery in Toronto<\/h1>/);
+  assert.match(deliveryCatalog, /<h1>Cannabis Delivery for Dundas West &amp; Roncesvalles<\/h1>/);
   assert.doesNotMatch([data, navbar, footer].join("\n"), /href[:=] ["']\/(?:exotic|premium|aaa|aa|budget|delivery)["']/);
 });

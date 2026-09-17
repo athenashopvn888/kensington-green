@@ -121,8 +121,8 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     cards: [
       {
         title: "Plan Your Visit",
-        href: "/weed-dispensary-toronto",
-        text: "Use the protected Toronto store page for locked store details and local search context.",
+        href: "/visit",
+        text: "How to reach 2257 Dundas St W: transit, parking, landmarks, and 19+ ID.",
       },
       {
         title: "Menu Guide",
@@ -406,9 +406,9 @@ export const RESOURCE_PAGES: ResourcePage[] = [
         text: "Return to the store-specific visit planner.",
       },
       {
-        title: "Plan Your Visit",
-        href: "/weed-dispensary-toronto",
-        text: "Use this for locked address and local store details.",
+        title: "How to get here",
+        href: "/visit",
+        text: "Walk-in directions, TTC, parking, and 19+ ID for 2257 Dundas St W.",
       },
       {
         title: "Contact",

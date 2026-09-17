@@ -4,16 +4,16 @@ import Footer from "../components/Footer";
 import styles from "./contact.module.css";
 
 export const metadata: Metadata = {
-  title: "Contact Us Kensington Green | 2257 Dundas St W, Toronto",
+  title: "Contact Kensington Green | 2257 Dundas St W, Dundas West",
   description:
-    "Visit Kensington Green at 2257 Dundas St W, Toronto, ON M6R 1X6. We are open daily from 10:00 AM to 02:00 AM. Walk-ins welcome.",
+    "Visit Kensington Green at 2257 Dundas St W, Toronto, ON M6R 1X6. Dundas West / Roncesvalles walk-in. Open daily from 10:00 AM to 02:00 AM. Adults 19+.",
   alternates: {
     canonical: "https://www.kensingtongreencannabis.com/contact",
   },
   openGraph: {
-    title: "Contact Kensington Green Toronto Dispensary",
+    title: "Contact Kensington Green on Dundas West",
     description:
-      "2257 Dundas St W, Toronto. We are open daily from 10:00 AM to 02:00 AM. Premium cannabis, always fire.",
+      "2257 Dundas St W, Toronto, ON M6R 1X6. Open daily from 10:00 AM to 02:00 AM. Walk-in for adults 19+.",
   },
 };
 
@@ -27,7 +27,7 @@ export default function ContactPage() {
         <div
           style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 20px" }}
         >
-          <h1 className={styles.heroTitle}>Contact Kensington Green in Toronto</h1>
+          <h1 className={styles.heroTitle}>Contact Kensington Green on Dundas West</h1>
           <img
             src="/banners/08_Contact_Us.webp"
             alt="Contact Us"

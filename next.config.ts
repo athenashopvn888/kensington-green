@@ -22,6 +22,7 @@ const nextConfig: NextConfig = {
       { source: "/aa", destination: "/aa-weed", permanent: true },
       { source: "/budget", destination: "/budget-weed", permanent: true },
       { source: "/delivery", destination: "/weed-delivery-toronto", permanent: true },
+      { source: "/location", destination: "/visit", permanent: true },
       { source: "/resources/flower-tier-map", destination: "/resources/weed-flower-guide", permanent: true },
       { source: "/blog", destination: "/", permanent: true },
       { source: "/blog/:path*", destination: "/", permanent: true },

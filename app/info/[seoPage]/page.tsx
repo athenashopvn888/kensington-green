@@ -118,7 +118,7 @@ export default async function SeoLandingPage({
           ))}
 
           {/* Tier Grid */}
-          {heroPreview?.theme !== "nicotine" && <div className={styles.section}>
+          {heroPreview?.theme !== "nicotine" && !page.suppressTierGrid && <div className={styles.section}>
             <h2 className={styles.sectionTitle}>
               Our Cannabis Menu Five Tiers of Quality
             </h2>
@@ -145,7 +145,7 @@ export default async function SeoLandingPage({
           </div>}
 
           {/* Map */}
-          {heroPreview?.theme !== "nicotine" && <div className={styles.section}>
+          {heroPreview?.theme !== "nicotine" && !page.suppressTierGrid && <div className={styles.section}>
             <h2 className={styles.sectionTitle}>Find Us</h2>
             <div className={styles.mapWrap}></div>
             <div className={styles.visitBtns}></div>

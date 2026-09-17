@@ -12,13 +12,13 @@ export const weedOwner = {
   phoneIntl: "+12895149520",
   hoursLabel: "Open Daily · 10:00 AM–2:00 AM",
   openingHours: "Mo-Su 10:00-02:00",
-  seoTitle: "Weed Dispensary in Toronto | Kensington Green",
-  metaDescription: "Kensington Green is open daily from 10 AM to 2 AM at 2257 Dundas St W in Toronto. Adults 19+ can explore cannabis and flower shopping guides.",
-  h1: "Kensington Green — Weed Dispensary in Toronto",
-  introTitle: "Weed and Cannabis on Dundas Street West",
+  seoTitle: "Kensington Green Notes | Dundas West Walk-In",
+  metaDescription: "Kensington Green walk-in notes for 2257 Dundas St W on Dundas West / Roncesvalles. Adults 19+. Open daily from 10:00 AM to 02:00 AM. City-wide delivery is not the job of this page — use /visit for directions.",
+  h1: "Kensington Green — Dundas West Walk-In Notes",
+  introTitle: "Weed and cannabis notes for Dundas Street West",
   intro: [
-  "Kensington Green is located at 2257 Dundas St W in Toronto and is open daily from 10:00 AM to 2:00 AM.",
-  "Adults 19+ can start with flower, learn how different flower tiers are presented, or compare broader cannabis shopping choices through the store's guides.",
+  "Kensington Green is the walk-in shop at 2257 Dundas St W on the Dundas West / Roncesvalles corridor and is open daily from 10:00 AM to 2:00 AM.",
+  "Adults 19+ can start with flower-tier guides or compare formats. This URL is kept for existing links; directions now live on /visit so the pin is not competing for city-wide dispensary queries.",
   "For a specific item, call +1 (289) 514-9520 before making a special trip."
 ],
   findTitle: "Find Your Weed at Kensington Green",
@@ -102,9 +102,9 @@ export const weedOwner = {
   }
 ] satisfies WeedFaq[],
   home: {
-    title: "Explore Weed and Cannabis at Kensington Green",
-    text: "Kensington Green at 2257 Dundas St W gives adults 19+ a focused way to explore Weed, Cannabis and flower-tier information.",
-    primaryLabel: "Explore Kensington Green Weed & Cannabis",
+    title: "Explore weed and cannabis at the Dundas West walk-in",
+    text: "Kensington Green at 2257 Dundas St W gives adults 19+ a focused way to explore flower-tier information for Dundas West and Roncesvalles. Use /visit for how to get here.",
+    primaryLabel: "How to get to Dundas West",
     secondaryLabel: "Explore the Flower Tier Map",
     secondaryHref: "/resources/weed-flower-guide",
   },

@@ -6,7 +6,7 @@ const contactPage = await readFile(new URL("../app/contact/page.tsx", import.met
 const categoryPage = await readFile(new URL("../app/items/[category]/page.tsx", import.meta.url), "utf8");
 
 test("contact page renders one approved local H1", () => {
-  assert.match(contactPage, /<h1 className=\{styles\.heroTitle\}>Contact Kensington Green in Toronto<\/h1>/);
+  assert.match(contactPage, /<h1 className=\{styles\.heroTitle\}>Contact Kensington Green on Dundas West<\/h1>/);
   assert.equal((contactPage.match(/<h1\b/g) ?? []).length, 1);
 });
 

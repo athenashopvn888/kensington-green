@@ -22,7 +22,7 @@ test("tier pages preserve canonical route ownership", () => {
     tierPage,
     /canonical: `https:\/\/www\.kensingtongreencannabis\.com\/\$\{tierSlug\}`/,
   );
-  assert.match(owner, /ownerPath: "\/weed-dispensary-toronto\/"/);
+  assert.match(owner, /ownerPath: "\/weed-dispensary-toronto"/);
   for (const slug of ["exotic-weed", "premium-weed", "aaa-weed", "aa-weed", "budget-weed"]) {
     assert.match(readFileSync("app/lib/products.ts", "utf8"), new RegExp(`slug: "${slug}"`));
   }

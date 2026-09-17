@@ -7,9 +7,26 @@ import FleetAnnouncementBanner from "./components/FleetAnnouncementBanner";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import FlowerCard from "./components/FlowerCard";
+import JsonLd from "./components/JsonLd";
 import { WeedDiscoveryModule } from "./components/WeedDiscoveryModule";
-import { allFlowers } from "./lib/products";
+import { allFlowers, type FlowerProduct } from "./lib/products";
+import { HOME_FAQS, STORE_NAP, faqPageJsonLd } from "./lib/storeNap";
 import Papa from "papaparse";
+
+function pickFeaturedStrains(flowers: FlowerProduct[]) {
+  const pool = flowers.filter((f) => f.image);
+  const picked: FlowerProduct[] = [];
+  const tierCounts: Record<string, number> = {};
+  for (const f of pool) {
+    if (picked.length >= 8) break;
+    const tc = tierCounts[f.tier] || 0;
+    if (tc >= 2) continue;
+    if (picked.some((p) => p.name === f.name)) continue;
+    picked.push(f);
+    tierCounts[f.tier] = tc + 1;
+  }
+  return picked;
+}
 
 /* -- Bento Mosaic Config -- */
 const BENTO_TIERS = [
@@ -96,25 +113,7 @@ const EXPLORE_CATEGORIES = [
   },
 ];
 
-/* -- Local FAQs for Jane St -- */
-const LOCAL_FAQS = [
-  {
-    q: "What are the hours for Kensington Green?",
-    a: "Kensington Green at 2257 Dundas St W, Toronto is open daily from 10:00 AM to 02:00 AM. Walk in anytime - no appointment needed.",
-  },
-  {
-    q: "What cannabis products do you carry?",
-    a: "We carry five tiers of premium flower: Exotic ($10-$12/g), Premium ($7-$10/g), AAA+ ($5-$6/g), AA ($4/g), and Budget ($3/g), plus a wide variety of edibles, prerolls, vapes, and concentrates.",
-  },
-  {
-    q: "Where is Kensington Green located?",
-    a: "We are located at 2257 Dundas St W, Toronto, ON M6R 1X6. Visit us in person or call us at +1 (289) 514-9520. Free evening street parking is available.",
-  },
-  {
-    q: "What is the cheapest weed at Kensington Green?",
-    a: "Our budget flower starts at just $3/g. We also offer AA daily drivers from $4/g and AAA+ heavy hitters from $5-$6/g. View our budget menu for our latest deals.",
-  },
-];
+const LOCAL_FAQS = HOME_FAQS;
 
 interface Review {
   name: string;
@@ -128,7 +127,7 @@ interface ReviewStats {
 }
 
 export default function HomePage() {
-  const [featuredStrains, setFeaturedStrains] = useState<any[]>([]);
+  const featuredStrains = pickFeaturedStrains(allFlowers);
   const [reviews, setReviews] = useState<Review[]>([]);
   const [reviewsStats, setReviewsStats] = useState<ReviewStats | null>(null);
   const [reviewsLoading, setReviewsLoading] = useState(true);
@@ -197,32 +196,11 @@ export default function HomePage() {
       });
   }, []);
 
-  /* -- 2. Build Featured Strains -- */
-  useEffect(() => {
-    const pool = [...allFlowers].filter((f) => f.image);
-    // Shuffle pool securely
-    for (let i = pool.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [pool[i], pool[j]] = [pool[j], pool[i]];
-    }
-
-    const picked: typeof pool = [];
-    const tierCounts: Record<string, number> = {};
-
-    for (const f of pool) {
-      if (picked.length >= 8) break;
-      const tc = tierCounts[f.tier] || 0;
-      if (tc >= 2) continue; // max 2 per tier
-      if (picked.some((p) => p.name === f.name)) continue; // avoid exact duplicates
-      picked.push(f);
-      tierCounts[f.tier] = tc + 1;
-    }
-
-    setFeaturedStrains(picked);
-  }, []);
+  /* Featured cards start from static JSON so crawlers see product names under the grid. */
 
   return (
     <main className={styles.main}>
+      <JsonLd data={faqPageJsonLd(HOME_FAQS)} />
       <FleetAnnouncementBanner />
       {/* -- NAVBAR -- */}
       <Navbar />
@@ -233,7 +211,7 @@ export default function HomePage() {
           <div className={styles.welcomeBannerContainer}>
             <img
               src={welcomeBannerSrc}
-              alt="Welcome to Kensington Green - Premium Toronto Cannabis Dispensary"
+              alt="Welcome to Kensington Green on Dundas West"
               className={styles.welcomeBannerImg}
               onError={() => setWelcomeBannerError(true)}
             />
@@ -272,14 +250,19 @@ export default function HomePage() {
                 marginBottom: "8px",
               }}
             />
-            <h1 className={styles.brandTitle}>KENSINGTON GREEN</h1>
-            <p className={styles.brandSub}>Premium Cannabis Dispensary</p>
+            <h1 className={styles.brandTitle}>
+              Kensington Green | Dundas West Cannabis Dispensary
+            </h1>
+            <p className={styles.brandSub}>
+              Walk-in on Dundas West / Roncesvalles · {STORE_NAP.ageLine}
+            </p>
             <div className={styles.brandBadge}>
-              Open Daily: 10:00 AM - 02:00 AM
+              {STORE_NAP.hoursLabel}
             </div>
             <div className={styles.homeMenuActions} aria-label="Choose a Kensington Green menu">
               <Link href="/exotic-weed" className={styles.homeMenuCta}>STORE MENU</Link>
               <Link href="/weed-delivery-toronto" className={`${styles.homeMenuCta} ${styles.homeDeliveryCta}`}>Explore Weed Delivery</Link>
+              <Link href="/visit" className={`${styles.homeMenuCta} ${styles.homeVisitCta}`}>How to get here</Link>
             </div>
           </div>
 
@@ -346,9 +329,20 @@ export default function HomePage() {
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>Featured Strains</h2>
             <p className={styles.sectionSubtitle}>
-              Featured menu listings from the current product source.
+              Featured menu listings from the current product source. Names
+              below are crawlable starting points, not a live stock promise.
             </p>
           </div>
+
+          <noscript>
+            <ul>
+              {featuredStrains.map((strain) => (
+                <li key={strain.sku}>
+                  {strain.name} — {strain.tier}
+                </li>
+              ))}
+            </ul>
+          </noscript>
 
           <div className={styles.featuredScroll}>
             {featuredStrains.map((strain, i) => (
@@ -365,25 +359,59 @@ export default function HomePage() {
         <div className={styles.container}>
           <div className={styles.seoPanel}>
             <h2 className={styles.seoPanelTitle}>
-              Dundas West Cannabis Dispensary - Open Daily: 10:00 AM - 02:00 AM
+              A Dundas West / Roncesvalles walk-in — {STORE_NAP.hoursLabel}
             </h2>
             <p className={styles.seoPanelText}>
-              Welcome to <strong>Kensington Green</strong>, Toronto&apos;s local
-              cannabis stop at 2257 Dundas St W. We carry an electrifying
-              menu with separate flower tiers and category pages for other
-              product formats.
+              Kensington Green is the walk-in cannabis shop at{" "}
+              <strong>{STORE_NAP.addressLine}</strong>, on the Dundas West /
+              Roncesvalles pinch where High Park South leans toward the
+              Parkdale edge. This is not a generic downtown counter and it is
+              not a city-wide delivery warehouse. It is a late-night storefront
+              for adults 19+ already moving along Dundas Street West, cutting
+              over from Roncesvalles Village, or walking up from Sorauren and
+              the side streets that feed the corridor.
             </p>
             <p className={styles.seoPanelText}>
-              Kensington Green is open daily from 10:00 AM to 02:00 AM. Our
-              current menu provides separate pages for flower, pre-rolls,
-              edibles, vapes, concentrates, accessories, and cigarettes. Staff
-              can clarify menu details during listed store hours.
+              The nearest named intersection is Dundas Street West and
+              Roncesvalles Avenue / Howard Park. From Roncesvalles Village you
+              stay on Dundas a short stretch; from High Park you come east
+              along Dundas; from the Parkdale edge you work north toward Dundas
+              rather than hunting a Queen Street address. Dundas West Station
+              on Line 2, with GO and UP Express connections, sits farther north
+              toward Bloor — a walkable planning landmark, not a claim that the
+              door is inside the station. The 505 Dundas streetcar runs the
+              street itself. The 504 King car serves Roncesvalles Village a few
+              blocks south. Check current TTC service before you travel. Full
+              how-to-reach notes, parking caveats, and a map live on the{" "}
+              <Link href="/visit">visit page</Link>.
             </p>
             <p className={styles.seoPanelText}>
-              Searching for a cannabis dispensary in Toronto or the surrounding
-              area? Kensington Green provides store details and category
-              navigation for adults planning a Dundas West visit. Compare the
-              posted menu information before choosing a category.
+              Evening street parking on Dundas West and nearby residential
+              streets is the usual pattern. Signs and restrictions change by
+              block and by hour, so read the post, not a screenshot. If you are
+              driving at peak dinner or late-night weekend times, give yourself
+              a loop around Sorauren, Indian Road, or Howard Park rather than
+              idling on the streetcar tracks.
+            </p>
+            <p className={styles.seoPanelText}>
+              Walk-ins do not need an appointment. Bring government-issued photo
+              ID that proves you are 19 or older. The counter accepts debit and
+              cash. Store hours are daily from 10:00 AM to 02:00 AM — the late
+              close is for this Dundas West pin, not a Toronto-wide slogan. The
+              public menu is split into flower tiers and format categories
+              (pre-rolls, edibles, vapes, concentrates, accessories,
+              cigarettes). Those pages are for browsing names and posted
+              details before you visit. They are not a live inventory feed. If
+              one exact item is the reason for the trip, call{" "}
+              <a href={`tel:${STORE_NAP.phoneIntl}`}>{STORE_NAP.phoneDisplay}</a>{" "}
+              during listed hours.
+            </p>
+            <p className={styles.seoPanelText}>
+              Delivery, when you use it, is a{" "}
+              <Link href="/weed-delivery-toronto">separate URL</Link> with its
+              own neighbourhood scope. Do not treat Kensington Green as a
+              stand-in for Junction, Queen West, or King West shops. This pin
+              owns Dundas West and Roncesvalles.
             </p>
           </div>
         </div>
@@ -477,10 +505,12 @@ export default function HomePage() {
             <div className={styles.storeCard}>
               <h3 className={styles.storeCardTitle}>Location</h3>
               <p className={styles.storeCardText}>
-                2257 Dundas St W
+                {STORE_NAP.streetAddress}
                 <br />
-                Toronto, ON M6R 1X6
+                {STORE_NAP.addressLocality}, {STORE_NAP.addressRegion}{" "}
+                {STORE_NAP.postalCode}
                 <br />
+                <a href={`tel:${STORE_NAP.phoneIntl}`}>{STORE_NAP.phoneDisplay}</a>
               </p>
             </div>
             <div className={styles.storeCard}>
@@ -489,18 +519,20 @@ export default function HomePage() {
                 Open 7 Days a Week
                 <br />
                 <span className={styles.storeHighlight}>
-                  Open Daily: 10:00 AM - 02:00 AM
+                  {STORE_NAP.hoursLabel}
                 </span>
               </p>
             </div>
             <div className={styles.storeCard}>
               <h3 className={styles.storeCardTitle}>Walk In</h3>
               <p className={styles.storeCardText}>
-                No appointment needed
+                No appointment needed · {STORE_NAP.ageLine}
                 <br />
                 <span className={styles.storeHighlight}>
-                  Dundas West and Roncesvalles, Toronto
+                  Dundas West and Roncesvalles
                 </span>
+                <br />
+                <Link href="/visit">How to get here</Link>
               </p>
             </div>
           </div>

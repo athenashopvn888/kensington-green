@@ -1048,6 +1048,12 @@
   box-shadow: 0 10px 24px rgba(197, 22, 29, .35);
 }
 
+.homeVisitCta {
+  grid-column: 1 / -1;
+  border-color: rgba(134, 239, 172, 0.7);
+  background: rgba(22, 101, 52, 0.45);
+}
+
 .homeMenuCta:focus-visible { outline: 3px solid #facc15; outline-offset: 3px; }
 
 @media (max-width: 420px) {
