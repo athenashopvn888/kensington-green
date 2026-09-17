@@ -57,7 +57,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     eyebrow: "Dundas West Resource Hub",
     intro:
       "Kensington Green sits at 2257 Dundas St W, right in the west-end flow between Roncesvalles, High Park, Bloor West, Parkdale, Sorauren, and Lansdowne. Use these resources to choose the right menu category, plan the TTC or walking route, compare flower tiers, and keep cigarette price checks separate from cannabis browsing.",
-    banner: "/banners/welcome_banner.webp",
+    banner: "/banners/welcome_banner_dundas_west.webp",
     cards: [
       {
         title: "Dundas West Visit Guide",
@@ -218,7 +218,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     eyebrow: "Kensington Green · Toronto",
     intro:
       "When someone searches locally, terminology can be more flexible than it looks. Cannabis is the formal term, weed is common conversational language, and dispensary identifies the business type people are trying to locate. That is why several different phrases can lead toward the same local-search goal.",
-    banner: "/banners/welcome_banner.webp",
+    banner: "/banners/welcome_banner_dundas_west.webp",
     cards: [],
     sections: [
       {

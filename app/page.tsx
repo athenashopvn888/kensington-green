@@ -132,7 +132,7 @@ export default function HomePage() {
   const [reviewsStats, setReviewsStats] = useState<ReviewStats | null>(null);
   const [reviewsLoading, setReviewsLoading] = useState(true);
   const [welcomeBannerError, setWelcomeBannerError] = useState(false);
-  const welcomeBannerSrc: string = "/banners/welcome_banner.webp";
+  const welcomeBannerSrc: string = "/banners/welcome_banner_dundas_west.webp";
   const hasWelcomeBanner =
     welcomeBannerSrc &&
     welcomeBannerSrc !== "/banners/" &&
@@ -215,6 +215,11 @@ export default function HomePage() {
               className={styles.welcomeBannerImg}
               onError={() => setWelcomeBannerError(true)}
             />
+            <p className={styles.welcomeBannerNap}>
+              {STORE_NAP.addressLine} ·{" "}
+              <a href={`tel:${STORE_NAP.phoneIntl}`}>{STORE_NAP.phoneDisplay}</a>{" "}
+              · {STORE_NAP.hoursLabel} · {STORE_NAP.ageLine}
+            </p>
           </div>
         </section>
       )}
