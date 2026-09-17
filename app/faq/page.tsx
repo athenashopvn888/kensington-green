@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import styles from "./faq.module.css";
 
 export const metadata: Metadata = {
-  title: "FAQ | Dundas West & Roncesvalles — Kensington Green",
+  title: { absolute: "FAQ | Dundas West & Roncesvalles — Kensington Green" },
   description:
     "Hours, parking, TTC, 19+ ID, and walk-in questions for Kensington Green at 2257 Dundas St W. Adults 19+. Open Daily: 10:00 AM - 02:00 AM.",
   alternates: {
