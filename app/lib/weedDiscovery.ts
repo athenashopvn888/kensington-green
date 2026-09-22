@@ -10,14 +10,14 @@ export const weedOwner = {
   postalCode: "M6R 1X6",
   phoneDisplay: "+1 (289) 514-9520",
   phoneIntl: "+12895149520",
-  hoursLabel: "Open Daily · 10:00 AM–2:00 AM",
-  openingHours: "Mo-Su 10:00-02:00",
+  hoursLabel: "Open 24 Hours Daily",
+  openingHours: "Mo-Su 00:00-23:59",
   seoTitle: "Kensington Green Notes | Dundas West Walk-In",
-  metaDescription: "Kensington Green walk-in notes for 2257 Dundas St W on Dundas West / Roncesvalles. Adults 19+. Open daily from 10:00 AM to 02:00 AM. City-wide delivery is not the job of this page — use /visit for directions.",
+  metaDescription: "Kensington Green walk-in notes for 2257 Dundas St W on Dundas West / Roncesvalles. Adults 19+. Open 24 hours daily. City-wide delivery is not the job of this page — use /visit for directions.",
   h1: "Kensington Green — Dundas West Walk-In Notes",
   introTitle: "Weed and cannabis notes for Dundas Street West",
   intro: [
-  "Kensington Green is the walk-in shop at 2257 Dundas St W on the Dundas West / Roncesvalles corridor and is open daily from 10:00 AM to 2:00 AM.",
+  "Kensington Green is the walk-in shop at 2257 Dundas St W on the Dundas West / Roncesvalles corridor and is open 24 hours daily.",
   "Adults 19+ can start with flower-tier guides or compare formats. This URL is kept for existing links; directions now live on /visit so the pin is not competing for city-wide dispensary queries.",
   "For a specific item, call +1 (289) 514-9520 before making a special trip."
 ],
@@ -78,7 +78,7 @@ export const weedOwner = {
   },
   {
     "question": "What are Kensington Green's hours?",
-    "answer": "Kensington Green is open daily from 10:00 AM to 2:00 AM."
+    "answer": "Kensington Green is open 24 hours daily."
   },
   {
     "question": "What is the difference between weed and cannabis?",

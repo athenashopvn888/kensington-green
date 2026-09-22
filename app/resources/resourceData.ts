@@ -98,7 +98,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
         bullets: [
           "Toronto store page: /weed-dispensary-toronto.",
           "Store address: 2257 Dundas St W, Toronto, ON M6R 1X6.",
-          "Listed hours: Open Daily 10:00 AM to 02:00 AM.",
+        "Listed hours: Open 24 Hours Daily.",
         ],
       },
       {
@@ -143,7 +143,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
         bullets: [
           "Good fit for shoppers already moving along Dundas Street West.",
           "Useful bridge between Roncesvalles, Bloor West, High Park, and Parkdale.",
-          "Open daily from 10:00 AM to 02:00 AM in the store data.",
+        "Open 24 hours daily in the store data.",
         ],
       },
       {

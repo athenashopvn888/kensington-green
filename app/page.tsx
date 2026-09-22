@@ -401,7 +401,7 @@ export default function HomePage() {
             <p className={styles.seoPanelText}>
               Walk-ins do not need an appointment. Bring government-issued photo
               ID that proves you are 19 or older. The counter accepts debit and
-              cash. Store hours are daily from 10:00 AM to 02:00 AM — the late
+              cash. The store is open 24 hours daily — the late
               close is for this Dundas West pin, not a Toronto-wide slogan. The
               public menu is split into flower tiers and format categories
               (pre-rolls, edibles, vapes, concentrates, accessories,

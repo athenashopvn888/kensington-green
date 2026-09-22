@@ -673,7 +673,7 @@ function AddOnsCard({ items, hiIdx }: { items: Item[]; hiIdx: number }) {
 const TICKER_SLIDES = [
   "🔥 Kensington Green — 2257 Dundas St W, Toronto",
   "FLOWER TIERS - MENU CATEGORIES",
-  "Open Daily: 10:00 AM - 02:00 AM",
+          "Open 24 Hours Daily",
   "ALL SALES ARE FINAL",
   "WEED DELIVERY at kensingtongreencannabis.com/weed-delivery-toronto",
 ];

@@ -12,9 +12,9 @@ export const STORE_NAP = {
   addressLine: "2257 Dundas St W, Toronto, ON M6R 1X6",
   phoneDisplay: "+1 (289) 514-9520",
   phoneIntl: "+12895149520",
-  hoursLabel: "Open Daily: 10:00 AM - 02:00 AM",
-  hoursOpens: "10:00",
-  hoursCloses: "02:00",
+  hoursLabel: "Open 24 Hours Daily",
+  hoursOpens: "00:00",
+  hoursCloses: "23:59",
   latitude: 43.6546313,
   longitude: -79.4521695,
   neighborhood: "Dundas West / Roncesvalles",
@@ -31,13 +31,13 @@ export const STORE_NAP = {
 
 export const HOME_TITLE = "Kensington Green | Dundas West Cannabis Dispensary";
 export const HOME_DESCRIPTION =
-  "Walk-in cannabis dispensary at 2257 Dundas St W for Dundas West, Roncesvalles, and the Parkdale edge. Adults 19+. Open Daily: 10:00 AM - 02:00 AM. Call +1 (289) 514-9520.";
+  "Walk-in cannabis dispensary at 2257 Dundas St W for Dundas West, Roncesvalles, and the Parkdale edge. Adults 19+. Open 24 Hours Daily. Call +1 (289) 514-9520.";
 
 /** Visible homepage FAQs — FAQPage JSON-LD must stay in lockstep with these strings. */
 export const HOME_FAQS = [
   {
     q: "What are the hours for Kensington Green on Dundas West?",
-    a: "Kensington Green at 2257 Dundas St W is open daily from 10:00 AM to 02:00 AM. Walk in — no appointment. Adults 19+ must bring government-issued photo ID.",
+    a: "Kensington Green at 2257 Dundas St W is open 24 hours daily. Walk in — no appointment. Adults 19+ must bring government-issued photo ID.",
   },
   {
     q: "Where is Kensington Green relative to Roncesvalles?",
@@ -80,7 +80,7 @@ export function cannabisStoreJsonLd() {
     "@id": `${nap.origin}/#store`,
     name: nap.name,
     description:
-      "Walk-in cannabis dispensary on the Dundas West / Roncesvalles corridor at 2257 Dundas St W. Adults 19+. Open Daily: 10:00 AM - 02:00 AM.",
+      "Walk-in cannabis dispensary on the Dundas West / Roncesvalles corridor at 2257 Dundas St W. Adults 19+. Open 24 Hours Daily.",
     url: nap.origin,
     telephone: nap.phoneIntl,
     image: nap.image,
