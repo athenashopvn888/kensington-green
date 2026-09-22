@@ -23,8 +23,8 @@ test("CannabisStore schema uses the FMD NAP and www host", () => {
   assert.match(nap, /streetAddress: "2257 Dundas St W"/);
   assert.match(nap, /postalCode: "M6R 1X6"/);
   assert.match(nap, /origin: "https:\/\/www\.kensingtongreencannabis\.com"/);
-  assert.match(nap, /hoursOpens: "10:00"/);
-  assert.match(nap, /hoursCloses: "02:00"/);
+  assert.match(nap, /hoursOpens: "00:00"/);
+  assert.match(nap, /hoursCloses: "23:59"/);
   assert.doesNotMatch(nap, /additionalType/);
 });
 

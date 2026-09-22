@@ -6,7 +6,7 @@ import styles from "./faq.module.css";
 export const metadata: Metadata = {
   title: { absolute: "FAQ | Dundas West & Roncesvalles — Kensington Green" },
   description:
-    "Hours, parking, TTC, 19+ ID, and walk-in questions for Kensington Green at 2257 Dundas St W. Adults 19+. Open Daily: 10:00 AM - 02:00 AM.",
+    "Hours, parking, TTC, 19+ ID, and walk-in questions for Kensington Green at 2257 Dundas St W. Adults 19+. Open 24 Hours Daily.",
   alternates: {
     canonical: "https://www.kensingtongreencannabis.com/faq",
   },
@@ -22,7 +22,7 @@ const FAQ_CATEGORIES = [
       },
       {
         q: "What are your hours?",
-        a: "We are open daily from 10:00 AM to 02:00 AM. Walk in anytime — no appointment needed. Adults 19+ with government-issued photo ID.",
+        a: "We are open 24 hours daily. Walk in anytime — no appointment needed. Adults 19+ with government-issued photo ID.",
       },
       {
         q: "Is there parking nearby?",
@@ -97,7 +97,7 @@ const FAQ_CATEGORIES = [
     faqs: [
       {
         q: "Do I need an appointment?",
-        a: "No! Kensington Green is walk-in only. Just show up anytime we are open daily from 10:00 AM to 02:00 AM.",
+        a: "No! Kensington Green is walk-in only. Just show up anytime — we are open 24 hours daily.",
       },
       {
         q: "Can I order online?",

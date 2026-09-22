@@ -13,7 +13,7 @@ import styles from "./visit.module.css";
 export const metadata: Metadata = {
   title: { absolute: "How to Get to Kensington Green | Dundas West & Roncesvalles" },
   description:
-    "Walk-in directions for Kensington Green at 2257 Dundas St W: TTC, parking, landmarks, and 19+ ID notes for Dundas West, Roncesvalles, and the Parkdale edge. Open Daily: 10:00 AM - 02:00 AM.",
+    "Walk-in directions for Kensington Green at 2257 Dundas St W: TTC, parking, landmarks, and 19+ ID notes for Dundas West, Roncesvalles, and the Parkdale edge. Open 24 Hours Daily.",
   alternates: {
     canonical: `${STORE_NAP.origin}/visit`,
   },
@@ -60,7 +60,7 @@ export default function VisitPage() {
               Phone:{" "}
               <a href={`tel:${nap.phoneIntl}`}>+1 (289) 514-9520</a>
             </p>
-            <p>Open Daily: 10:00 AM - 02:00 AM</p>
+            <p>Open 24 Hours Daily</p>
             <p>
               Nearest intersection: {nap.intersection}. {nap.ageLine}.
             </p>
