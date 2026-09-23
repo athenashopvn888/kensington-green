@@ -9,6 +9,8 @@ import Footer from "../../components/Footer";
 import { SEO_PAGES, getSeoPageBySlug } from "../../lib/seoPages";
 import { TIER_CONFIG } from "../../lib/products";
 import styles from "./seo.module.css";
+import JsonLd from "../../components/JsonLd";
+import { faqPageJsonLd } from "../../lib/storeNap";
 
 /* Generate all SEO pages */
 export function generateStaticParams() {
@@ -54,6 +56,7 @@ export default async function SeoLandingPage({
 
   return (
     <main className={styles.main}>
+      {page.faqs.length > 0 && <JsonLd data={faqPageJsonLd(page.faqs.map((faq) => ({ question: faq.q, answer: faq.a })))} />}
       <Navbar />
 
       {/* Banner Image */}
@@ -116,6 +119,19 @@ export default async function SeoLandingPage({
               <p className={styles.sectionBody}>{s.body}</p>
             </div>
           ))}
+
+          {page.links && page.links.length > 0 && (
+            <nav className={styles.section} aria-label="Related Kensington Green guides">
+              <h2 className={styles.sectionTitle}>Continue Exploring Kensington Green</h2>
+              <div className={styles.tierGrid}>
+                {page.links.map((link) => (
+                  <Link key={link.href} href={link.href} className={styles.tierCard}>
+                    <span className={styles.tierLink}>{link.label}</span>
+                  </Link>
+                ))}
+              </div>
+            </nav>
+          )}
 
           {/* Tier Grid */}
           {heroPreview?.theme !== "nicotine" && !page.suppressTierGrid && <div className={styles.section}>
