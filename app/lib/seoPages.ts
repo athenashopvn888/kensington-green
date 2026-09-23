@@ -1,4 +1,4 @@
-const NATIVE_HERO_DISCLOSURE = "Brand preview only. Selection varies by store; check the current cigarette menu before visiting.";
+const NATIVE_HERO_DISCLOSURE = "Use these names as a browsing guide, then check the current cigarette menu or ask at the Dundas West counter before making a special trip.";
 const NATIVE_HERO_PRODUCTS = [
   { name: "BB Lights", image: "/products/1001-BB-LIGHTS-CARTONS.webp" },
   { name: "BB Full", image: "/products/1003-BB-FULL-CARTON.webp" },
@@ -54,10 +54,11 @@ export const SEO_PAGES: SeoPageData[] = [
     heroTagline: "Open 24 hours daily on Dundas Street West, near Roncesvalles.",
     suppressTierGrid: true,
     sections: [
-      { heading: "Kensington Green Is Open 24 Hours Daily", body: "Kensington Green is open 24 hours daily at 2257 Dundas St W, Toronto, ON M6R 1X6. Whether you are planning a daytime visit or looking for a cannabis store open later at night, use our current store information before heading to Dundas West." },
-      { heading: "Visit Kensington Green in Dundas West", body: "Our storefront is on Dundas Street West in the Dundas West / Roncesvalles area. The Kensington Green visit page has the complete location details for planning your trip." },
+      { heading: "Kensington Green Is Open 24 Hours Daily", body: "Kensington Green is open 24 hours daily at 2257 Dundas St W, Toronto, ON M6R 1X6. The storefront serves adults 19+ moving along Dundas West, Roncesvalles and the High Park edge, whether the stop is planned during the day or after nearby restaurants have closed." },
+      { heading: "Late-Night Walk-Ins on Dundas West", body: "Dundas West and Roncesvalles remain active well beyond the daytime commute. If you are searching for a cannabis store open now, this page covers the 24-hour walk-in storefront only. Bring government-issued photo ID showing you are 19 or older." },
+      { heading: "Directions and Parking", body: "The visit page has the fuller TTC, walking and parking guide. Street parking varies by block and time; read posted signs and avoid stopping on the streetcar tracks. No dedicated parking lot is claimed." },
       { heading: "Explore the Five Weed Tiers", body: "Kensington Green organizes flower into Exotic Weed, Premium Weed, AAA+ Weed, AA Weed, and Budget Weed. Each tier has its own page so adults 19+ can move directly to the collection they want to explore." },
-      { heading: "Delivery and Other Kensington Green Guides", body: "Our Weed Delivery, Native Cigarettes, and Nicotine Vapes guides cover their own topics, while this page stays focused on Kensington Green's 24-hour Dundas West storefront. Delivery hours are separate from store hours." },
+      { heading: "Walk-In Hours and Delivery Are Separate", body: "The storefront is open 24 hours, but delivery follows its own service details and is not presented here as an overnight service. Use the Weed Delivery guide for that separate option. Native Cigarettes and Nicotine Vapes also have their own focused guides." },
     ],
     links: [
       { href: "/visit", label: "Visit Kensington Green" },
@@ -74,6 +75,9 @@ export const SEO_PAGES: SeoPageData[] = [
       { q: "Is Kensington Green open 24 hours?", a: "Yes. Kensington Green currently states that the storefront at 2257 Dundas St W is open 24 hours daily." },
       { q: "Where is Kensington Green located?", a: "Kensington Green is located at 2257 Dundas St W, Toronto, ON M6R 1X6, in the Dundas West / Roncesvalles area." },
       { q: "Where can I find Kensington Green's Weed tiers and other store information?", a: "Use the current site links for Exotic Weed, Premium Weed, AAA+ Weed, AA Weed, and Budget Weed, along with the separate visit, Weed Delivery, Native Cigarettes, and Nicotine Vapes pages." },
+      { q: "Can I visit after nearby restaurants close?", a: "Yes. The Kensington Green walk-in storefront states that it is open 24 hours daily. Adults must bring valid government-issued photo ID showing they are 19 or older." },
+      { q: "Is there dedicated parking at Kensington Green?", a: "No dedicated parking lot is claimed. Check posted street-parking signs and use the visit page for current trip-planning guidance." },
+      { q: "Does 24-hour walk-in mean delivery operates all night?", a: "No. Storefront and delivery hours are separate. Use the Weed Delivery page for the current delivery guidance." },
     ],
   },
   {
@@ -111,21 +115,33 @@ export const SEO_PAGES: SeoPageData[] = [
   {
     slug: "native-cigarettes-dundas-west",
     title: "Native Cigarettes Dundas West | Kensington Green",
-    metaDescription: "Browse the cigarette category at Kensington Green and confirm current brand and package details.",
-    h1: "Native Cigarettes Near Dundas West",
+    metaDescription: "Plan a Native cigarette stop at Kensington Green on Dundas West near Roncesvalles. Review the cigarette guide, menu and visit information before heading over.",
+    h1: "Native Cigarettes on Dundas West",
     icon: "*",
     heroTagline: "Cigarette category and visit information",
     heroPreview: {
       eyebrow: "Kensington Green · 2257 Dundas St W, Toronto",
-      intro: "Cigarette category and visit information",
+      intro: "A Dundas West guide for adults comparing cigarette names and package styles before a walk-in visit near Roncesvalles.",
       products: NATIVE_HERO_PRODUCTS,
       disclosure: NATIVE_HERO_DISCLOSURE,
     },
     sections: [
-      { heading: "Browse The Cigarette Category", body: "Use the cigarette menu page to review the current public list before visiting Kensington Green." },
-      { heading: "Confirm Brand Details", body: "Ask staff when a particular brand, package style, or price matters for your visit." },
+      { heading: "A Dundas West Cigarette Stop", body: "Kensington Green is at 2257 Dundas St W near Roncesvalles. This page helps adults plan the cigarette portion of a visit without turning a brand preview into a stock promise." },
+      { heading: "Compare Names and Package Styles", body: "Use the cigarette category to review the public names and package details shown for Kensington Green. If one exact brand or style matters, check the current menu or ask at the counter before making a special trip." },
+      { heading: "Plan the Walk-In", body: "The visit page brings together the address, phone, transit notes and parking guidance. Flower tiers and other categories stay on their own pages so the cigarette guide remains easy to follow." },
+      { heading: "Current Details Come From the Menu", body: "Category details can change. Treat this guide as an introduction, then use the current cigarette menu for the most recent public information." },
     ],
-    faqs: visitFaqs,
+    faqs: [
+      { q: "Where is Kensington Green?", a: "Kensington Green is at 2257 Dundas St W near Roncesvalles in Toronto." },
+      { q: "Where should I review current cigarette details?", a: "Use the current cigarette category and ask at the counter when one exact brand or package style matters." },
+      { q: "Does this guide guarantee that every pictured brand is in stock?", a: "No. The page is a browsing guide and does not guarantee stock, price or availability." },
+      { q: "Where can I find directions and parking guidance?", a: "Use the Kensington Green visit page for the address, transit notes and parking guidance." },
+    ],
+    links: [
+      { href: "/items/cigarettes", label: "Browse the current cigarette category" },
+      { href: "/visit", label: "Plan a Dundas West visit" },
+      { href: "/info/dundas-west-weed-dispensary", label: "Dundas West store guide" },
+    ],
   },
   {
     slug: "weed-store-near-dundas-west",

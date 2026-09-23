@@ -7,8 +7,8 @@ export interface TierSeoData {
 
 export const TIER_SEO: Record<string, TierSeoData> = {
   EXOTIC: {
-    seoTitle: "Exotic Weed & Cannabis Flower Toronto | Kensington Green",
-    seoIntro: "Kensington Green keeps Exotic as its own cannabis flower category for adults 19+ exploring weed and flower in Toronto. The Exotic tier stays narrow and distinct from Premium, AAA+, AA and Budget while the broader Weed experience remains on the main store owner page.",
+    seoTitle: "Exotic Weed Dundas West & Roncesvalles | Kensington Green",
+    seoIntro: "Explore the Exotic Weed collection at Kensington Green on Dundas West near Roncesvalles. This page keeps the tier focused while the local store guide and visit page cover the storefront, directions and the wider flower lineup.",
     sections: [
       { heading: "Explore Exotic Weed & Flower", body: "Use the Exotic section when you want to focus on that specific Kensington Green flower category rather than browse the full tier lineup at once." },
       { heading: "Exotic Within the Kensington Green Flower Lineup", body: "Exotic is one of five named flower tiers at Kensington Green. The category label identifies this section only and does not make claims about products, stock, potency, pricing or availability." },
@@ -20,8 +20,8 @@ export const TIER_SEO: Record<string, TierSeoData> = {
     ],
   },
   PREMIUM: {
-    seoTitle: "Premium Weed & Cannabis Flower Toronto | Kensington Green",
-    seoIntro: "Premium has its own place in the Kensington Green flower lineup for adults 19+ exploring weed and cannabis flower in Toronto. It remains a focused category alongside Exotic, AAA+, AA and Budget rather than competing with the broader Weed owner page.",
+    seoTitle: "Premium Weed Dundas West & Roncesvalles | Kensington Green",
+    seoIntro: "Browse the Premium Weed collection at Kensington Green on Dundas West near Roncesvalles. Use this tier for a focused flower browse, then return to the local store guide or visit page for storefront details.",
     sections: [
       { heading: "Browse Premium Weed & Flower", body: "The Premium section gives Kensington Green shoppers a dedicated place to explore that named flower tier without combining it with the rest of the lineup." },
       { heading: "Premium as a Separate Flower Category", body: "Kensington Green presents Premium as its own category beside Exotic, AAA+, AA and Budget. The label does not imply current product availability, potency, price or promotion." },
@@ -33,8 +33,8 @@ export const TIER_SEO: Record<string, TierSeoData> = {
     ],
   },
   "AAA+": {
-    seoTitle: "AAA+ Weed & Cannabis Flower Toronto | Kensington Green",
-    seoIntro: "AAA+ is a distinct Kensington Green flower category for adults 19+ who want to focus on that part of the weed and cannabis flower lineup. It stays complementary to the broader Weed owner and separate from Premium, AA, Exotic and Budget.",
+    seoTitle: "AAA+ Weed Dundas West & Roncesvalles | Kensington Green",
+    seoIntro: "Browse the AAA+ Weed collection at Kensington Green on Dundas West near Roncesvalles. The tier remains separate from the wider local store guide, where adults 19+ can find visit information and links to every flower collection.",
     sections: [
       { heading: "Explore AAA+ Weed & Flower", body: "The AAA+ section keeps this flower category focused so shoppers can browse it independently from the surrounding Kensington Green tiers." },
       { heading: "AAA+ in the Kensington Green Tier Lineup", body: "AAA+ is one of the site's five named flower categories. The label identifies the tier only and does not establish potency, quality, current availability or product details." },
@@ -46,8 +46,8 @@ export const TIER_SEO: Record<string, TierSeoData> = {
     ],
   },
   AA: {
-    seoTitle: "AA Weed & Cannabis Flower Toronto | Kensington Green",
-    seoIntro: "AA is its own Kensington Green flower category for adults 19+ exploring weed and cannabis flower in Toronto. The section remains distinct from Budget, AAA+, Premium and Exotic and stays subordinate to the broader Weed owner page.",
+    seoTitle: "AA Weed Dundas West & Roncesvalles | Kensington Green",
+    seoIntro: "Explore the AA Weed collection at Kensington Green on Dundas West near Roncesvalles. This page is dedicated to the AA tier; use the local store guide and visit page for directions, hours and links across the full flower lineup.",
     sections: [
       { heading: "Browse AA Weed & Flower", body: "Use the AA section when you want to stay focused on that specific Kensington Green flower category." },
       { heading: "AA as a Defined Flower Tier", body: "AA is presented as one of five named flower tiers at Kensington Green. The category label does not imply price, potency, stock, promotion or product availability." },
@@ -59,8 +59,8 @@ export const TIER_SEO: Record<string, TierSeoData> = {
     ],
   },
   BUDGET: {
-    seoTitle: "Budget Weed & Cannabis Flower Toronto | Kensington Green",
-    seoIntro: "Budget is a separate Kensington Green flower category for adults 19+ exploring weed and cannabis flower in Toronto. The Budget label identifies the tier without making a current price, promotion, stock or availability claim.",
+    seoTitle: "Budget Weed Dundas West & Roncesvalles | Kensington Green",
+    seoIntro: "Explore the Budget Weed collection at Kensington Green on Dundas West near Roncesvalles. The label identifies this store tier without promising a promotion, price or availability; current listing details remain on the page.",
     sections: [
       { heading: "Explore Budget Weed & Flower", body: "The Budget section gives Kensington Green shoppers a dedicated flower category that stays separate from AA, AAA+, Premium and Exotic." },
       { heading: "Budget as Its Own Flower Category", body: "Budget describes the category name only. It does not establish a current discount, promotion, price, product availability or other commercial claim." },
@@ -74,19 +74,19 @@ export const TIER_SEO: Record<string, TierSeoData> = {
 };
 
 export const TIER_META_DESCRIPTION: Record<string, string> = {
-  EXOTIC: "Explore the Exotic weed and cannabis flower category at Kensington Green in Toronto. Adults 19+ can browse this dedicated flower tier.",
-  PREMIUM: "Explore the Premium weed and cannabis flower category at Kensington Green in Toronto through its dedicated flower tier.",
-  "AAA+": "Explore the AAA+ weed and cannabis flower category at Kensington Green in Toronto through its dedicated AAA+ tier.",
-  AA: "Explore the AA weed and cannabis flower category at Kensington Green in Toronto through its dedicated AA tier.",
-  BUDGET: "Explore the Budget weed and cannabis flower category at Kensington Green in Toronto without current price, promotion or availability claims.",
+  EXOTIC: "Explore Exotic Weed at Kensington Green on Dundas West near Roncesvalles. Browse the dedicated flower tier and current page details.",
+  PREMIUM: "Explore Premium Weed at Kensington Green on Dundas West near Roncesvalles through its dedicated flower tier.",
+  "AAA+": "Explore AAA+ Weed at Kensington Green on Dundas West near Roncesvalles through its dedicated flower tier.",
+  AA: "Explore AA Weed at Kensington Green on Dundas West near Roncesvalles through its dedicated flower tier.",
+  BUDGET: "Explore Budget Weed at Kensington Green on Dundas West near Roncesvalles without a promotion or availability claim.",
 };
 
 export const TIER_H1: Record<string, string> = {
-  EXOTIC: "Exotic Weed & Cannabis Flower in Toronto",
-  PREMIUM: "Premium Weed & Cannabis Flower in Toronto",
-  "AAA+": "AAA+ Weed & Cannabis Flower in Toronto",
-  AA: "AA Weed & Cannabis Flower in Toronto",
-  BUDGET: "Budget Weed & Cannabis Flower in Toronto",
+  EXOTIC: "Exotic Weed in Dundas West & Roncesvalles",
+  PREMIUM: "Premium Weed in Dundas West & Roncesvalles",
+  "AAA+": "AAA+ Weed in Dundas West & Roncesvalles",
+  AA: "AA Weed in Dundas West & Roncesvalles",
+  BUDGET: "Budget Weed in Dundas West & Roncesvalles",
 };
 
 
