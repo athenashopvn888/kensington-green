@@ -18,6 +18,8 @@ import {
 } from "../lib/tierSeoContent";
 import styles from "./tier.module.css";
 
+const SITE_URL = "https://www.kensingtongreencannabis.com";
+
 /* -- Generate all tier pages at build -- */
 export function generateStaticParams() {
   return Object.values(TIER_CONFIG).map((t) => ({ tier: t.slug }));
@@ -70,6 +72,40 @@ export default async function TierPage({
   const { config } = tierInfo;
   const seo = TIER_SEO[tierInfo.key];
 
+  const collectionJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": `${SITE_URL}/${tierSlug}#webpage`,
+        url: `${SITE_URL}/${tierSlug}`,
+        name: seo.seoTitle,
+        description: TIER_META_DESCRIPTION[tierInfo.key],
+        isPartOf: { "@type": "WebSite", "@id": `${SITE_URL}/#website` },
+        about: { "@id": `${SITE_URL}/#store` },
+        mainEntity: {
+          "@type": "ItemList",
+          numberOfItems: flowers.length,
+          itemListElement: flowers.map((flower, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            name: flower.name,
+            url: `${SITE_URL}/flower/${flower.slug}`,
+          })),
+        },
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${SITE_URL}/${tierSlug}#faq`,
+        mainEntity: seo.faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.q,
+          acceptedAnswer: { "@type": "Answer", text: faq.a },
+        })),
+      },
+    ],
+  };
+
   const saleFlowers = flowers.filter((f) => f.isSale);
   const regularFlowers = flowers.filter((f) => !f.isSale);
   const hotFlowers = flowers.filter((f) => f.isHot);
@@ -81,6 +117,10 @@ export default async function TierPage({
 
   return (
     <main className={styles.main}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
+      />
       <Navbar />
 
       {/* ── Banner Image (standalone, no overlay text) ── */}

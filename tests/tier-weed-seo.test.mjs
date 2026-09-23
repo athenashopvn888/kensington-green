@@ -14,7 +14,15 @@ test("all five verified tier keys have approved copy, metadata, and H1 data", ()
   }
   assert.match(tierPage, /TIER_META_DESCRIPTION\[tierInfo\.key\]/);
   assert.match(tierPage, /TIER_H1\[tierInfo\.key\]/);
-  assert.match(tierCopy, /Weed & Cannabis Flower in Toronto/);
+  assert.match(tierCopy, /Weed in Dundas West & Roncesvalles/);
+});
+
+test("tier pages publish stable CollectionPage, ItemList, and FAQPage schema", () => {
+  assert.match(tierPage, /"@type": "CollectionPage"/);
+  assert.match(tierPage, /"@type": "ItemList"/);
+  assert.match(tierPage, /"@type": "FAQPage"/);
+  assert.match(tierPage, /url: `\$\{SITE_URL\}\/flower\/\$\{flower\.slug\}`/);
+  assert.doesNotMatch(tierPage, /"@type": "Offer"/);
 });
 
 test("tier pages preserve canonical route ownership", () => {
