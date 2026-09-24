@@ -7,6 +7,7 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import SafeImage from "../../components/SafeImage";
 import { getItemPriceDisplay } from "../../lib/itemPricing";
+import { resolveDocumentTitle } from "../../lib/storeNap";
 import {
   getItemsByCategory,
   getCategoryFromSlug,
@@ -32,7 +33,9 @@ export async function generateMetadata({
   const items = getItemsByCategory(catInfo.key);
 
   return {
-    title: catInfo.config.seoTitle || `${catInfo.config.name} — ${items.length} Products`,
+    title: resolveDocumentTitle(
+      catInfo.config.seoTitle || `${catInfo.config.name} — ${items.length} Products`,
+    ),
     description: catInfo.config.seoIntro || `Shop ${items.length} ${catInfo.config.name.toLowerCase()} at Kensington Green.`,
     alternates: {
       canonical: `https://www.kensingtongreencannabis.com/items/${catSlug}`,

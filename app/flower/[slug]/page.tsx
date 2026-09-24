@@ -5,6 +5,7 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { allFlowers, TIER_CONFIG, type FlowerProduct, type PricePoint } from "../../lib/products";
 import { getStrainData } from "../../lib/strainData";
+import { resolveDocumentTitle } from "../../lib/storeNap";
 import RelatedScroll from "./RelatedScroll";
 import Magnifier from "../../components/Magnifier";
 import styles from "./flower.module.css";
@@ -28,7 +29,7 @@ export async function generateMetadata({
   const strainData = getStrainData(flower.name, flower.type, flower.tier, flower.thc);
 
   return {
-    title: `${flower.name} | ${tierName} ${flower.type === "indica" ? "Indica" : flower.type === "sativa" ? "Sativa" : "Hybrid"} | THC ${flower.thc} | Kensington Green Toronto`,
+    title: resolveDocumentTitle(`${flower.name} | ${tierName} ${flower.type === "indica" ? "Indica" : flower.type === "sativa" ? "Sativa" : "Hybrid"} | THC ${flower.thc} | Kensington Green Toronto`),
     description: strainData.metaDescription,
     alternates: {
       canonical: `https://www.kensingtongreencannabis.com/flower/${slug}`,

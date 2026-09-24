@@ -14,6 +14,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(STORE_NAP.origin),
   title: {
     default: HOME_TITLE,
+    // Child titles that already include the brand must use resolveDocumentTitle()
+    // so this template does not append "Kensington Green" a second time.
     template: "%s | Kensington Green",
   },
   description: HOME_DESCRIPTION,
