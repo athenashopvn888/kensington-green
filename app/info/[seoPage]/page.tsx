@@ -10,7 +10,7 @@ import { SEO_PAGES, getSeoPageBySlug } from "../../lib/seoPages";
 import { TIER_CONFIG } from "../../lib/products";
 import styles from "./seo.module.css";
 import JsonLd from "../../components/JsonLd";
-import { faqPageJsonLd } from "../../lib/storeNap";
+import { faqPageJsonLd, resolveDocumentTitle } from "../../lib/storeNap";
 
 /* Generate all SEO pages */
 export function generateStaticParams() {
@@ -28,7 +28,7 @@ export async function generateMetadata({
   if (!page) return {};
 
   return {
-    title: page.absoluteTitle ? { absolute: page.title } : page.title,
+    title: resolveDocumentTitle(page.title, { absolute: page.absoluteTitle }),
     description: page.metaDescription,
     alternates: {
       canonical: `https://www.kensingtongreencannabis.com/info/${slug}`,

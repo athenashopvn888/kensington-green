@@ -33,6 +33,21 @@ export const HOME_TITLE = "Kensington Green | Dundas West Cannabis Dispensary";
 export const HOME_DESCRIPTION =
   "Walk-in cannabis dispensary at 2257 Dundas St W for Dundas West, Roncesvalles, and the Parkdale edge. Adults 19+. Open 24 Hours Daily. Call +1 (289) 514-9520.";
 
+/**
+ * Root layout title template is `%s | Kensington Green`.
+ * Titles that already name the brand must be absolute, or the template
+ * appends the brand a second time.
+ */
+export function resolveDocumentTitle(
+  title: string,
+  options?: { absolute?: boolean },
+): string | { absolute: string } {
+  if (options?.absolute || title.includes(STORE_NAP.name)) {
+    return { absolute: title };
+  }
+  return title;
+}
+
 /** Visible homepage FAQs — FAQPage JSON-LD must stay in lockstep with these strings. */
 export const HOME_FAQS = [
   {
