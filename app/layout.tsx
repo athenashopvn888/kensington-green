@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import "./globals.css";
 import AgeGate from "./components/AgeGate";
+import DeliveryAnnouncement from "./components/DeliveryAnnouncement";
 import JsonLd from "./components/JsonLd";
 import {
   STORE_NAP,
@@ -114,9 +114,7 @@ export default function RootLayout({
           Kensington Green · {nap.addressLine} · {nap.phoneDisplay} ·{" "}
           {nap.hoursLabel} · {nap.ageLine}
         </noscript>
-        <Link className="deliveryAnnouncement" href="/weed-delivery-toronto">
-          EXPLORE WEED DELIVERY
-        </Link>
+        <DeliveryAnnouncement />
         {children}
         <AgeGate />
       </body>
