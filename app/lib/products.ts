@@ -214,45 +214,45 @@ export const CATEGORY_CONFIG: Record<string, CategoryInfo> = {
   },
   "VAPE PENS": {
     banner: "/banners/ksc-real/category-vape-pens.webp",
-    name: "THC Vape",
+    name: "Nicotine Vape",
     slug: "vapes",
     color: "#8b5cf6",
     icon: "💨",
-    seoTitle: "Vape Pens Toronto THC & Nicotine Cartridges",
+    seoTitle: "Nicotine Vapes in Toronto | Kensington Green",
     seoIntro:
-      "Browse vape pens and compatible accessories at Kensington Green in Toronto. Review current menu and package details.",
+      "Browse nicotine vape devices at Kensington Green in Toronto. Review current product and package details before visiting. Nicotine is addictive.",
     seoDescription:
-      "The vape category groups current public menu listings by product name and format. Review package and compatibility details before choosing. Visit us at 2257 Dundas St W.",
+      "The nicotine vape category lists current VAPE PENS menu entries separately from THC vapes. Review each product and package label before choosing. Nicotine is addictive.",
     faqs: [
       {
-        q: "What vape pens do you sell?",
-        a: "We carry 510-thread THC cartridges, nicotine vape pods, disposable vapes, and compatible batteries from current menu brands.",
+        q: "Where can I review current nicotine vape details?",
+        a: "Use this nicotine vape category and review the product and package details shown for each listing. Nicotine is addictive.",
       },
       {
-        q: "Do you sell vape batteries?",
-        a: "Yes! We stock 510-thread batteries and pod systems that pair with our cartridge selection.",
+        q: "Does this category include THC vapes?",
+        a: "No. THC vape products are listed separately under the THC Vape category.",
       },
     ],
   },
   "VAPE DISPOSABLE": {
-    banner: "/banners/ksc-real/category-nic-vape.webp",
-    name: "Nic Vape",
+    banner: "/banners/02_Vape_Disposable.webp",
+    name: "THC Vape",
     slug: "vape-disposables",
     color: "#a78bfa",
     icon: "💨",
-    seoTitle: "Disposable Vapes Toronto THC Disposable Pens",
+    seoTitle: "THC Vape Disposables in Toronto | Kensington Green",
     seoIntro:
-      "Browse the disposable vape category at Kensington Green in Toronto and review current format details.",
+      "Browse THC vape disposables at Kensington Green in Toronto. Review current product and package details before visiting.",
     seoDescription:
-      "The disposable vape category organizes current public menu listings by product name and format. Review package details before choosing. Visit us at 2257 Dundas St W, Toronto.",
+      "The THC vape category lists current VAPE DISPOSABLE menu entries separately from nicotine vapes. Review each product and package label before choosing.",
     faqs: [
       {
-        q: "Where can I review disposable vape details?",
-        a: "Use the current category page and review the package details for each listing.",
+        q: "Where can I review current THC vape details?",
+        a: "Use this THC Vape category and review the product and package details shown for each listing.",
       },
       {
-        q: "Are disposable vapes rechargeable?",
-        a: "Most are designed for single use, but some models include a USB-C charging port to ensure you can use the full cartridge.",
+        q: "Does this category include nicotine vapes?",
+        a: "No. Nicotine vape products are listed separately under the Nicotine Vape category.",
       },
     ],
   },
