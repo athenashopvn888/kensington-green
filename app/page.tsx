@@ -205,37 +205,6 @@ export default function HomePage() {
       {/* -- NAVBAR -- */}
       <Navbar />
 
-      {/* -- WELCOME BANNER -- */}
-      {hasWelcomeBanner && !welcomeBannerError && (
-        <section className={styles.welcomeBannerSection}>
-          <div className={styles.welcomeBannerContainer}>
-            <img
-              src={welcomeBannerSrc}
-              alt="Welcome to Kensington Green on Dundas West"
-              className={styles.welcomeBannerImg}
-              onError={() => setWelcomeBannerError(true)}
-            />
-            <p className={styles.welcomeBannerNap}>
-              {STORE_NAP.addressLine} ·{" "}
-              <a href={`tel:${STORE_NAP.phoneIntl}`}>{STORE_NAP.phoneDisplay}</a>{" "}
-              · {STORE_NAP.hoursLabel} · {STORE_NAP.ageLine}
-            </p>
-          </div>
-        </section>
-      )}
-
-      {/* -- BENTO MOSAIC HERO -- */}
-      <section className={styles.hiringCallout} aria-label="Hiring at Kensington Green" style={{ "--hire-accent": "#22c55e", "--hire-accent-soft": "rgba(34, 197, 94, 0.14)", "--hire-accent-border": "rgba(34, 197, 94, 0.32)" } as CSSProperties}>
-        <div className={styles.hiringCalloutInner}>
-          <div>
-            <span className={styles.hiringEyebrow}>Budtenders / Managers Wanted</span>
-            <h2>Join Kensington Green</h2>
-            <p>Dundas West needs friendly, reliable people who can bring good energy, learn the menu, and keep customers moving with confidence. Online applications only. Please do not call the store about hiring.</p>
-          </div>
-          <Link href="/careers/budtender" className={styles.hiringButton}>Apply Online</Link>
-        </div>
-      </section>
-
       <section className={styles.hero}>
         <div className={styles.heroBg} />
         <div className={styles.heroOverlay} />
@@ -255,21 +224,62 @@ export default function HomePage() {
                 marginBottom: "8px",
               }}
             />
+            <p className={styles.heroEyebrow}>
+              <svg className={styles.heroEyebrowIcon} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path fill="currentColor" d="M3 6.5A2.5 2.5 0 0 1 5.5 4h8.2a2.5 2.5 0 0 1 2.3 1.5H20a1 1 0 0 1 1 1V16a2.5 2.5 0 0 1-2.5 2.5h-.17a3 3 0 0 1-5.66 0H10.3a3 3 0 0 1-5.66 0H4.5A2.5 2.5 0 0 1 2 16V8.5A2.5 2.5 0 0 1 3 6.5Zm2.5-.5a.5.5 0 0 0-.5.5V15h.17a3 3 0 0 1 2.66-1.5c.98 0 1.84.47 2.4 1.2L14 8.5V6h-8.5ZM16 8v3h3.2l-1.6-3H16Zm1.5 12a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm-9 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z" />
+              </svg>
+              Delivery & Retail in Dundas West
+            </p>
             <h1 className={styles.brandTitle}>
               Kensington Green | Dundas West Cannabis Dispensary
+              <span className={styles.brandTitleExtend}> - Cannabis Delivery & Dispensary in Dundas West</span>
             </h1>
             <p className={styles.brandSub}>
               Walk-in on Dundas West / Roncesvalles · {STORE_NAP.ageLine}
             </p>
-            <div className={styles.brandBadge}>
-              {STORE_NAP.hoursLabel}
-            </div>
+            <p className={styles.heroLead}>
+              Shop for fast, discreet local delivery in Dundas West, or visit the dispensary.
+            </p>
             <div className={styles.homeMenuActions} aria-label="Choose a Kensington Green menu">
-              <Link href="/exotic-weed" className={styles.homeMenuCta}>STORE MENU</Link>
+              <Link href="/exotic-weed" className={`${styles.homeMenuCta} ${styles.homeMenuPrimary}`}>STORE MENU</Link>
+              <Link href="/delivery" className={`${styles.homeMenuCta} ${styles.homeDeliverySecondary}`}>Delivery</Link>
               <Link href="/weed-delivery-toronto" className={`${styles.homeMenuCta} ${styles.homeDeliveryCta}`}>Explore Weed Delivery</Link>
               <Link href="/visit" className={`${styles.homeMenuCta} ${styles.homeVisitCta}`}>How to get here</Link>
             </div>
+            <div className={styles.brandBadge}>
+              {STORE_NAP.hoursLabel}
+            </div>
           </div>
+
+          {/* -- WELCOME BANNER -- */}
+          {hasWelcomeBanner && !welcomeBannerError && (
+            <section className={styles.welcomeBannerSection}>
+              <div className={styles.welcomeBannerContainer}>
+                <img
+                  src={welcomeBannerSrc}
+                  alt="Welcome to Kensington Green on Dundas West"
+                  className={styles.welcomeBannerImg}
+                  onError={() => setWelcomeBannerError(true)}
+                />
+                <p className={styles.welcomeBannerNap}>
+                  {STORE_NAP.addressLine} ·{" "}
+                  <a href={`tel:${STORE_NAP.phoneIntl}`}>{STORE_NAP.phoneDisplay}</a>{" "}
+                  · {STORE_NAP.hoursLabel} · {STORE_NAP.ageLine}
+                </p>
+              </div>
+            </section>
+          )}
+
+          <section className={styles.hiringCallout} aria-label="Hiring at Kensington Green" style={{ "--hire-accent": "#22c55e", "--hire-accent-soft": "rgba(34, 197, 94, 0.14)", "--hire-accent-border": "rgba(34, 197, 94, 0.32)" } as CSSProperties}>
+            <div className={styles.hiringCalloutInner}>
+              <div>
+                <span className={styles.hiringEyebrow}>Budtenders / Managers Wanted</span>
+                <h2>Join Kensington Green</h2>
+                <p>Dundas West needs friendly, reliable people who can bring good energy, learn the menu, and keep customers moving with confidence. Online applications only. Please do not call the store about hiring.</p>
+              </div>
+              <Link href="/careers/budtender" className={styles.hiringButton}>Apply Online</Link>
+            </div>
+          </section>
 
           {/* Bento Grid */}
           <div className={styles.bentoGrid}>
