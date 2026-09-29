@@ -57,7 +57,7 @@ export default function Footer() {
               <Link href="/budget-weed">Budget Weed</Link>
               <Link href="/items/edibles">Edibles</Link>
               <Link href="/items/cigarettes">Cigarettes</Link>
-              <Link href="/items/vapes">Vape Pens</Link>
+              <Link href="/items/vapes">Nicotine Vape</Link>
               <Link href="/info/nicotine-vapes-dundas-west">Nicotine Vapes Dundas West</Link>
               <Link href="/faq">FAQ</Link>
               <Link href="/weed-delivery-toronto">Neighbourhood Delivery</Link>

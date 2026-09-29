@@ -77,14 +77,14 @@ const BENTO_TIERS = [
 /* -- Explore Categories Config (New Banners) -- */
 const EXPLORE_CATEGORIES = [
   {
-    name: "Vape Pens",
+    name: "Nicotine Vape",
     slug: "items/vapes",
     banner: "/banners/ksc-real/category-vape-pens.webp",
   },
   {
-    name: "Nic Vape",
+    name: "THC Vape",
     slug: "items/vape-disposables",
-    banner: "/banners/ksc-real/category-nic-vape.webp",
+    banner: "/banners/02_Vape_Disposable.webp",
   },
   {
     name: "Concentrates",
