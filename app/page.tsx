@@ -10,7 +10,13 @@ import FlowerCard from "./components/FlowerCard";
 import JsonLd from "./components/JsonLd";
 import { WeedDiscoveryModule } from "./components/WeedDiscoveryModule";
 import { allFlowers, type FlowerProduct } from "./lib/products";
-import { HOME_FAQS, STORE_NAP, faqPageJsonLd } from "./lib/storeNap";
+import {
+  HOME_DELIVERY_CARDS,
+  HOME_DELIVERY_FAQS,
+  HOME_DELIVERY_H2,
+  HOME_DELIVERY_PARAGRAPHS,
+} from "./lib/homeDelivery";
+import { HOME_FAQS, HOME_H1, STORE_NAP, faqPageJsonLd } from "./lib/storeNap";
 import Papa from "papaparse";
 
 function pickFeaturedStrains(flowers: FlowerProduct[]) {
@@ -200,10 +206,10 @@ export default function HomePage() {
 
   return (
     <main className={styles.main}>
-      <JsonLd data={faqPageJsonLd(HOME_FAQS)} />
-      <FleetAnnouncementBanner />
-      {/* -- NAVBAR -- */}
+      <JsonLd data={faqPageJsonLd([...HOME_DELIVERY_FAQS, ...HOME_FAQS])} />
+      {/* -- NAVBAR — fixed under the delivery bar, flush to the top of the viewport -- */}
       <Navbar />
+      <FleetAnnouncementBanner />
 
       <section className={styles.hero}>
         <div className={styles.heroBg} />
@@ -230,10 +236,7 @@ export default function HomePage() {
               </svg>
               Delivery & Retail in Dundas West
             </p>
-            <h1 className={styles.brandTitle}>
-              Kensington Green | Dundas West Cannabis Dispensary
-              <span className={styles.brandTitleExtend}> - Cannabis Delivery & Dispensary in Dundas West</span>
-            </h1>
+            <h1 className={styles.brandTitle}>{HOME_H1}</h1>
             <p className={styles.brandSub}>
               Walk-in on Dundas West / Roncesvalles · {STORE_NAP.ageLine}
             </p>
@@ -299,6 +302,40 @@ export default function HomePage() {
                   <span className={styles.bentoPrice}>{tier.price}</span>
                 </div>
               </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        className={styles.deliverySection}
+        id="dundas-west-weed-delivery"
+        aria-labelledby="home-delivery-heading"
+      >
+        <div className={styles.container}>
+          <div className={styles.deliveryPanel}>
+            <h2 id="home-delivery-heading" className={styles.deliveryTitle}>
+              {HOME_DELIVERY_H2}
+            </h2>
+            {HOME_DELIVERY_PARAGRAPHS.map((paragraph) => (
+              <p key={paragraph} className={styles.deliveryText}>
+                {paragraph}
+              </p>
+            ))}
+            <div className={styles.deliveryCards}>
+              {HOME_DELIVERY_CARDS.map((card) => (
+                <Link key={card.href} href={card.href} className={styles.deliveryCard}>
+                  <strong>{card.title}</strong>
+                  <span>{card.text}</span>
+                </Link>
+              ))}
+            </div>
+            <h3 className={styles.deliveryFaqTitle}>Weed delivery questions</h3>
+            {HOME_DELIVERY_FAQS.map((faq) => (
+              <details key={faq.q} className={styles.faqItem}>
+                <summary className={styles.faqQuestion}>{faq.q}</summary>
+                <p className={styles.faqAnswer}>{faq.a}</p>
+              </details>
             ))}
           </div>
         </div>

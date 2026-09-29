@@ -29,10 +29,10 @@ test("CannabisStore schema uses the FMD NAP and www host", () => {
 });
 
 test("homepage FAQPage JSON-LD mirrors visible FAQs and corridor copy", () => {
-  assert.match(home, /faqPageJsonLd\(HOME_FAQS\)/);
+  assert.match(home, /faqPageJsonLd\(\[\.\.\.HOME_DELIVERY_FAQS, \.\.\.HOME_FAQS\]\)/);
   assert.match(nap, /What are the hours for Kensington Green on Dundas West\?/);
   assert.match(home, /LOCAL_FAQS = HOME_FAQS/);
-  assert.match(home, /Kensington Green \| Dundas West Cannabis Dispensary/);
+  assert.match(home, /\{HOME_H1\}/);
   assert.doesNotMatch(home, /electrifying menu|Toronto's local cannabis stop/i);
   assert.doesNotMatch(home, /416-402-5263|4164025263/);
   assert.match(home, /welcome_banner_dundas_west/);

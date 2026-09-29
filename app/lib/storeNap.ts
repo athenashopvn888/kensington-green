@@ -29,9 +29,13 @@ export const STORE_NAP = {
     "https://www.google.com/maps?q=2257+Dundas+St+W,+Toronto,+ON+M6R+1X6&output=embed",
 } as const;
 
-export const HOME_TITLE = "Kensington Green | Dundas West Cannabis Dispensary";
+export const HOME_H1 =
+  "Kensington Green - Weed Delivery & Cannabis Dispensary in Dundas West";
+export const HOME_TITLE =
+  "Kensington Green – Weed Delivery & Cannabis Dispensary in Dundas West";
+export const HOME_SCHEMA_NAME = "Kensington Green Weed Delivery & Cannabis Dispensary";
 export const HOME_DESCRIPTION =
-  "Walk-in cannabis dispensary at 2257 Dundas St W for Dundas West, Roncesvalles, and the Parkdale edge. Adults 19+. Open 24 Hours Daily. Call +1 (289) 514-9520.";
+  "Weed delivery and a cannabis dispensary at 2257 Dundas St W for Dundas West, Roncesvalles, and the Parkdale edge. Neighbourhood delivery runs 10:00 a.m. to 10:00 p.m. The walk-in is open 24 hours daily. Adults 19+. Call +1 (289) 514-9520.";
 
 /**
  * Root layout title template is `%s | Kensington Green`.
