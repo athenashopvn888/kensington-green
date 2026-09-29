@@ -30,9 +30,9 @@ export const STORE_NAP = {
 } as const;
 
 export const HOME_H1 =
-  "Kensington Green - Weed Delivery & Cannabis Dispensary in Dundas West";
+  "Kensington Green Cannabis Dispensary - Weed Delivery in Dundas West";
 export const HOME_TITLE =
-  "Kensington Green – Weed Delivery & Cannabis Dispensary in Dundas West";
+  "Kensington Green Cannabis Dispensary - Weed Delivery in Dundas West";
 export const HOME_SCHEMA_NAME = "Kensington Green Weed Delivery & Cannabis Dispensary";
 export const HOME_DESCRIPTION =
   "Weed delivery and a cannabis dispensary at 2257 Dundas St W for Dundas West, Roncesvalles, and the Parkdale edge. Neighbourhood delivery runs 10:00 a.m. to 10:00 p.m. The walk-in is open 24 hours daily. Adults 19+. Call +1 (289) 514-9520.";

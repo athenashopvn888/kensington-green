@@ -12,8 +12,9 @@ const page = fs.readFileSync("app/page.tsx", "utf8");
 const globals = fs.readFileSync("app/globals.css", "utf8");
 
 test("homepage H1, title, and schema use the locked Cannabis Dispensary phrase", () => {
-  assert.equal(HOME_H1, "Kensington Green - Weed Delivery & Cannabis Dispensary in Dundas West");
-  assert.equal(HOME_TITLE, "Kensington Green – Weed Delivery & Cannabis Dispensary in Dundas West");
+  const locked = "Kensington Green Cannabis Dispensary - Weed Delivery in Dundas West";
+  assert.equal(HOME_H1, locked);
+  assert.equal(HOME_TITLE, locked);
   assert.equal(HOME_SCHEMA_NAME, "Kensington Green Weed Delivery & Cannabis Dispensary");
   assert.match(page, /\{HOME_H1\}/);
   assert.doesNotMatch(page, /Weed Delivery & Dispensary/);
