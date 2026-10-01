@@ -23,6 +23,7 @@ import {
   TIER_SEO,
 } from "../lib/tierSeoContent";
 import styles from "./tier.module.css";
+import { getTierGuideLinks } from "../lib/guideRegistry";
 
 const SITE_URL = "https://www.kensingtongreencannabis.com";
 
@@ -77,6 +78,7 @@ export default async function TierPage({
   const flowers = getFlowersByTier(tierInfo.key);
   const { config } = tierInfo;
   const seo = TIER_SEO[tierInfo.key];
+  const guideLinks = getTierGuideLinks(`/${tierSlug}`);
 
   const collectionJsonLd = {
     "@context": "https://schema.org",
@@ -218,6 +220,17 @@ export default async function TierPage({
           </div>
         </div>
       </section>
+
+      {guideLinks.length > 0 && (
+        <nav className={styles.guideStrip} aria-label={`Popular ${config.name} strain guides`}>
+          <div className={styles.container}>
+            <h2>Popular strain guides</h2>
+            <div>
+              {guideLinks.map((guide) => <Link key={guide.slug} href={`/guides/${guide.slug}`}>{guide.name}</Link>)}
+            </div>
+          </div>
+        </nav>
+      )}
 
       {/* ── Product grid ── */}
       <section className={styles.products}>

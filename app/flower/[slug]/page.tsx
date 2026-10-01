@@ -16,6 +16,7 @@ import { resolveDocumentTitle } from "../../lib/storeNap";
 import RelatedScroll from "./RelatedScroll";
 import Magnifier from "../../components/Magnifier";
 import styles from "./flower.module.css";
+import { GUIDE_REGISTRY } from "../../lib/guideRegistry";
 
 /* -- Pre-generate all flower pages -- */
 export function generateStaticParams() {
@@ -145,6 +146,7 @@ export default async function FlowerPage({
   const typeName = flower.type === "indica" ? "Indica" : flower.type === "sativa" ? "Sativa" : "Hybrid";
   const strainData = getStrainData(flower.name, flower.type, flower.tier, flower.thc);
   const isTopTier = TOP_TIERS.includes(flower.tier);
+  const nameGuide = GUIDE_REGISTRY.find((guide) => guide.lane === "strain" && guide.stockMatch.test(flower.name));
 
   // Weight label for 5g column depends on tier
   const fiveGLabel = isTopTier ? "6g" : "5g";
@@ -331,6 +333,11 @@ export default async function FlowerPage({
               <div className={styles.descSection}>
                 <h2 className={styles.descTitle}>About {flower.name}</h2>
                 <p className={styles.descText}>{strainData.description}</p>
+                {nameGuide && (
+                  <p className={styles.descText}>
+                    Name guide: <Link href={`/guides/${nameGuide.slug}`}>{nameGuide.name} at Kensington Green</Link>
+                  </p>
+                )}
               </div>
 
               <div className={styles.visitCta}>
