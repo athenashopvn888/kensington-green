@@ -8,12 +8,12 @@ export function flowerBogoStripLabel(): string {
   return formatSitewideBogoStrip(deal.price, deal.grams);
 }
 
-export default function FlowerBogoStrip() {
+export default function FlowerBogoStrip({ hero = false }: { hero?: boolean }) {
   const label = flowerBogoStripLabel();
   if (!label) return null;
 
   return (
-    <Link href="/aaa-weed" data-flower-bogo-strip="">
+    <Link href="/aaa-weed" data-flower-bogo-strip={hero ? "hero" : "nav"}>
       {label}
     </Link>
   );

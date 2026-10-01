@@ -3,16 +3,13 @@
 import { useEffect, useState } from "react";
 import FlowerBogoStrip from "./FlowerBogoStrip";
 
-const lineStyle = {
+const barStyle = {
   margin: 0,
-  padding: "14px 16px",
-  color: "#fff",
-  fontSize: "clamp(18px, 3vw, 32px)",
-  fontWeight: 900,
-  lineHeight: 1.15,
-  letterSpacing: "0.02em",
+  width: "100%",
+  boxSizing: "border-box" as const,
   textAlign: "center" as const,
   textTransform: "uppercase" as const,
+  lineHeight: 1.15,
 };
 
 function isThanksgivingNoticeActive(date: Date) {
@@ -54,19 +51,49 @@ export default function FleetAnnouncementBanner() {
         zIndex: 50,
       }}
     >
-      <FlowerBogoStrip />
       {showThanksgivingNotice ? (
         <p
           data-thanksgiving-hours-notice=""
-          style={{ ...lineStyle, background: "#166534" }}
+          style={{
+            ...barStyle,
+            padding: "5px 12px",
+            background: "#166534",
+            color: "#ecfdf5",
+            fontSize: "clamp(12px, 2.2vw, 15px)",
+            fontWeight: 700,
+            letterSpacing: "0.02em",
+          }}
         >
           Thanksgiving Monday (Oct 12): We are open regular hours.
         </p>
       ) : null}
-      <p style={{ ...lineStyle, background: "#b91c1c" }}>
+      <FlowerBogoStrip hero />
+      <p
+        data-cigarette-deal=""
+        style={{
+          ...barStyle,
+          padding: "12px 16px",
+          background: "#facc15",
+          color: "#1c1917",
+          fontSize: "clamp(16px, 3.2vw, 28px)",
+          fontWeight: 900,
+          letterSpacing: "0.02em",
+        }}
+      >
         CIGARETTE DEAL ! 2 PACK $5 MIX AND MATCH
       </p>
-      <p style={{ ...lineStyle, background: "#c2410c" }}>
+      <p
+        data-bb-light-deal=""
+        style={{
+          ...barStyle,
+          padding: "7px 14px",
+          background: "#1c1917",
+          color: "#facc15",
+          fontSize: "clamp(13px, 2.4vw, 20px)",
+          fontWeight: 800,
+          letterSpacing: "0.03em",
+        }}
+      >
         EXCLUSIVE SPECIAL PREMIUM GRADE BB FULL &amp; BB LIGHT!
       </p>
     </aside>

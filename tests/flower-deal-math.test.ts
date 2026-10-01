@@ -88,11 +88,17 @@ test("sitewide flower strip leads the announcement stack without new prices", ()
     "Buy 2g Get 1g FREE · Buy 3g Get 3g FREE — as low as $5/g",
   );
   const banner = read("app/components/FleetAnnouncementBanner.tsx");
-  const stripAt = banner.indexOf("<FlowerBogoStrip />");
-  const thanksAt = banner.indexOf("Thanksgiving Monday");
-  const cigAt = banner.indexOf("CIGARETTE DEAL ! 2 PACK $5 MIX AND MATCH");
-  const bbAt = banner.indexOf("EXCLUSIVE SPECIAL PREMIUM GRADE BB FULL");
-  assert.ok(stripAt > -1 && thanksAt > stripAt && cigAt > thanksAt && bbAt > cigAt);
+  const thanksAt = banner.indexOf("data-thanksgiving-hours-notice");
+  const stripAt = banner.indexOf("<FlowerBogoStrip hero");
+  const cigAt = banner.indexOf("data-cigarette-deal");
+  const bbAt = banner.indexOf("data-bb-light-deal");
+  assert.ok(thanksAt > -1 && stripAt > thanksAt && cigAt > stripAt && bbAt > cigAt);
+  assert.match(banner, /background: "#166534"/);
+  assert.match(banner, /background: "#facc15"/);
+  assert.match(banner, /color: "#1c1917"/);
+  assert.match(banner, /background: "#1c1917"/);
+  assert.match(banner, /color: "#facc15"/);
+  assert.match(read("app/globals.css"), /\[data-flower-bogo-strip="hero"\][\s\S]*background: #dc2626|\[data-flower-bogo-strip\][\s\S]*background: #dc2626/);
   const nav = read("app/components/Navbar.tsx");
   assert.match(nav, /pathname !== "\/" \? <FlowerBogoStrip \/>/);
   assert.match(read("app/components/FlowerBogoStrip.tsx"), /href="\/aaa-weed"/);
