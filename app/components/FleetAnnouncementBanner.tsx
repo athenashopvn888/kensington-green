@@ -1,18 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
-const lineStyle = {
-  margin: 0,
-  padding: "14px 16px",
-  color: "#fff",
-  fontSize: "clamp(18px, 3vw, 32px)",
-  fontWeight: 900,
-  lineHeight: 1.15,
-  letterSpacing: "0.02em",
-  textAlign: "center" as const,
-  textTransform: "uppercase" as const,
-};
+import FlowerBogoStrip from "./FlowerBogoStrip";
 
 function isThanksgivingNoticeActive(date: Date) {
   const parts = new Intl.DateTimeFormat("en-CA", {
@@ -43,28 +32,17 @@ export default function FleetAnnouncementBanner() {
     <aside
       data-fleet-homepage-announcement=""
       aria-label="Store announcements"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        width: "100%",
-        height: "auto",
-        minHeight: 0,
-        position: "relative",
-        zIndex: 50,
-      }}
     >
       {showThanksgivingNotice ? (
-        <p
-          data-thanksgiving-hours-notice=""
-          style={{ ...lineStyle, background: "#166534" }}
-        >
+        <p data-thanksgiving-hours-notice="">
           Thanksgiving Monday (Oct 12): We are open regular hours.
         </p>
       ) : null}
-      <p style={{ ...lineStyle, background: "#b91c1c" }}>
+      <FlowerBogoStrip hero />
+      <p data-cigarette-deal="">
         CIGARETTE DEAL ! 2 PACK $5 MIX AND MATCH
       </p>
-      <p style={{ ...lineStyle, background: "#c2410c" }}>
+      <p data-bb-light-deal="">
         EXCLUSIVE SPECIAL PREMIUM GRADE BB FULL &amp; BB LIGHT!
       </p>
     </aside>

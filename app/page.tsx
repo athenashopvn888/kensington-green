@@ -9,7 +9,11 @@ import Footer from "./components/Footer";
 import FlowerCard from "./components/FlowerCard";
 import JsonLd from "./components/JsonLd";
 import { WeedDiscoveryModule } from "./components/WeedDiscoveryModule";
-import { allFlowers, type FlowerProduct } from "./lib/products";
+import { allFlowers, TIER_CONFIG, type FlowerProduct } from "./lib/products";
+import {
+  formatAsLowAsAfterPromos,
+  formatBoardDealLine,
+} from "./lib/flowerDeals";
 import {
   HOME_DELIVERY_CARDS,
   HOME_DELIVERY_FAQS,
@@ -384,6 +388,29 @@ export default function HomePage() {
               Featured menu listings from the current product source. Names
               below are crawlable starting points, not a live stock promise.
             </p>
+            <div className={styles.boardDeals}>
+              <p className={styles.boardDealsHook}>Flower deals same as in-store</p>
+              <ul className={styles.boardDealList}>
+                {(["AAA+", "PREMIUM", "EXOTIC"] as const).map((key) => {
+                  const tier = TIER_CONFIG[key];
+                  const deal3 = tier.deal3g;
+                  const deal6 = tier.deal6g;
+                  if (!deal3 || !deal6) return null;
+                  return (
+                    <li key={key}>
+                      <Link href={`/${tier.slug}`}>
+                        <strong>{tier.name}</strong>
+                        <span className={styles.boardDealFloor}>
+                          {formatAsLowAsAfterPromos(deal6.price, deal6.grams)}
+                        </span>
+                        <span>{formatBoardDealLine(deal3)}</span>
+                        <span>{formatBoardDealLine(deal6)}</span>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
           </div>
 
           <noscript>

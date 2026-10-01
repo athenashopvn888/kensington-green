@@ -7,6 +7,7 @@ import Image from "next/image";
 import styles from "./Navbar.module.css";
 
 import { STORE_NAP } from "../lib/storeNap";
+import FlowerBogoStrip from "./FlowerBogoStrip";
 
 const ALL_LINKS = [
   { href: "/visit", label: "Visit Dundas West" },
@@ -98,6 +99,7 @@ export default function Navbar() {
         </div>
         {canAdvance && <button type="button" className={styles.scrollAdvance} aria-label="Show more navigation links" aria-controls="store-menu-scrollbar" onClick={advanceScrollBar}><span aria-hidden="true">›</span></button>}
       </div>
+      {pathname !== "/" ? <FlowerBogoStrip /> : null}
     </nav>
   );
 }

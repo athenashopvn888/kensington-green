@@ -1,3 +1,5 @@
+import { BOGO_BUY_2_GET_1, BOGO_BUY_3_GET_3, type BoardDeal } from "./flowerDeals";
+
 /* -- Product & Item Types -- */
 export interface FlowerProduct {
   sku: string;
@@ -102,17 +104,11 @@ export const TIER_CONFIG: Record<
     icon: string;
     tagline: string;
     banner: string;
-    unitPrice: number /* $/g */;
-    deal3g: {
-      label: string;
-      total: string;
-      price: number;
-    } | null /* 3g bundle pricing */;
-    deal6g: {
-      label: string;
-      total: string;
-      price: number;
-    } | null /* 6g bundle pricing (top 3 only) */;
+    unitPrice: number /* list $/g */;
+    /* Board deal: Buy 2g Get 1g FREE on Exotic, Premium, AAA+. Budget keeps its special. */
+    deal3g: BoardDeal | null;
+    /* Board deal: Buy 3g Get 3g FREE. Top 3 tiers only. price5g displays as this 6g total. */
+    deal6g: BoardDeal | null;
   }
 > = {
   EXOTIC: {
@@ -123,8 +119,8 @@ export const TIER_CONFIG: Record<
     tagline: "Explore the Exotic Weed flower tier",
     banner: "/banners/exotics_banner.webp",
     unitPrice: 20,
-    deal3g: { label: "3g bundle", total: "3G", price: 40 },
-    deal6g: { label: "6g bundle", total: "6G", price: 60 },
+    deal3g: { label: BOGO_BUY_2_GET_1, total: "3G", price: 40, grams: 3, equals: "2g=3g" },
+    deal6g: { label: BOGO_BUY_3_GET_3, total: "6G", price: 60, grams: 6, equals: "3g=6g" },
   },
   PREMIUM: {
     name: "Premium Weed",
@@ -134,8 +130,8 @@ export const TIER_CONFIG: Record<
     tagline: "Explore the Premium Weed flower tier",
     banner: "/banners/premium_banner.webp",
     unitPrice: 15,
-    deal3g: { label: "3g bundle", total: "3G", price: 30 },
-    deal6g: { label: "6g bundle", total: "6G", price: 45 },
+    deal3g: { label: BOGO_BUY_2_GET_1, total: "3G", price: 30, grams: 3, equals: "2g=3g" },
+    deal6g: { label: BOGO_BUY_3_GET_3, total: "6G", price: 45, grams: 6, equals: "3g=6g" },
   },
   "AAA+": {
     name: "AAA+ Weed",
@@ -145,8 +141,8 @@ export const TIER_CONFIG: Record<
     tagline: "Explore the AAA+ Weed flower tier",
     banner: "/banners/aaa_plus_banner.webp",
     unitPrice: 10,
-    deal3g: { label: "3g bundle", total: "3G", price: 20 },
-    deal6g: { label: "6g bundle", total: "6G", price: 30 },
+    deal3g: { label: BOGO_BUY_2_GET_1, total: "3G", price: 20, grams: 3, equals: "2g=3g" },
+    deal6g: { label: BOGO_BUY_3_GET_3, total: "6G", price: 30, grams: 6, equals: "3g=6g" },
   },
   AA: {
     name: "AA Weed",
@@ -167,7 +163,7 @@ export const TIER_CONFIG: Record<
     tagline: "Explore the Budget Weed flower tier",
     banner: "/banners/budget_banner.webp",
     unitPrice: 3,
-    deal3g: { label: "$10 / 3g Special", total: "3G", price: 10 },
+    deal3g: { label: "$10 / 3g Special", total: "3G", price: 10, grams: 3 },
     deal6g: null,
   },
 };

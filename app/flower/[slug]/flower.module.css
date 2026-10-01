@@ -3,7 +3,7 @@
 .content {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 80px 24px 60px;
+  padding: calc(80px + var(--flower-bogo-strip-height)) 24px 60px;
 }
 
 /* -- Breadcrumb -- */
@@ -225,6 +225,19 @@
   color: var(--text-primary);
 }
 
+.boardIntro {
+  margin: -6px 0 12px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #2D6A4F;
+}
+
+.boardFootnote {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0 0 10px;
+}
+
 /* Table-style pricing — 3 columns */
 .priceTable {
   border: 1px solid var(--border-subtle);
@@ -284,6 +297,10 @@
 
 .dealBanner strong {
   color: #1B4332;
+}
+
+.dealBannerMeta {
+  font-weight: 700;
 }
 
 .priceTableRowSale {
