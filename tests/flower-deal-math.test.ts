@@ -85,10 +85,11 @@ test("web flower surfaces use BOGO, paid totals, and tier floors", () => {
 test("sitewide flower strip leads the announcement stack without new prices", () => {
   assert.equal(
     formatSitewideBogoStrip(),
-    "TOP 3 TIER WEED SPECIAL · Buy 2g Get 1g FREE  Buy 3g Get 3g FREE *",
+    "TOP WEED TIER SPECIAL · Buy 2g Get 1g FREE  Buy 3g Get 3g FREE *",
   );
   assert.match(formatSitewideBogoStrip(), /FREE {2}Buy 3g/);
   assert.doesNotMatch(formatSitewideBogoStrip(), /FREE\s*[·|]\s*Buy/);
+  assert.doesNotMatch(formatSitewideBogoStrip(), /TOP 3 TIER WEED/);
   assert.doesNotMatch(formatSitewideBogoStrip(), /\$5\/g|as low as|AAA\+/);
   const banner = read("app/components/FleetAnnouncementBanner.tsx");
   const thanksAt = banner.indexOf("data-thanksgiving-hours-notice");
@@ -109,16 +110,17 @@ test("sitewide flower strip leads the announcement stack without new prices", ()
   );
   assert.match(banner, /href="\/exotic-weed"/);
   assert.match(banner, /aria-label="Shop Exotic Premium AAA\+ tier weed"/);
+  assert.match(banner, /src="\/banners\/top-weed-tier-ksc01\.webp"/);
   assert.match(
     banner,
-    /alt="Exotic, Premium, and AAA\+ tier weed at Kensington Green Cannabis — top shelf flower specials with Buy 2g Get 1g FREE and Buy 3g Get 3g FREE\."/,
+    /alt="TOP WEED TIER at Kensington Green Cannabis — Exotic, Premium, and AAA\+ weed with Buy 2g Get 1g FREE and Buy 3g Get 3g FREE\."/,
   );
   assert.match(banner, /href="\/items\/cigarettes"/);
   assert.match(banner, /2 packs for \$5 mix and match, cartons \$25/);
   assert.match(banner, /Exclusive BB Premium Grade cigarettes/);
   assert.doesNotMatch(banner, /AAA\+ from \$5\/g|as low as \$5\/g/);
   for (const file of [
-    "public/banners/exotic-premium-aaa-tier-weed.webp",
+    "public/banners/top-weed-tier-ksc01.webp",
     "public/banners/cig-2packs-5-mix-match-25-carton.webp",
     "public/banners/bb-premium-grade-full-lights.webp",
   ]) {
@@ -127,6 +129,14 @@ test("sitewide flower strip leads the announcement stack without new prices", ()
   const globalsCss = read("app/globals.css");
   assert.match(globalsCss, /\[data-thanksgiving-hours-notice\][\s\S]*background: #14532d/);
   assert.match(globalsCss, /\[data-flower-bogo-strip\][\s\S]*background: #c5161d/);
+  assert.match(
+    globalsCss,
+    /@media \(max-width: 720px\)[\s\S]*\[data-flower-bogo-strip="hero"\][\s\S]*letter-spacing: 0\.018em/,
+  );
+  assert.match(
+    globalsCss,
+    /@media \(max-width: 720px\)[\s\S]*\[data-flower-bogo-strip="nav"\][\s\S]*letter-spacing: 0\.015em/,
+  );
   assert.match(globalsCss, /\[data-cigarette-deal\][\s\S]*background: #fbbf24[\s\S]*color: #111827/);
   assert.match(globalsCss, /\[data-bb-light-deal\][\s\S]*background: #111827[\s\S]*color: #fbbf24/);
   assert.match(

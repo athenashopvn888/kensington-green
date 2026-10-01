@@ -47,8 +47,8 @@ export default function FleetAnnouncementBanner() {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/banners/exotic-premium-aaa-tier-weed.webp"
-          alt="Exotic, Premium, and AAA+ tier weed at Kensington Green Cannabis — top shelf flower specials with Buy 2g Get 1g FREE and Buy 3g Get 3g FREE."
+          src="/banners/top-weed-tier-ksc01.webp"
+          alt="TOP WEED TIER at Kensington Green Cannabis — Exotic, Premium, and AAA+ weed with Buy 2g Get 1g FREE and Buy 3g Get 3g FREE."
         />
       </Link>
       <p data-cigarette-deal="">
