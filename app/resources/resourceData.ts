@@ -77,7 +77,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       {
         title: "Value Shopping Guide",
         href: "/resources/value-shopping-guide",
-        text: "A west-end value guide for Budget, AA, bundle math, and affordable flower decisions.",
+        text: "A west-end value guide for Budget, AA, board deals, and affordable flower decisions.",
       },
       {
         title: "TTC and Parking Guide",
@@ -349,10 +349,10 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     title: "Kensington Green Value Shopping Guide",
     seoTitle: "Kensington Green Value Guide | Budget Weed Dundas West Toronto",
     description:
-      "A Dundas West value guide for Kensington Green shoppers comparing Budget flower, AA flower, AAA+ bundle math, and affordable cannabis menu choices.",
+      "A Dundas West value guide for Kensington Green shoppers comparing Budget flower, AA flower, AAA+ board deals, and affordable cannabis menu choices.",
     eyebrow: "Value Guide",
     intro:
-      "Value shopping is not just the cheapest item on the page. At Kensington Green, it means starting with Budget and AA, then checking whether AAA+ bundle math makes the visit stronger.",
+      "Value shopping is not just the cheapest item on the page. At Kensington Green, it means starting with Budget and AA, then checking whether AAA+ board deals make the visit stronger.",
     banner: "/banners/budget_banner.webp",
     cards: [
       {
@@ -368,7 +368,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       {
         title: "AAA+ Weed",
         href: "/aaa-weed",
-        text: "Check the 6g bundle path when you want more shelf without jumping too high.",
+        text: "Check Buy 3g Get 3g FREE when you want more shelf without jumping too high.",
       },
       {
         title: "Menu Guide",
@@ -380,7 +380,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       {
         heading: "Start With The Value Tiers",
         body:
-          "Budget and AA are the natural first stops for affordable weed near Dundas West, Roncesvalles, and Parkdale. If the current AAA+ list has the right strain and bundle, it can become the better value play.",
+          "Budget and AA are the natural first stops for affordable weed near Dundas West, Roncesvalles, and Parkdale. If the current AAA+ list has the right strain and board deal, it can become the better value play.",
       },
       {
         heading: "Current Menu Still Wins",
