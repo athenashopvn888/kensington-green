@@ -93,16 +93,32 @@ test("sitewide flower strip leads the announcement stack without new prices", ()
   const banner = read("app/components/FleetAnnouncementBanner.tsx");
   const thanksAt = banner.indexOf("data-thanksgiving-hours-notice");
   const stripAt = banner.indexOf("<FlowerBogoStrip hero");
+  const weedAt = banner.indexOf("data-exotic-tier-banner");
   const cigAt = banner.indexOf("data-cigarette-deal");
   const bbAt = banner.indexOf("data-bb-light-deal");
   const mixAt = banner.indexOf("data-cig-mix-banner");
   const bbImgAt = banner.indexOf("data-bb-premium-banner");
-  assert.ok(thanksAt > -1 && stripAt > thanksAt && cigAt > stripAt && bbAt > cigAt && mixAt > bbAt && bbImgAt > mixAt);
+  assert.ok(
+    thanksAt > -1 &&
+      stripAt > thanksAt &&
+      weedAt > stripAt &&
+      cigAt > weedAt &&
+      bbAt > cigAt &&
+      mixAt > bbAt &&
+      bbImgAt > mixAt,
+  );
+  assert.match(banner, /href="\/exotic-weed"/);
+  assert.match(banner, /aria-label="Shop Exotic Premium AAA\+ tier weed"/);
+  assert.match(
+    banner,
+    /alt="Exotic, Premium, and AAA\+ tier weed at Kensington Green Cannabis — top shelf flower specials with Buy 2g Get 1g FREE and Buy 3g Get 3g FREE\."/,
+  );
   assert.match(banner, /href="\/items\/cigarettes"/);
   assert.match(banner, /2 packs for \$5 mix and match, cartons \$25/);
   assert.match(banner, /Exclusive BB Premium Grade cigarettes/);
   assert.doesNotMatch(banner, /AAA\+ from \$5\/g|as low as \$5\/g/);
   for (const file of [
+    "public/banners/exotic-premium-aaa-tier-weed.webp",
     "public/banners/cig-2packs-5-mix-match-25-carton.webp",
     "public/banners/bb-premium-grade-full-lights.webp",
   ]) {
@@ -113,6 +129,10 @@ test("sitewide flower strip leads the announcement stack without new prices", ()
   assert.match(globalsCss, /\[data-flower-bogo-strip\][\s\S]*background: #c5161d/);
   assert.match(globalsCss, /\[data-cigarette-deal\][\s\S]*background: #fbbf24[\s\S]*color: #111827/);
   assert.match(globalsCss, /\[data-bb-light-deal\][\s\S]*background: #111827[\s\S]*color: #fbbf24/);
+  assert.match(
+    globalsCss,
+    /\[data-exotic-tier-banner\],\s*\[data-cig-mix-banner\],\s*\[data-bb-premium-banner\]\s*\{[^}]*width:\s*100%/,
+  );
   const nav = read("app/components/Navbar.tsx");
   assert.match(nav, /pathname !== "\/" \? <FlowerBogoStrip \/>/);
   assert.match(read("app/components/FlowerBogoStrip.tsx"), /href="\/aaa-weed"/);
