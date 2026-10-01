@@ -55,6 +55,11 @@ export function formatAsLowAsAfterPromos(price: number, grams: number): string {
   return `As low as ${formatPerGram(price, grams)} after promos`;
 }
 
+/** One-line sitewide strip. Floor is the AAA+ 6g board deal. */
+export function formatSitewideBogoStrip(price: number, grams: number): string {
+  return `${BOGO_BUY_2_GET_1} · ${BOGO_BUY_3_GET_3} — as low as ${formatPerGram(price, grams)}`;
+}
+
 export function isBogoDeal(
   deal: BoardDeal | null | undefined,
 ): deal is BoardDeal & { equals: string } {

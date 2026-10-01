@@ -8,6 +8,7 @@ import {
   formatBoardDealLine,
   formatPayEquals,
   formatPerGram,
+  formatSitewideBogoStrip,
 } from "../app/lib/flowerDeals.ts";
 
 const read = (path: string) => fs.readFileSync(path, "utf8");
@@ -79,6 +80,24 @@ test("web flower surfaces use BOGO, paid totals, and tier floors", () => {
   assert.match(home, /price: "\$5-\$6\/g"/);
   assert.match(home, /price: "\$7-\$10\/g"/);
   assert.match(home, /price: "\$10-\$12\/g"/);
+});
+
+test("sitewide flower strip leads the announcement stack without new prices", () => {
+  assert.equal(
+    formatSitewideBogoStrip(30, 6),
+    "Buy 2g Get 1g FREE · Buy 3g Get 3g FREE — as low as $5/g",
+  );
+  const banner = read("app/components/FleetAnnouncementBanner.tsx");
+  const stripAt = banner.indexOf("<FlowerBogoStrip />");
+  const thanksAt = banner.indexOf("Thanksgiving Monday");
+  const cigAt = banner.indexOf("CIGARETTE DEAL ! 2 PACK $5 MIX AND MATCH");
+  const bbAt = banner.indexOf("EXCLUSIVE SPECIAL PREMIUM GRADE BB FULL");
+  assert.ok(stripAt > -1 && thanksAt > stripAt && cigAt > thanksAt && bbAt > cigAt);
+  const nav = read("app/components/Navbar.tsx");
+  assert.match(nav, /pathname !== "\/" \? <FlowerBogoStrip \/>/);
+  assert.match(read("app/components/FlowerBogoStrip.tsx"), /href="\/aaa-weed"/);
+  assert.doesNotMatch(read("app/tv/page.tsx"), /FlowerBogoStrip|as low as \$5\/g/);
+  assert.match(read("app/delivery/DeliveryCatalog.tsx"), /× 28g DEAL/);
 });
 
 test("TV board stays BOGO and delivery ounce deals stay untouched", () => {

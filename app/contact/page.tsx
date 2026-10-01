@@ -23,7 +23,7 @@ export default function ContactPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className={styles.hero} style={{ paddingTop: "92px" }}>
+      <section className={styles.hero} style={{ paddingTop: "calc(92px + var(--flower-bogo-strip-height))" }}>
         <div
           style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 20px" }}
         >

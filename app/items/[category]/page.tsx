@@ -72,7 +72,7 @@ export default async function ItemsCategoryPage({
       <Navbar />
 
       {/* Hero Banner */}
-      <section style={{ width: "100%", overflow: "hidden", marginTop: "92px", marginBottom: "24px" }}>
+      <section style={{ width: "100%", overflow: "hidden", marginTop: "calc(92px + var(--flower-bogo-strip-height))", marginBottom: "24px" }}>
         {config.banner && bannerExists ? (
           <>
             <img

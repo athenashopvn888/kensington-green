@@ -194,7 +194,7 @@ export default function FAQPage() {
 
         {/* FAQ Banner */}
         <section
-          style={{ width: "100%", overflow: "hidden", marginTop: "92px" }}
+          style={{ width: "100%", overflow: "hidden", marginTop: "calc(92px + var(--flower-bogo-strip-height))" }}
         >
           <img
             src="/banners/07_FAQ.webp"

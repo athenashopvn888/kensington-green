@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import FlowerBogoStrip from "./FlowerBogoStrip";
 
 const lineStyle = {
   margin: 0,
@@ -53,6 +54,7 @@ export default function FleetAnnouncementBanner() {
         zIndex: 50,
       }}
     >
+      <FlowerBogoStrip />
       {showThanksgivingNotice ? (
         <p
           data-thanksgiving-hours-notice=""

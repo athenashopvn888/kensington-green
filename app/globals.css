@@ -471,6 +471,40 @@ button { cursor: pointer; font-family: inherit; }
 :root {
   --fleet-homepage-announcement-height: 144px;
   --homepage-nav-clearance: 108px;
+  --flower-bogo-strip-height: 44px;
+}
+
+[data-flower-bogo-strip] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 34px;
+  margin: 0;
+  padding: 6px 12px;
+  background: linear-gradient(90deg, #052e16 0%, #166534 46%, #a16207 100%);
+  color: #fffbeb;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(12px, 2.05vw, 15px);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+  text-align: center;
+  text-decoration: none;
+  border-bottom: 2px solid #fbbf24;
+}
+
+[data-flower-bogo-strip]:hover,
+[data-flower-bogo-strip]:focus-visible {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
+
+[data-flower-bogo-strip]:focus-visible {
+  outline: 3px solid #fbbf24;
+  outline-offset: -3px;
 }
 
 [data-fleet-homepage-announcement] {
