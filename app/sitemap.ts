@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { TIER_CONFIG, CATEGORY_CONFIG, allFlowers, allItems } from "./lib/products";
 import { SEO_PAGES } from "./lib/seoPages";
 import { RESOURCE_PAGES } from "./resources/resourceData";
+import { GUIDE_REGISTRY } from "./lib/guideRegistry";
 
 const BASE = "https://www.kensingtongreencannabis.com";
 
@@ -66,5 +67,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: page.slug ? 0.6 : 0.7,
   }));
 
-  return [...staticPages, ...tierPages, ...itemPages, ...flowerPages, ...itemDetailPages, ...resourcePages, ...seoPages];
+  /* Additive name guides */
+  const guidePages: MetadataRoute.Sitemap = GUIDE_REGISTRY.map((guide) => ({
+    url: `${BASE}/guides/${guide.slug}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.75,
+  }));
+
+  return [...staticPages, ...tierPages, ...itemPages, ...flowerPages, ...itemDetailPages, ...resourcePages, ...seoPages, ...guidePages];
 }
