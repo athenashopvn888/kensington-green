@@ -55,9 +55,10 @@ export function formatAsLowAsAfterPromos(price: number, grams: number): string {
   return `As low as ${formatPerGram(price, grams)} after promos`;
 }
 
-/** Sitewide spoken strip. Board language only — no per-gram floor. */
+/** Sitewide spoken strip. Board language only — no per-gram floor.
+ *  The two FREE offers are separated by spaces only (no middle · or |). */
 export function formatSitewideBogoStrip(): string {
-  return `${BOGO_BUY_2_GET_1} · ${BOGO_BUY_3_GET_3} *`;
+  return `TOP 3 TIER WEED SPECIAL · ${BOGO_BUY_2_GET_1}  ${BOGO_BUY_3_GET_3} *`;
 }
 
 export function isBogoDeal(

@@ -487,6 +487,7 @@ button { cursor: pointer; font-family: inherit; }
   text-align: center;
   text-decoration: none;
   text-wrap: balance;
+  white-space: pre-wrap;
 }
 
 [data-flower-bogo-strip="nav"] {

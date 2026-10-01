@@ -85,8 +85,10 @@ test("web flower surfaces use BOGO, paid totals, and tier floors", () => {
 test("sitewide flower strip leads the announcement stack without new prices", () => {
   assert.equal(
     formatSitewideBogoStrip(),
-    "Buy 2g Get 1g FREE · Buy 3g Get 3g FREE *",
+    "TOP 3 TIER WEED SPECIAL · Buy 2g Get 1g FREE  Buy 3g Get 3g FREE *",
   );
+  assert.match(formatSitewideBogoStrip(), /FREE {2}Buy 3g/);
+  assert.doesNotMatch(formatSitewideBogoStrip(), /FREE\s*[·|]\s*Buy/);
   assert.doesNotMatch(formatSitewideBogoStrip(), /\$5\/g|as low as|AAA\+/);
   const banner = read("app/components/FleetAnnouncementBanner.tsx");
   const thanksAt = banner.indexOf("data-thanksgiving-hours-notice");
