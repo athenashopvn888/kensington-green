@@ -85,7 +85,7 @@ test("web flower surfaces use BOGO, paid totals, and tier floors", () => {
 test("sitewide flower strip leads the announcement stack without new prices", () => {
   assert.equal(
     formatSitewideBogoStrip(30, 6),
-    "Buy 2g Get 1g FREE · Buy 3g Get 3g FREE — as low as $5/g",
+    "Buy 2g Get 1g FREE · Buy 3g Get 3g FREE — AAA+ from $5/g",
   );
   const banner = read("app/components/FleetAnnouncementBanner.tsx");
   const thanksAt = banner.indexOf("data-thanksgiving-hours-notice");
@@ -93,12 +93,11 @@ test("sitewide flower strip leads the announcement stack without new prices", ()
   const cigAt = banner.indexOf("data-cigarette-deal");
   const bbAt = banner.indexOf("data-bb-light-deal");
   assert.ok(thanksAt > -1 && stripAt > thanksAt && cigAt > stripAt && bbAt > cigAt);
-  assert.match(banner, /background: "#166534"/);
-  assert.match(banner, /background: "#facc15"/);
-  assert.match(banner, /color: "#1c1917"/);
-  assert.match(banner, /background: "#1c1917"/);
-  assert.match(banner, /color: "#facc15"/);
-  assert.match(read("app/globals.css"), /\[data-flower-bogo-strip="hero"\][\s\S]*background: #dc2626|\[data-flower-bogo-strip\][\s\S]*background: #dc2626/);
+  const globalsCss = read("app/globals.css");
+  assert.match(globalsCss, /\[data-thanksgiving-hours-notice\][\s\S]*background: #14532d/);
+  assert.match(globalsCss, /\[data-flower-bogo-strip\][\s\S]*background: #c5161d/);
+  assert.match(globalsCss, /\[data-cigarette-deal\][\s\S]*background: #fbbf24[\s\S]*color: #111827/);
+  assert.match(globalsCss, /\[data-bb-light-deal\][\s\S]*background: #111827[\s\S]*color: #fbbf24/);
   const nav = read("app/components/Navbar.tsx");
   assert.match(nav, /pathname !== "\/" \? <FlowerBogoStrip \/>/);
   assert.match(read("app/components/FlowerBogoStrip.tsx"), /href="\/aaa-weed"/);

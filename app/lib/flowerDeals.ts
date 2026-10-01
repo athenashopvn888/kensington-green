@@ -55,9 +55,9 @@ export function formatAsLowAsAfterPromos(price: number, grams: number): string {
   return `As low as ${formatPerGram(price, grams)} after promos`;
 }
 
-/** One-line sitewide strip. Floor is the AAA+ 6g board deal. */
+/** One-line sitewide strip. Names only the AAA+ floor; Premium and Exotic keep their own page rates. */
 export function formatSitewideBogoStrip(price: number, grams: number): string {
-  return `${BOGO_BUY_2_GET_1} · ${BOGO_BUY_3_GET_3} — as low as ${formatPerGram(price, grams)}`;
+  return `${BOGO_BUY_2_GET_1} · ${BOGO_BUY_3_GET_3} — AAA+ from ${formatPerGram(price, grams)}`;
 }
 
 export function isBogoDeal(
