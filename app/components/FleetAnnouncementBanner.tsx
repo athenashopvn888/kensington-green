@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import FlowerBogoStrip from "./FlowerBogoStrip";
 
 function isThanksgivingNoticeActive(date: Date) {
@@ -45,6 +46,28 @@ export default function FleetAnnouncementBanner() {
       <p data-bb-light-deal="">
         EXCLUSIVE SPECIAL PREMIUM GRADE BB FULL &amp; BB LIGHT!
       </p>
+      <Link
+        href="/items/cigarettes"
+        data-cig-mix-banner=""
+        aria-label="Shop cigarette multi-buy deals"
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/banners/cig-2packs-5-mix-match-25-carton.webp"
+          alt="Cigarette deal at Kensington Green Cannabis — 2 packs for $5 mix and match, cartons $25. Canadian Lights, Menthol, Classics, Goose, Rolled Gold and more."
+        />
+      </Link>
+      <Link
+        href="/items/cigarettes"
+        data-bb-premium-banner=""
+        aria-label="Shop BB Premium Grade cigarettes"
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/banners/bb-premium-grade-full-lights.webp"
+          alt="Exclusive BB Premium Grade cigarettes — Full Flavor and Lights Canadian blend tobacco packs and cartons at Kensington Green Cannabis."
+        />
+      </Link>
     </aside>
   );
 }

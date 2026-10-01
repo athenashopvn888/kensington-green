@@ -84,15 +84,28 @@ test("web flower surfaces use BOGO, paid totals, and tier floors", () => {
 
 test("sitewide flower strip leads the announcement stack without new prices", () => {
   assert.equal(
-    formatSitewideBogoStrip(30, 6),
-    "Buy 2g Get 1g FREE · Buy 3g Get 3g FREE — AAA+ from $5/g",
+    formatSitewideBogoStrip(),
+    "Buy 2g Get 1g FREE · Buy 3g Get 3g FREE *",
   );
+  assert.doesNotMatch(formatSitewideBogoStrip(), /\$5\/g|as low as|AAA\+/);
   const banner = read("app/components/FleetAnnouncementBanner.tsx");
   const thanksAt = banner.indexOf("data-thanksgiving-hours-notice");
   const stripAt = banner.indexOf("<FlowerBogoStrip hero");
   const cigAt = banner.indexOf("data-cigarette-deal");
   const bbAt = banner.indexOf("data-bb-light-deal");
-  assert.ok(thanksAt > -1 && stripAt > thanksAt && cigAt > stripAt && bbAt > cigAt);
+  const mixAt = banner.indexOf("data-cig-mix-banner");
+  const bbImgAt = banner.indexOf("data-bb-premium-banner");
+  assert.ok(thanksAt > -1 && stripAt > thanksAt && cigAt > stripAt && bbAt > cigAt && mixAt > bbAt && bbImgAt > mixAt);
+  assert.match(banner, /href="\/items\/cigarettes"/);
+  assert.match(banner, /2 packs for \$5 mix and match, cartons \$25/);
+  assert.match(banner, /Exclusive BB Premium Grade cigarettes/);
+  assert.doesNotMatch(banner, /AAA\+ from \$5\/g|as low as \$5\/g/);
+  for (const file of [
+    "public/banners/cig-2packs-5-mix-match-25-carton.webp",
+    "public/banners/bb-premium-grade-full-lights.webp",
+  ]) {
+    assert.ok(fs.statSync(file).size > 1000, file);
+  }
   const globalsCss = read("app/globals.css");
   assert.match(globalsCss, /\[data-thanksgiving-hours-notice\][\s\S]*background: #14532d/);
   assert.match(globalsCss, /\[data-flower-bogo-strip\][\s\S]*background: #c5161d/);

@@ -5,7 +5,7 @@ import { formatSitewideBogoStrip } from "../lib/flowerDeals";
 export function flowerBogoStripLabel(): string {
   const deal = TIER_CONFIG["AAA+"].deal6g;
   if (!deal) return "";
-  return formatSitewideBogoStrip(deal.price, deal.grams);
+  return formatSitewideBogoStrip();
 }
 
 export default function FlowerBogoStrip({ hero = false }: { hero?: boolean }) {
