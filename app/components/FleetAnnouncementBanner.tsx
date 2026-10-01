@@ -40,6 +40,17 @@ export default function FleetAnnouncementBanner() {
         </p>
       ) : null}
       <FlowerBogoStrip hero />
+      <Link
+        href="/exotic-weed"
+        data-exotic-tier-banner=""
+        aria-label="Shop Exotic Premium AAA+ tier weed"
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/banners/exotic-premium-aaa-tier-weed.webp"
+          alt="Exotic, Premium, and AAA+ tier weed at Kensington Green Cannabis — top shelf flower specials with Buy 2g Get 1g FREE and Buy 3g Get 3g FREE."
+        />
+      </Link>
       <p data-cigarette-deal="">
         CIGARETTE DEAL ! 2 PACK $5 MIX AND MATCH
       </p>
