@@ -60,6 +60,11 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     banner: "/banners/welcome_banner_dundas_west.webp",
     cards: [
       {
+        title: "Name Guides",
+        href: "/guides",
+        text: "Browse all strain, Native Cigarettes, Nicotine Vape, and THC Vape name guides in one directory.",
+      },
+      {
         title: "Dundas West Visit Guide",
         href: "/resources/dundas-west-visit-guide",
         text: "The main local page for 2257 Dundas St W, daily 10 AM to 2 AM hours, nearby areas, and visit planning.",
