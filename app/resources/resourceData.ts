@@ -60,6 +60,11 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     banner: "/banners/welcome_banner_dundas_west.webp",
     cards: [
       {
+        title: "Name Guides",
+        href: "/guides",
+        text: "Browse all strain, Native Cigarettes, Nicotine Vape, and THC Vape name guides in one directory.",
+      },
+      {
         title: "Dundas West Visit Guide",
         href: "/resources/dundas-west-visit-guide",
         text: "The main local page for 2257 Dundas St W, daily 10 AM to 2 AM hours, nearby areas, and visit planning.",
@@ -3423,6 +3428,11 @@ const PINKY_KSC01_ADDITIONS: ResourcePage[] = [
 RESOURCE_PAGES[0].description = "Kensington Green resource hub for Dundas West, Roncesvalles, High Park, Bloor West and Parkdale, with visit, Weed flower, menu, value and tobacco-terminology guides.";
 RESOURCE_PAGES[0].sections.push({ heading: "Learn the Category, Then Check the Current Listing", body: ["Kensington Green's Resource Centre should separate stable education from changing menu details.","Use the guides to understand:","cannabis terminology;","first-visit planning;","Weed flower categories;","flower quality;","THC;","bag appeal;","trichomes;","aroma;","drying and curing;","growing methods;","genetics;","Weed slang;","commercial tobacco terminology.","Use the current category/product pages for:","current products;","current prices;","current package details;","current strains or flavours;","current stock;","current availability.","That keeps the Resource Centre useful even when the menu changes."] });
 RESOURCE_PAGES[0].cards = [
+  {
+    "title": "Name Guides",
+    "href": "/guides",
+    "text": "Browse all strain, Native Cigarettes, Nicotine Vape, and THC Vape name guides in one directory."
+  },
   {
     "title": "Cannabis 101",
     "href": "/resources/cannabis-101",

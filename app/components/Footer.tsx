@@ -62,6 +62,7 @@ export default function Footer() {
               <Link href="/faq">FAQ</Link>
               <Link href="/weed-delivery-toronto">Neighbourhood Delivery</Link>
               <Link href="/resources">Resources</Link>
+              <Link href="/guides">Guides</Link>
               <Link href="/info/dundas-west-weed-dispensary">
                 Dundas West Dispensary
               </Link>
