@@ -99,6 +99,7 @@ test("sitewide flower strip leads the announcement stack without new prices", ()
   const bbAt = banner.indexOf("data-bb-light-deal");
   const mixAt = banner.indexOf("data-cig-mix-banner");
   const bbImgAt = banner.indexOf("data-bb-premium-banner");
+  const belmontMixAt = banner.indexOf("data-belmont-mix-match-banner");
   assert.ok(
     thanksAt > -1 &&
       stripAt > thanksAt &&
@@ -106,7 +107,8 @@ test("sitewide flower strip leads the announcement stack without new prices", ()
       cigAt > weedAt &&
       bbAt > cigAt &&
       mixAt > bbAt &&
-      bbImgAt > mixAt,
+      bbImgAt > mixAt &&
+      belmontMixAt > bbImgAt,
   );
   assert.match(banner, /href="\/exotic-weed"/);
   assert.match(banner, /aria-label="Shop Exotic Premium AAA\+ tier weed"/);
@@ -117,7 +119,14 @@ test("sitewide flower strip leads the announcement stack without new prices", ()
   );
   assert.match(banner, /href="\/items\/cigarettes"/);
   assert.match(banner, /2 packs for \$5 mix and match, cartons \$25/);
-  assert.match(banner, /Exclusive BB Premium Grade cigarettes/);
+  assert.match(banner, /Exclusive Premium Grade BB Full Flavor, BB Lights, and Belmont King Size cigarettes/);
+  assert.match(banner, /aria-label="BELMONT KING SIZE \$10 - 2PACK BB \$5 MIX & MATCH"/);
+  assert.match(banner, /BELMONT KING SIZE \$10 -<\/span>/);
+  assert.match(banner, /> 2PACK BB \$5 MIX &amp; MATCH<\/span>/);
+  assert.match(
+    banner,
+    /href="\/items\/cigarettes"\s+data-belmont-mix-match-banner=""/,
+  );
   assert.doesNotMatch(banner, /AAA\+ from \$5\/g|as low as \$5\/g/);
   for (const file of [
     "public/banners/top-weed-tier-ksc01.webp",
@@ -139,6 +148,11 @@ test("sitewide flower strip leads the announcement stack without new prices", ()
   );
   assert.match(globalsCss, /\[data-cigarette-deal\][\s\S]*background: #fbbf24[\s\S]*color: #111827/);
   assert.match(globalsCss, /\[data-bb-light-deal\][\s\S]*background: #111827[\s\S]*color: #fbbf24/);
+  assert.match(globalsCss, /\[data-belmont-mix-match-banner\][\s\S]*background: #111827[\s\S]*color: #fbbf24/);
+  assert.match(
+    globalsCss,
+    /@media \(max-width: 720px\)[\s\S]*\[data-belmont-mix-match-banner\][\s\S]*flex-direction: column[\s\S]*font-size: 13px/,
+  );
   assert.match(
     globalsCss,
     /\[data-exotic-tier-banner\],\s*\[data-cig-mix-banner\],\s*\[data-bb-premium-banner\]\s*\{[^}]*width:\s*100%/,
