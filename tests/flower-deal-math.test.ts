@@ -122,7 +122,7 @@ test("sitewide flower strip leads the announcement stack without new prices", ()
   for (const file of [
     "public/banners/top-weed-tier-ksc01.webp",
     "public/banners/cig-2packs-5-mix-match-25-carton.webp",
-    "public/banners/bb-premium-grade-full-lights.webp",
+    "public/banners/BB_Belmont_Premium_Grade.webp",
   ]) {
     assert.ok(fs.statSync(file).size > 1000, file);
   }
