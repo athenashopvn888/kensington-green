@@ -4,12 +4,14 @@ import { notFound } from "next/navigation";
 import Footer from "../../components/Footer";
 import JsonLd from "../../components/JsonLd";
 import Navbar from "../../components/Navbar";
+import { DELIVERY_GUIDE_REGISTRY, getDeliveryGuide } from "../../lib/deliveryGuideRegistry";
 import {
   GUIDE_REGISTRY,
   getGuide,
   resolveGuideProduct,
   type GuideEntry,
 } from "../../lib/guideRegistry";
+import DeliveryGuidePage from "./DeliveryGuidePage";
 import styles from "./guide.module.css";
 
 const BASE = "https://www.kensingtongreencannabis.com";
@@ -46,11 +48,13 @@ const laneCopy = {
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return GUIDE_REGISTRY.map((guide) => ({ slug: guide.slug }));
+  return [...GUIDE_REGISTRY, ...DELIVERY_GUIDE_REGISTRY].map((guide) => ({ slug: guide.slug }));
 }
 
 export async function generateMetadata({ params }: GuidePageProps): Promise<Metadata> {
   const { slug } = await params;
+  const deliveryGuide = getDeliveryGuide(slug);
+  if (deliveryGuide) return { title: { absolute: deliveryGuide.title }, description: deliveryGuide.description, alternates: { canonical: `${BASE}/guides/${deliveryGuide.slug}` }, robots: { index: true, follow: true }, openGraph: { title: deliveryGuide.title, description: deliveryGuide.description, url: `${BASE}/guides/${deliveryGuide.slug}`, type: "website" } };
   const guide = getGuide(slug);
   if (!guide) return {};
   const lane = laneCopy[guide.lane];
@@ -91,6 +95,8 @@ function buildFaqs(guide: GuideEntry, hasProductPage: boolean) {
 
 export default async function GuidePage({ params }: GuidePageProps) {
   const { slug } = await params;
+  const deliveryGuide = getDeliveryGuide(slug);
+  if (deliveryGuide) return <DeliveryGuidePage guide={deliveryGuide} />;
   const guide = getGuide(slug);
   if (!guide) notFound();
 
