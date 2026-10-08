@@ -4,9 +4,9 @@
  * prebuild-stock.js (CommonJS) and app/api/tv-data/route.ts both use this
  * module so sale flags, flower names, and mangled item prices stay in sync.
  *
- * The route caches a successful live payload for TV_STOCK_CACHE_MS (in memory,
- * and via fetch `next.revalidate` when the Next.js data cache honors it).
- * Failures are not cached. Callers still send Cache-Control: no-store.
+ * Successful live payloads stay in memory for five minutes. Failures serve the
+ * last successful live payload for 60s, or the static snapshot if none exists.
+ * Callers still send Cache-Control: no-store.
  */
 
 const DEFAULT_APPS_SCRIPT_URL =
@@ -14,6 +14,7 @@ const DEFAULT_APPS_SCRIPT_URL =
 
 const TV_STORE = "KSC01";
 const TV_STOCK_CACHE_MS = 300 * 1000;
+const TV_STOCK_FAILURE_CACHE_MS = 60 * 1000;
 const TV_STOCK_FETCH_TIMEOUT_MS = 25000;
 const PARTIAL_STOCK_RATIO = 0.5;
 
@@ -99,10 +100,12 @@ function rejectLiveStock(data, staticFlowers, staticItems) {
 }
 
 let cached = null;
+let lastGood = null;
 let inflight = null;
 
 function resetTvStockCache() {
   cached = null;
+  lastGood = null;
   inflight = null;
 }
 
@@ -116,6 +119,7 @@ function selectTvPayload(dataset, type) {
       "x-tv-data-store": TV_STORE,
       "x-tv-data-flower-count": String(dataset.flowers.length),
       "x-tv-data-item-count": String(dataset.items.length),
+      ...(dataset.fallbackReason ? { "x-tv-data-fallback-reason": dataset.fallbackReason } : {}),
       "Cache-Control": "no-store",
     },
   };
@@ -125,31 +129,39 @@ async function resolveDataset(options) {
   const fetchImpl = options.fetchImpl || fetch;
   const timeoutMs = options.timeoutMs ?? TV_STOCK_FETCH_TIMEOUT_MS;
   const endpoint = stockEndpoint(resolveAppsScriptUrl(options.appsScriptUrl));
+  const now = options.now ?? Date.now();
+  const fail = (reason) => {
+    const dataset = lastGood
+      ? { ...lastGood, source: "last-good", fallbackReason: reason }
+      : { ...staticDataset(options.staticFlowers, options.staticItems), fallbackReason: reason };
+    cached = { expiresAt: now + TV_STOCK_FAILURE_CACHE_MS, dataset };
+    return dataset;
+  };
 
   try {
     const res = await fetchImpl(endpoint, {
       signal: AbortSignal.timeout(timeoutMs),
-      next: { revalidate: 300 },
+      cache: "no-store",
     });
 
     if (!res || !res.ok) {
       const status = res ? res.status : "no response";
-      console.warn(`[tv-data] Live stock HTTP ${status}; serving static snapshot`);
-      return staticDataset(options.staticFlowers, options.staticItems);
+      console.warn(`[tv-data] Live stock HTTP ${status}; serving fallback`);
+      return fail(`HTTP ${status}`);
     }
 
     let data;
     try {
       data = await res.json();
     } catch (err) {
-      console.warn(`[tv-data] Live stock JSON invalid (${err.message}); serving static snapshot`);
-      return staticDataset(options.staticFlowers, options.staticItems);
+      console.warn(`[tv-data] Live stock JSON invalid (${err.message}); serving fallback`);
+      return fail(err.message || "invalid JSON");
     }
 
     const reason = rejectLiveStock(data, options.staticFlowers, options.staticItems);
     if (reason) {
-      console.warn(`[tv-data] Live stock rejected (${reason}); serving static snapshot`);
-      return staticDataset(options.staticFlowers, options.staticItems);
+      console.warn(`[tv-data] Live stock rejected (${reason}); serving fallback`);
+      return fail(reason);
     }
 
     postprocessFlowers(data.flowers);
@@ -161,12 +173,12 @@ async function resolveDataset(options) {
       items: data.items,
       stockDate: data.stockDate == null ? "" : String(data.stockDate),
     };
-    const now = options.now ?? Date.now();
     cached = { expiresAt: now + TV_STOCK_CACHE_MS, dataset };
+    lastGood = dataset;
     return dataset;
   } catch (err) {
-    console.warn(`[tv-data] Live stock fetch failed (${err.message}); serving static snapshot`);
-    return staticDataset(options.staticFlowers, options.staticItems);
+    console.warn(`[tv-data] Live stock fetch failed (${err.message}); serving fallback`);
+    return fail(err.message || "fetch failed");
   }
 }
 
