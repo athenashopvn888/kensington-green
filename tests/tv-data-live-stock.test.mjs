@@ -101,7 +101,7 @@ test("live success post-processes stock and reports live headers", async () => {
 
   assert.equal(calls.length, 1);
   assert.equal(calls[0].url, `${DEFAULT_APPS_SCRIPT_URL}?store=KSC01`);
-  assert.equal(calls[0].opts.next.revalidate, 300);
+  assert.equal(calls[0].opts.cache, "no-store");
   assert.equal(calls[0].opts.signal.aborted, false);
   assert.equal(flowerRes.headers["x-tv-data-source"], "live");
   assert.equal(flowerRes.headers["x-tv-data-as-of"], "2026-09-26");
@@ -149,6 +149,7 @@ test("fetch failure returns the static snapshot", async () => {
   });
 
   assert.equal(result.headers["x-tv-data-source"], "static-fallback");
+  assert.equal(result.headers["x-tv-data-fallback-reason"], "network down");
   assert.equal(result.headers["x-tv-data-as-of"], "");
   assert.equal(result.headers["x-tv-data-store"], "KSC01");
   assert.equal(result.headers["x-tv-data-flower-count"], String(staticFlowers.length));
@@ -157,6 +158,7 @@ test("fetch failure returns the static snapshot", async () => {
   assert.equal(result.body, staticFlowers);
   assert.ok(result.body.length > 0);
 
+  resetTvStockCache();
   const items = await getTvData({
     type: "items",
     staticFlowers,
@@ -166,7 +168,33 @@ test("fetch failure returns the static snapshot", async () => {
   });
   assert.equal(items.body, staticItems);
   assert.equal(items.headers["x-tv-data-source"], "static-fallback");
+  assert.equal(items.headers["x-tv-data-fallback-reason"], "HTTP 503");
   assert.ok(items.body.length > 0);
+});
+
+test("HTML 200, 429, and thrown failures serve last-good with its stock date and cool down", async () => {
+  const live = {
+    flowers: list(staticFlowers.length, (index) => flower(`LIVE ${index}`)),
+    items: list(staticItems.length, (index) => item(`LIVE ITEM ${index}`)),
+    stockDate: "2026-10-08T12:00:00.000Z",
+  };
+  for (const scenario of [
+    { name: "HTML 200", payload: new SyntaxError("Unexpected token '<'"), opts: {}, reason: "Unexpected token '<'" },
+    { name: "429", payload: null, opts: { ok: false, status: 429 }, reason: "HTTP 429" },
+    { name: "throw", payload: null, opts: { throwError: new Error("socket reset") }, reason: "socket reset" },
+  ]) {
+    resetTvStockCache();
+    const good = mockFetch(live);
+    await getTvData({ type: "flowers", staticFlowers, staticItems, fetchImpl: good.fetchImpl, now: 1_000 });
+    const failure = mockFetch(scenario.payload, scenario.opts);
+    const result = await getTvData({ type: "items", staticFlowers, staticItems, fetchImpl: failure.fetchImpl, now: 302_000 });
+    assert.equal(result.headers["x-tv-data-source"], "last-good", scenario.name);
+    assert.equal(result.headers["x-tv-data-as-of"], live.stockDate, scenario.name);
+    assert.equal(result.headers["x-tv-data-fallback-reason"], scenario.reason, scenario.name);
+    let calls = 0;
+    await getTvData({ type: "flowers", staticFlowers, staticItems, fetchImpl: async () => { calls += 1; throw new Error("cooldown bypassed"); }, now: 361_000 });
+    assert.equal(calls, 0, scenario.name);
+  }
 });
 
 test("partial, empty, or invalid live stock falls back to the static snapshot", async () => {
@@ -189,6 +217,7 @@ test("partial, empty, or invalid live stock falls back to the static snapshot", 
   assert.equal(partial.body, staticFlowers);
   assert.equal(partial.headers["x-tv-data-flower-count"], String(staticFlowers.length));
 
+  resetTvStockCache();
   const partialItems = await getTvData({
     type: "items",
     staticFlowers,
@@ -203,6 +232,7 @@ test("partial, empty, or invalid live stock falls back to the static snapshot", 
   assert.equal(partialItems.body, staticItems);
   assert.equal(partialItems.headers["x-tv-data-source"], "static-fallback");
 
+  resetTvStockCache();
   const empty = await getTvData({
     type: "items",
     staticFlowers,
@@ -213,6 +243,7 @@ test("partial, empty, or invalid live stock falls back to the static snapshot", 
   assert.equal(empty.body, staticItems);
   assert.ok(empty.body.length > 0);
 
+  resetTvStockCache();
   const invalid = await getTvData({
     type: "flowers",
     staticFlowers,
@@ -223,6 +254,7 @@ test("partial, empty, or invalid live stock falls back to the static snapshot", 
   assert.equal(invalid.body, staticFlowers);
   assert.equal(invalid.headers["x-tv-data-source"], "static-fallback");
 
+  resetTvStockCache();
   const exactHalf = Math.ceil(staticFlowers.length * 0.5);
   const accepted = await getTvData({
     type: "flowers",
