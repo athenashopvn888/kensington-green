@@ -9,7 +9,7 @@ import Footer from "./components/Footer";
 import FlowerCard from "./components/FlowerCard";
 import JsonLd from "./components/JsonLd";
 import { WeedDiscoveryModule } from "./components/WeedDiscoveryModule";
-import { allFlowers, TIER_CONFIG, type FlowerProduct } from "./lib/products";
+import { TIER_CONFIG, type FlowerProduct } from "./lib/products";
 import {
   formatAsLowAsAfterPromos,
   formatBoardDealLine,
@@ -22,6 +22,7 @@ import {
 } from "./lib/homeDelivery";
 import { HOME_FAQS, HOME_H1, STORE_NAP, faqPageJsonLd } from "./lib/storeNap";
 import Papa from "papaparse";
+import { useLiveFlowers } from "./lib/useLiveMenu";
 
 function pickFeaturedStrains(flowers: FlowerProduct[]) {
   const pool = flowers.filter((f) => f.image);
@@ -137,7 +138,8 @@ interface ReviewStats {
 }
 
 export default function HomePage() {
-  const featuredStrains = pickFeaturedStrains(allFlowers);
+    const __liveFlowers = useLiveFlowers();
+  const featuredStrains = pickFeaturedStrains(__liveFlowers);
   const [reviews, setReviews] = useState<Review[]>([]);
   const [reviewsStats, setReviewsStats] = useState<ReviewStats | null>(null);
   const [reviewsLoading, setReviewsLoading] = useState(true);
