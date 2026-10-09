@@ -60,6 +60,7 @@ export default function Footer() {
               <Link href="/items/vapes">Nicotine Vape</Link>
               <Link href="/info/nicotine-vapes-dundas-west">Nicotine Vapes Dundas West</Link>
               <Link href="/faq">FAQ</Link>
+              <Link href="/hours">Store Hours</Link>
               <Link href="/weed-delivery-toronto">Neighbourhood Delivery</Link>
               <Link href="/resources">Resources</Link>
               <Link href="/guides">Guides</Link>
