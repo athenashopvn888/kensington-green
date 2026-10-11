@@ -9,7 +9,7 @@ import Footer from "./components/Footer";
 import FlowerCard from "./components/FlowerCard";
 import JsonLd from "./components/JsonLd";
 import { WeedDiscoveryModule } from "./components/WeedDiscoveryModule";
-import { TIER_CONFIG, type FlowerProduct } from "./lib/products";
+import { allFlowers, TIER_CONFIG, type FlowerProduct } from "./lib/products";
 import {
   formatAsLowAsAfterPromos,
   formatBoardDealLine,
@@ -146,7 +146,8 @@ interface ReviewStats {
 
 export default function HomePage() {
   const __liveFlowers = useLiveFlowers();
-  const featuredStrains = pickFeaturedStrains(__liveFlowers);
+  const feedFlowers = __liveFlowers.length > 0 ? __liveFlowers : allFlowers;
+  const featuredStrains = pickFeaturedStrains(feedFlowers);
   const [reviews, setReviews] = useState<Review[]>([]);
   const [reviewsStats, setReviewsStats] = useState<ReviewStats | null>(null);
   const [reviewsLoading, setReviewsLoading] = useState(true);
@@ -300,7 +301,7 @@ export default function HomePage() {
           {/* Bento Grid */}
           <p className="price-rule-notice">IN-STORE PRICES ONLY. These prices do not apply to delivery orders. Delivery has its own prices. Why? <Link href="/faq#delivery-price-rule">See the FAQ</Link></p>
           <div className={styles.bentoGrid}>
-            {BENTO_TIERS.map((tier) => { const rangeLine = tier.key ? tierRangeText(storeTierRange(__liveFlowers, tier.key)) : null; return (
+            {BENTO_TIERS.map((tier) => { const rangeLine = tier.key ? tierRangeText(storeTierRange(feedFlowers, tier.key)) : null; return (
               <Link
                 key={tier.slug}
                 href={`/${tier.slug}`}
