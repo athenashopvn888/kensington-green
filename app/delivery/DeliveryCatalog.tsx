@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import menu from "./delivery-menu.json";
 import ProductDetailsDrawer from "./ProductDetailsDrawer";
+import { deliveryTierRanges, tierRangeText } from "../lib/tierPriceRanges";
 
 type Option = { key: string; label: string; price: number };
 type Offer = { kind: "prime_time" | "multi_ounce"; title?: string; quantity?: number; price?: number; weight?: string; bonus?: string; perUnitPrice?: number; totalPrice?: number; label: string };
@@ -73,6 +74,7 @@ function ProductPricing({ product }: { product: Product }) {
     : product.offers?.filter((offer) => offer.kind === "multi_ounce") || [];
   return (
     <div className="product-pricing">
+      <span className="price-scope-label">Delivery price</span>
       {compact.length > 0 && <div className="compact-price-section"><div className="compact-price-grid">{compact.map((option) => <div key={option.key} className="compact-price"><span>{option.label}</span><strong>{formatCurrency(option.price)}</strong></div>)}</div></div>}
       {(regular28 || member || bundles.length > 0) && <div className="decision-prices">
         {loyaltyPrice !== null && <div className="decision-tile member-28"><span>MEMBER LOYALTY 28g</span><strong>{formatCurrency(loyaltyPrice)}</strong><small>Member price</small><p>{member?.bonus ? `${member.bonus} applies on a later order when eligible.` : "Coupon or add-on eligibility is confirmed separately."}</p></div>}
@@ -113,6 +115,7 @@ export default function Catalog() {
     const needle = search.trim().toLowerCase();
     return !needle || `${product.name} ${product.category} ${product.strain}`.toLowerCase().includes(needle);
   }).sort(compareProducts), [activeTier, search, products]);
+  const tierRanges = useMemo(() => deliveryTierRanges(products).map(({ tier: tierName, range }) => ({ tier: tierName, text: tierRangeText(range) })).filter((item) => item.text), [products]);
 
   return (
     <div className="qlc-original-shell">
@@ -141,6 +144,8 @@ export default function Catalog() {
             ))}
           </ul>
         </noscript>
+        <p className="price-rule-notice">DELIVERY PRICES ONLY. Delivery orders are charged these prices, not in-store prices. <Link href="/faq#delivery-price-rule">See the FAQ</Link></p>
+        {tierRanges.length > 0 && <section className="tier-range-list" aria-label="Delivery prices by flower tier"><h2>Delivery prices by tier</h2>{tierRanges.map((item) => <p key={item.tier}><strong>{item.tier}</strong><span className="price-scope-label">Delivery price</span>{item.text}</p>)}</section>}
 
         <section className="member-loyalty" aria-labelledby="member-loyalty-title">
           <div className="member-loyalty-heading">
