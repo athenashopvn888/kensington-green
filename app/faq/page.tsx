@@ -114,6 +114,10 @@ const FAQ_CATEGORIES = [
     title: " Pricing & Flower Deals",
     faqs: [
       {
+        q: "Can I get the store price on a delivery order?",
+        a: "No. In-store prices are for purchases made in the store. Delivery orders always use delivery prices.",
+      },
+      {
         q: "What is the cheapest weed you sell?",
         a: "Our Budget tier starts at $3/g with value ounces from $40. Our AA tier is $4/g. These are the most competitive prices you'll find in Toronto.",
       },
@@ -219,7 +223,7 @@ export default function FAQPage() {
             <div key={cat.title} className={styles.category}>
               <h2 className={styles.categoryTitle}>{cat.title}</h2>
               {cat.faqs.map((faq) => (
-                <details key={faq.q} className={styles.faqItem}>
+                <details key={faq.q} id={faq.q === "Can I get the store price on a delivery order?" ? "delivery-price-rule" : undefined} className={styles.faqItem}>
                   <summary className={styles.faqQuestion}>{faq.q}</summary>
                   <p className={styles.faqAnswer}>{faq.a}</p>
                 </details>
