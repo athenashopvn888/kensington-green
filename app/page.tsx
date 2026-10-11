@@ -23,6 +23,7 @@ import {
 import { HOME_FAQS, HOME_H1, STORE_NAP, faqPageJsonLd } from "./lib/storeNap";
 import Papa from "papaparse";
 import { useLiveFlowers } from "./lib/useLiveMenu";
+import { storeTierRange, tierRangeText } from "./lib/tierPriceRanges";
 
 function pickFeaturedStrains(flowers: FlowerProduct[]) {
   const pool = flowers.filter((f) => f.image);
@@ -42,6 +43,7 @@ function pickFeaturedStrains(flowers: FlowerProduct[]) {
 /* -- Bento Mosaic Config -- */
 const BENTO_TIERS = [
   {
+    key: "EXOTIC",
     name: "EXOTIC WEED",
     slug: "exotic-weed",
     price: "$10-$12/g",
@@ -49,6 +51,7 @@ const BENTO_TIERS = [
     className: styles.bentoExotic,
   },
   {
+    key: "PREMIUM",
     name: "PREMIUM WEED",
     slug: "premium-weed",
     price: "$7-$10/g",
@@ -56,6 +59,7 @@ const BENTO_TIERS = [
     className: styles.bentoPremium,
   },
   {
+    key: "AAA+",
     name: "AAA+ WEED",
     slug: "aaa-weed",
     price: "$5-$6/g",
@@ -63,6 +67,7 @@ const BENTO_TIERS = [
     className: styles.bentoTile,
   },
   {
+    key: "AA",
     name: "AA WEED",
     slug: "aa-weed",
     price: "$4/g",
@@ -70,6 +75,7 @@ const BENTO_TIERS = [
     className: styles.bentoTile,
   },
   {
+    key: "BUDGET",
     name: "BUDGET WEED",
     slug: "budget-weed",
     price: "$3/g",
@@ -77,6 +83,7 @@ const BENTO_TIERS = [
     className: styles.bentoTile,
   },
   {
+    key: null,
     name: "EDIBLES - PREROLLS - MORE",
     slug: "items/edibles",
     price: "Shop Tiers",
@@ -138,7 +145,7 @@ interface ReviewStats {
 }
 
 export default function HomePage() {
-    const __liveFlowers = useLiveFlowers();
+  const __liveFlowers = useLiveFlowers();
   const featuredStrains = pickFeaturedStrains(__liveFlowers);
   const [reviews, setReviews] = useState<Review[]>([]);
   const [reviewsStats, setReviewsStats] = useState<ReviewStats | null>(null);
@@ -291,8 +298,9 @@ export default function HomePage() {
           </section>
 
           {/* Bento Grid */}
+          <p className="price-rule-notice">IN-STORE PRICES ONLY. These prices do not apply to delivery orders. Delivery has its own prices. Why? <Link href="/faq#delivery-price-rule">See the FAQ</Link></p>
           <div className={styles.bentoGrid}>
-            {BENTO_TIERS.map((tier) => (
+            {BENTO_TIERS.map((tier) => { const rangeLine = tier.key ? tierRangeText(storeTierRange(__liveFlowers, tier.key)) : null; return (
               <Link
                 key={tier.slug}
                 href={`/${tier.slug}`}
@@ -305,10 +313,10 @@ export default function HomePage() {
                 <div className={styles.bentoTileOverlay} />
                 <div className={styles.bentoTileContent}>
                   <span className={styles.bentoLabel}>{tier.name}</span>
-                  <span className={styles.bentoPrice}>{tier.price}</span>
+                  {tier.key ? (rangeLine ? <span className={styles.bentoPrice}><span className="price-scope-label">In-store price</span>{rangeLine}</span> : null) : <span className={styles.bentoPrice}>{tier.price}</span>}
                 </div>
               </Link>
-            ))}
+            ); })}
           </div>
         </div>
       </section>
