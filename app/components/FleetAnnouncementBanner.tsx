@@ -51,13 +51,7 @@ export default function FleetAnnouncementBanner() {
           alt="TOP WEED TIER at Kensington Green Cannabis — Exotic, Premium, and AAA+ weed with Buy 2g Get 1g FREE and Buy 3g Get 3g FREE."
         />
       </Link>
-      <p data-cigarette-deal="">
-        CIGARETTE DEAL ! 2 PACK $5 MIX AND MATCH
-      </p>
-      <p data-bb-light-deal="">
-        EXCLUSIVE SPECIAL PREMIUM GRADE BB FULL, BB LIGHT &amp; BELMONT KING SIZE!
-      </p>
-      <Link
+<Link
         href="/items/cigarettes"
         data-cig-mix-banner=""
         aria-label="Shop cigarette multi-buy deals"
@@ -66,19 +60,9 @@ export default function FleetAnnouncementBanner() {
         <img
           src="/banners/cig-2packs-5-mix-match-25-carton.webp"
           alt="Cigarette deal at Kensington Green Cannabis — 2 packs for $5 mix and match, cartons $25. Canadian Lights, Menthol, Classics, Goose, Rolled Gold and more."
+          style={{ display: "block", width: "100%", height: "auto" }}
         />
       </Link>
-      <Link
-        href="/items/cigarettes"
-        data-bb-premium-banner=""
-        aria-label="Shop BB and Belmont Premium Grade cigarettes"
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/banners/BB_Belmont_Premium_Grade.webp"
-          alt="Exclusive Premium Grade BB Full Flavor, BB Lights, and Belmont King Size cigarettes at Kensington Green."
-        />
-      </Link>
-    </aside>
+</aside>
   );
 }
