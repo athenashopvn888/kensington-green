@@ -223,7 +223,7 @@ export default function HomePageClient({ initialFlowers }: { initialFlowers: Par
       <JsonLd data={faqPageJsonLd([...HOME_DELIVERY_FAQS, ...HOME_FAQS])} />
       {/* -- NAVBAR — fixed under the delivery bar, flush to the top of the viewport -- */}
       <Navbar />
-      <FleetAnnouncementBanner />
+      <FleetAnnouncementBanner title={HOME_H1} />
 
       <section className={styles.hero}>
         <div className={styles.heroBg} />
@@ -250,7 +250,7 @@ export default function HomePageClient({ initialFlowers }: { initialFlowers: Par
               </svg>
               Delivery & Retail in Dundas West
             </p>
-            <h1 className={styles.brandTitle}>{HOME_H1}</h1>
+            <p className={styles.brandTitle}>{HOME_H1}</p>
             <p className={styles.brandSub}>
               Walk-in on Dundas West / Roncesvalles · {STORE_NAP.ageLine}
             </p>
