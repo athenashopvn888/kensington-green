@@ -4,6 +4,7 @@ import fs from "fs";
 import path from "path";
 import Link from "next/link";
 import Navbar from "../../components/Navbar";
+import CategoryCoreBanners, { cigaretteCategoryImage } from "../../components/CategoryCoreBanners";
 import Footer from "../../components/Footer";
 import SafeImage from "../../components/SafeImage";
 import { getItemPriceDisplay } from "../../lib/itemPricing";
@@ -83,7 +84,8 @@ export default async function ItemsCategoryPage({
           <>
             <img
               src={config.banner}
-              alt={config.name}
+              alt={catSlug === "cigarettes" ? cigaretteCategoryImage.alt : config.name}
+              title={catSlug === "cigarettes" ? cigaretteCategoryImage.title : config.name}
               style={{ width: "100%", height: "auto", display: "block", objectFit: "contain" }}
             />
             <div className={styles.heroContent} style={{ padding: "28px 24px 8px", textAlign: "center" }}>
@@ -100,6 +102,9 @@ export default async function ItemsCategoryPage({
           </div>
         )}
       </section>
+
+      {(catSlug === "vapes" || catSlug === "vape-disposables") && <CategoryCoreBanners kind="vapes" />}
+      {catSlug === "cigarettes" && <CategoryCoreBanners kind="cigarettes" />}
 
       {(catSlug === "vapes" || catSlug === "vape-disposables") && <VapeActionPanel compact />}
 
