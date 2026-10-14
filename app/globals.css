@@ -559,7 +559,7 @@ button { cursor: pointer; font-family: inherit; }
   text-wrap: balance;
 }
 
-[data-thanksgiving-hours-notice] {
+[data-thanksgiving-hours-notice],[data-halloween-hours-notice] {
   padding: 6px 16px;
   background: #14532d;
   color: #d1fae5;
@@ -658,7 +658,7 @@ button { cursor: pointer; font-family: inherit; }
     letter-spacing: 0.018em;
   }
 
-  [data-thanksgiving-hours-notice] {
+  [data-thanksgiving-hours-notice],[data-halloween-hours-notice] {
     padding: 5px 10px;
     font-size: 10px;
     letter-spacing: 0.045em;
