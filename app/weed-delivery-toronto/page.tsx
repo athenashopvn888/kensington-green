@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import DeliveryContent from "../delivery/DeliveryContent";
 import menu from "../delivery/delivery-menu.json";
 import { STORE_NAP } from "../lib/storeNap";
+import NearMeFaq from "../components/NearMeFaq";
+import nearMeFaq from "../lib/nearMeFaq.json";
 
 export const metadata: Metadata = {
   title: { absolute: "Dundas West Cannabis Delivery | Kensington Green" },
@@ -52,6 +54,7 @@ export default function WeedDeliveryTorontoPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
       />
       <DeliveryContent />
+      <NearMeFaq id="delivery-near-me" q={nearMeFaq.delivery.q} a={nearMeFaq.delivery.a} />
     </>
   );
 }
