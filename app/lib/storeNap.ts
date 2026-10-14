@@ -70,6 +70,10 @@ export const HOME_FAQS = [
     q: "Do you run city-wide Toronto cannabis delivery from this pin?",
     a: "No. Walk-in at 2257 Dundas St W is the neighbourhood job. Delivery is a separate URL with Dundas West / Roncesvalles / High Park South / Parkdale-edge scope. The dispatcher confirms whether an address is in range. Adults 19+.",
   },
+  {
+    q: "Is there a weed dispensary near me on Dundas West?",
+    a: "Kensington Green is at 2257 Dundas St W, Toronto, on the Dundas West strip near Roncesvalles and High Park. We're open 24 hours for adults 19+ with valid photo ID.",
+  },
 ] as const;
 
 export const VISIT_FAQS = [

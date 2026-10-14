@@ -13,6 +13,7 @@ import {
 } from "../../lib/guideRegistry";
 import DeliveryGuidePage from "./DeliveryGuidePage";
 import styles from "./guide.module.css";
+import strainGuideExtra from "../../lib/strainGuideExtra.json";
 
 const BASE = "https://www.kensingtongreencannabis.com";
 
@@ -170,6 +171,15 @@ export default async function GuidePage({ params }: GuidePageProps) {
           </div>
         </header>
 
+        {strainGuideExtra[guide.slug as keyof typeof strainGuideExtra] ? (() => { const extra = strainGuideExtra[guide.slug as keyof typeof strainGuideExtra]; return (
+          <section className={styles.section} data-strain-extra="">
+            <h2>About {guide.name}</h2>
+            <p><strong>Type:</strong> {extra.type}. <strong>Aroma:</strong> {extra.aroma}. <strong>Family tree:</strong> {extra.lineage}.</p>
+            <p>{extra.about}</p>
+            <p>{extra.tip}</p>
+            <p>{extra.local}</p>
+          </section>
+        ); })() : null}
         <section className={styles.tldr} aria-labelledby="tldr-heading">
           <h2 id="tldr-heading">The short version</h2>
           <ul>
