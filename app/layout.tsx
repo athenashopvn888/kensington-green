@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import PinnedNavClearance from "./components/PinnedNavClearance";
 import DeliveryAnnouncement from "./components/DeliveryAnnouncement";
 import JsonLd from "./components/JsonLd";
 import {
@@ -138,6 +139,7 @@ export default function RootLayout({
         </noscript>
         <DeliveryAnnouncement />
         {children}
+        <PinnedNavClearance />
       </body>
     </html>
   );

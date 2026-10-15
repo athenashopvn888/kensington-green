@@ -685,3 +685,11 @@ button { cursor: pointer; font-family: inherit; }
 .tier-range-list h2 { margin: 0 0 .75rem; }
 .tier-range-list p { display: grid; grid-template-columns: minmax(7rem, .45fr) minmax(7rem, .3fr) minmax(12rem, 1fr); gap: .75rem; margin: 0; padding: .75rem 0; border-bottom: 1px solid rgba(255,255,255,.16); align-items: baseline; }
 @media (max-width: 520px) { .price-rule-notice { margin-inline: 1rem; } .tier-range-list p { grid-template-columns: 1fr; gap: .2rem; } }
+
+/* Pinned nav: opaque (no content showing through) and above page content. Store keeps its dark nav colour so nav text stays readable. */
+#main-nav {
+  z-index: 1000 !important;
+  background: #000000 !important;
+  background-color: #000000 !important;
+  backdrop-filter: none !important;
+}
