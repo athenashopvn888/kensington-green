@@ -13,7 +13,11 @@ export const FULL_NAME_NAP = {
   "phoneTel": "tel:+12895149520",
   "hours": "Open 24 hours, 7 days a week",
   "mapsUrl": "https://www.google.com/maps/place/?q=place_id:ChIJ6WD9QIo1K4gRuj5vJFXqyGo",
-  "placeId": "ChIJ6WD9QIo1K4gRuj5vJFXqyGo"
+  "placeId": "ChIJ6WD9QIo1K4gRuj5vJFXqyGo",
+  "neighbourhood": "Dundas West / Roncesvalles",
+  "intersection": "",
+  "transit": "Located near Dundas West Subway Station and served by local TTC routes.",
+  "visitPath": "/visit"
 } as const;
 
 export const FULL_NAME_NAP_ADDRESS = `${FULL_NAME_NAP.street}, ${FULL_NAME_NAP.city}, ${FULL_NAME_NAP.region} ${FULL_NAME_NAP.postal}`;
