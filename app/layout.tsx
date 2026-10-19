@@ -1,3 +1,4 @@
+import FullNameNap from "./components/FullNameNap";
 import type { Metadata } from "next";
 import "./globals.css";
 import PinnedNavClearance from "./components/PinnedNavClearance";
@@ -8,6 +9,7 @@ import {
   HOME_TITLE,
   HOME_DESCRIPTION,
   HOME_SCHEMA_NAME,
+  HOME_SCHEMA_NAME_PREVIOUS,
   cannabisStoreJsonLd,
 } from "./lib/storeNap";
 
@@ -87,7 +89,7 @@ function homepageStoreJsonLd() {
       "https://schema.org/Organization",
     ],
     name: HOME_SCHEMA_NAME,
-    alternateName: STORE_NAP.name,
+    alternateName: [STORE_NAP.name, HOME_SCHEMA_NAME_PREVIOUS],
     description: HOME_DESCRIPTION,
     areaServed: [
       ...base.areaServed,
@@ -139,6 +141,7 @@ export default function RootLayout({
         </noscript>
         <DeliveryAnnouncement />
         {children}
+        <FullNameNap />
         <PinnedNavClearance />
       </body>
     </html>
