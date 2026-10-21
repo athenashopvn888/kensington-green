@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import Footer from "../../components/Footer";
 import JsonLd from "../../components/JsonLd";
 import Navbar from "../../components/Navbar";
@@ -14,6 +14,7 @@ import {
 import DeliveryGuidePage from "./DeliveryGuidePage";
 import styles from "./guide.module.css";
 import strainGuideExtra from "../../lib/strainGuideExtra.json";
+import { CIGARETTE_REDIRECT_PATH, isHiddenCigaretteGuide, isHiddenCigaretteHref, scrubCigaretteCopy, visibleGuideTitle } from "../../lib/showCigarettes";
 
 const BASE = "https://www.kensingtongreencannabis.com";
 
@@ -55,18 +56,21 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: GuidePageProps): Promise<Metadata> {
   const { slug } = await params;
   const deliveryGuide = getDeliveryGuide(slug);
+  if (deliveryGuide && isHiddenCigaretteGuide(deliveryGuide)) redirect(CIGARETTE_REDIRECT_PATH);
   if (deliveryGuide) return { title: { absolute: deliveryGuide.title }, description: deliveryGuide.description, alternates: { canonical: `${BASE}/guides/${deliveryGuide.slug}` }, robots: { index: true, follow: true }, openGraph: { title: deliveryGuide.title, description: deliveryGuide.description, url: `${BASE}/guides/${deliveryGuide.slug}`, type: "website" } };
   const guide = getGuide(slug);
+  if (guide && isHiddenCigaretteGuide(guide)) redirect(CIGARETTE_REDIRECT_PATH);
   if (!guide) return {};
   const lane = laneCopy[guide.lane];
-  const description = `Adult 19+ guide to ${guide.name}, a ${lane.noun} connected to Kensington Green's current ${lane.menuLabel} on Dundas West. Selection rotates; check today's board.`;
+  const title = visibleGuideTitle(guide.title);
+  const description = scrubCigaretteCopy(`Adult 19+ guide to ${guide.name}, a ${lane.noun} connected to Kensington Green's current ${lane.menuLabel} on Dundas West. Selection rotates; check today's board.`);
   return {
-    title: { absolute: guide.title },
+    title: { absolute: title },
     description,
     alternates: { canonical: `${BASE}/guides/${guide.slug}` },
     robots: { index: true, follow: true },
     openGraph: {
-      title: guide.title,
+      title,
       description,
       url: `${BASE}/guides/${guide.slug}`,
       type: "website",
@@ -97,23 +101,38 @@ function buildFaqs(guide: GuideEntry, hasProductPage: boolean) {
 export default async function GuidePage({ params }: GuidePageProps) {
   const { slug } = await params;
   const deliveryGuide = getDeliveryGuide(slug);
+  if (deliveryGuide && isHiddenCigaretteGuide(deliveryGuide)) redirect(CIGARETTE_REDIRECT_PATH);
   if (deliveryGuide) return <DeliveryGuidePage guide={deliveryGuide} />;
   const guide = getGuide(slug);
+  if (guide && isHiddenCigaretteGuide(guide)) redirect(CIGARETTE_REDIRECT_PATH);
   if (!guide) notFound();
 
   const lane = laneCopy[guide.lane];
+  const guideTitle = visibleGuideTitle(guide.title);
   const product = resolveGuideProduct(guide);
   const productHref = product
     ? `${guide.lane === "strain" ? "/flower" : "/item"}/${product.slug}`
     : undefined;
-  const related = guide.relatedSlugs.map(getGuide).filter((entry): entry is GuideEntry => Boolean(entry));
+  const related = guide.relatedSlugs.map(getGuide).filter((entry): entry is GuideEntry => Boolean(entry)).filter((entry) => !isHiddenCigaretteGuide(entry));
+  const categoryHref = isHiddenCigaretteHref(guide.preferredCategoryPath) ? (productHref || guide.preferredCategoryPath) : guide.preferredCategoryPath;
   const faqs = buildFaqs(guide, Boolean(productHref));
   const canonical = `${BASE}/guides/${guide.slug}`;
-  const categoryLabel = guide.preferredCategoryPath
+  const rawCategoryLabel = guide.preferredCategoryPath
     .replace("/items/", "")
     .replace(/^\//, "")
     .replace(/-/g, " ")
     .replace(/\b\w/g, (letter) => letter.toUpperCase());
+  const categoryLabel = scrubCigaretteCopy(rawCategoryLabel) || guide.name;
+  const rawLaneLabel: string = lane.label;
+  const laneLabel = rawLaneLabel ? (scrubCigaretteCopy(rawLaneLabel) || guide.name) : rawLaneLabel;
+  const laneNoun = scrubCigaretteCopy(lane.noun) || "adult product name";
+  const laneMenuLabel = scrubCigaretteCopy(lane.menuLabel);
+  const laneDistinction = scrubCigaretteCopy(lane.distinction);
+  const visibleFaqs = faqs.flatMap((faq) => {
+    const question = scrubCigaretteCopy(faq.question);
+    const answer = scrubCigaretteCopy(faq.answer);
+    return question && answer ? [{ question, answer }] : [];
+  });
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -122,21 +141,21 @@ export default async function GuidePage({ params }: GuidePageProps) {
         "@type": "WebPage",
         "@id": `${canonical}#webpage`,
         url: canonical,
-        name: guide.title,
-        description: `Kensington Green guide to ${guide.name} and today's ${lane.menuLabel}.`,
+        name: guideTitle,
+        description: scrubCigaretteCopy(`Kensington Green guide to ${guide.name} and today's ${lane.menuLabel}.`),
         isPartOf: { "@type": "WebSite", "@id": `${BASE}/#website` },
       },
       {
         "@type": "BreadcrumbList",
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Home", item: BASE },
-          { "@type": "ListItem", position: 2, name: categoryLabel, item: `${BASE}${guide.preferredCategoryPath}` },
+          { "@type": "ListItem", position: 2, name: categoryLabel, item: `${BASE}${categoryHref}` },
           { "@type": "ListItem", position: 3, name: guide.name, item: canonical },
         ],
       },
       {
         "@type": "FAQPage",
-        mainEntity: faqs.map((faq) => ({
+        mainEntity: visibleFaqs.map((faq) => ({
           "@type": "Question",
           name: faq.question,
           acceptedAnswer: { "@type": "Answer", text: faq.answer },
@@ -153,21 +172,21 @@ export default async function GuidePage({ params }: GuidePageProps) {
       <article className={styles.article}>
         <nav className={styles.breadcrumb} aria-label="Breadcrumb">
           <Link href="/">Home</Link><span>/</span>
-          <Link href={guide.preferredCategoryPath}>{categoryLabel}</Link><span>/</span>
+          <Link href={categoryHref}>{categoryLabel}</Link><span>/</span>
           <span>{guide.name}</span>
         </nav>
 
         <header className={styles.hero}>
-          <span className={styles.lane}>{lane.label}</span>
-          <h1>{guide.title}</h1>
+          <span className={styles.lane}>{laneLabel}</span>
+          <h1>{guideTitle}</h1>
           <p className={styles.lede}>
             A practical adult 19+ name guide for Kensington Green on Dundas West, near the Roncesvalles corridor. Use it to identify the right menu lane, compare nearby names and move to today&apos;s board without treating an older listing as a stock promise.
           </p>
           <div className={styles.actions}>
-            <Link className={styles.primary} href={productHref ?? guide.preferredCategoryPath}>
+            <Link className={styles.primary} href={productHref ?? categoryHref}>
               {productHref ? `Open the ${guide.name} menu listing` : "Check today’s category board"}
             </Link>
-            <Link className={styles.secondary} href={guide.preferredCategoryPath}>Browse {categoryLabel}</Link>
+            <Link className={styles.secondary} href={categoryHref}>Browse {categoryLabel}</Link>
           </div>
         </header>
 
@@ -183,8 +202,8 @@ export default async function GuidePage({ params }: GuidePageProps) {
         <section className={styles.tldr} aria-labelledby="tldr-heading">
           <h2 id="tldr-heading">The short version</h2>
           <ul>
-            <li><strong>{guide.name}</strong> is treated here as a {lane.noun}, with the public lane labelled {lane.label}.</li>
-            <li>{lane.distinction}</li>
+            <li><strong>{guide.name}</strong> is treated here as a {laneNoun}, with the public lane labelled {laneLabel}.</li>
+            <li>{laneDistinction}</li>
             <li>Selection rotates. Use the current product or category page as today&apos;s board and bring valid government photo ID showing 19+.</li>
           </ul>
         </section>
@@ -196,11 +215,11 @@ export default async function GuidePage({ params }: GuidePageProps) {
           </p>
           {productHref ? (
             <p>
-              A matching menu entry is available in the current site snapshot: <Link href={productHref}>{product?.name}</Link>. Open that item for its currently published details, then return to the parent <Link href={guide.preferredCategoryPath}>{categoryLabel} board</Link> if you want to compare the surrounding category. A live link is a navigation aid, not a reservation.
+              A matching menu entry is available in the current site snapshot: <Link href={productHref}>{product?.name}</Link>. Open that item for its currently published details, then return to the parent <Link href={categoryHref}>{categoryLabel} board</Link> if you want to compare the surrounding category. A live link is a navigation aid, not a reservation.
             </p>
           ) : (
             <p>
-              There is no matching product-detail page in the current site snapshot. That is why this guide points to the <Link href={guide.preferredCategoryPath}>{categoryLabel} board</Link> instead of inventing a product URL. Ask the counter or check today&apos;s board when this exact name matters. The guide stays useful when the named item rotates out.
+              There is no matching product-detail page in the current site snapshot. That is why this guide points to the <Link href={categoryHref}>{categoryLabel} board</Link> instead of inventing a product URL. Ask the counter or check today&apos;s board when this exact name matters. The guide stays useful when the named item rotates out.
             </p>
           )}
         </section>
@@ -208,7 +227,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
         <section className={styles.section}>
           <h2>How {guide.name} appears on our menu</h2>
           <p>
-            Kensington Green organizes the menu by shopping lane. For this guide, the parent path is <Link href={guide.preferredCategoryPath}>{categoryLabel}</Link>. That category link is the stable route to use when a specific item page is absent or when the item name changes slightly. The guide does not rewrite the existing menu, rename a product or imply that similarly named products are identical.
+            Kensington Green organizes the menu by shopping lane. For this guide, the parent path is <Link href={categoryHref}>{categoryLabel}</Link>. That category link is the stable route to use when a specific item page is absent or when the item name changes slightly. The guide does not rewrite the existing menu, rename a product or imply that similarly named products are identical.
           </p>
           {guide.slug === "zpods-vape" && (
             <p>
@@ -216,17 +235,17 @@ export default async function GuidePage({ params }: GuidePageProps) {
             </p>
           )}
           <p>
-            Read the label before choosing. Flower names can be attached to a particular tier or a shreds format. Cigarette brands can have full, lights, silver or menthol variants. Nicotine devices can use model names and puff counts that distinguish listings but do not guarantee duration. THC menu names can refer to different cannabis formats. The current product label is more specific than the hub name.
+            {scrubCigaretteCopy("Read the label before choosing. Flower names can be attached to a particular tier or a shreds format. Cigarette brands can have full, lights, silver or menthol variants. Nicotine devices can use model names and puff counts that distinguish listings but do not guarantee duration. THC menu names can refer to different cannabis formats. The current product label is more specific than the hub name.")}
           </p>
         </section>
 
         <section className={styles.section}>
           <h2>Compare {guide.name} with names from the same lane</h2>
           <p>
-            Use these comparisons to stay within the same menu lane. They are not claims that the products taste alike, perform alike or are interchangeable. They simply offer nearby names to check when you are browsing the {lane.label} section. Kensington Green keeps nicotine and THC shelves separate so an adult shopper does not have to infer the substance from a device-shaped product.
+            Use these comparisons to stay within the same menu lane. They are not claims that the products taste alike, perform alike or are interchangeable. They simply offer nearby names to check when you are browsing the {laneLabel} section. Kensington Green keeps nicotine and THC shelves separate so an adult shopper does not have to infer the substance from a device-shaped product.
           </p>
           <div className={styles.related}>
-            {related.map((entry) => <Link key={entry.slug} href={`/guides/${entry.slug}`}>{entry.name} <span>{laneCopy[entry.lane].label}</span></Link>)}
+            {related.map((entry) => <Link key={entry.slug} href={`/guides/${entry.slug}`}>{entry.name} <span>{entry.lane === "native_cig" ? (scrubCigaretteCopy(laneCopy[entry.lane].label) || entry.name) : laneCopy[entry.lane].label}</span></Link>)}
           </div>
         </section>
 
@@ -243,7 +262,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
         <section className={styles.section}>
           <h2>Frequently asked questions</h2>
           <div className={styles.faqs}>
-            {faqs.map((faq) => (
+            {visibleFaqs.map((faq) => (
               <details key={faq.question}>
                 <summary>{faq.question}</summary>
                 <p>{faq.answer}</p>
@@ -253,10 +272,10 @@ export default async function GuidePage({ params }: GuidePageProps) {
         </section>
 
         <aside className={styles.finalCta}>
-          <h2>Check today&apos;s {lane.menuLabel}</h2>
+          <h2>Check today&apos;s {laneMenuLabel}</h2>
           <p>Start with the exact listing when it exists, or use the stable parent category when {guide.name} has rotated off the board.</p>
           <div className={styles.actions}>
-            <Link className={styles.primary} href={productHref ?? guide.preferredCategoryPath}>Open today&apos;s menu path</Link>
+            <Link className={styles.primary} href={productHref ?? categoryHref}>Open today&apos;s menu path</Link>
             <Link className={styles.secondary} href="/visit">Visit Kensington Green</Link>
           </div>
         </aside>

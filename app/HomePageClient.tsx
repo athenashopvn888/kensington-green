@@ -20,6 +20,7 @@ import {
   HOME_DELIVERY_H2,
   HOME_DELIVERY_PARAGRAPHS,
 } from "./lib/homeDelivery";
+import { scrubCigaretteCopy, SHOW_CIGARETTES } from "./lib/showCigarettes";
 import { HOME_FAQS, HOME_H1, STORE_NAP, faqPageJsonLd } from "./lib/storeNap";
 import Papa from "papaparse";
 import { useLiveFlowers } from "./lib/useLiveMenu";
@@ -132,6 +133,9 @@ const EXPLORE_CATEGORIES = [
 ];
 
 const LOCAL_FAQS = HOME_FAQS;
+const EXPLORE_CATEGORIES_VISIBLE = SHOW_CIGARETTES
+  ? EXPLORE_CATEGORIES
+  : EXPLORE_CATEGORIES.filter((cat) => cat.slug !== "items/cigarettes");
 
 interface Review {
   name: string;
@@ -362,13 +366,12 @@ export default function HomePageClient({ initialFlowers }: { initialFlowers: Par
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>Explore Categories</h2>
             <p className={styles.sectionSubtitle}>
-              From custom disposable vapes and concentrates to accessories and
-              cigarettes.
+              {scrubCigaretteCopy("From custom disposable vapes and concentrates to accessories and cigarettes.")}
             </p>
           </div>
 
           <div className={styles.categoriesGrid}>
-            {EXPLORE_CATEGORIES.map((cat) => (
+            {EXPLORE_CATEGORIES_VISIBLE.map((cat) => (
               <Link
                 key={cat.slug}
                 href={`/${cat.slug}`}
@@ -489,8 +492,7 @@ export default function HomePageClient({ initialFlowers }: { initialFlowers: Par
               cash. The store is open 24 hours daily — the late
               close is for this Dundas West pin, not a Toronto-wide slogan. The
               public menu is split into flower tiers and format categories
-              (pre-rolls, edibles, vapes, concentrates, accessories,
-              cigarettes). Those pages are for browsing names and posted
+              {scrubCigaretteCopy(" (pre-rolls, edibles, vapes, concentrates, accessories, cigarettes)")}. Those pages are for browsing names and posted
               details before you visit. They are not a live inventory feed. If
               one exact item is the reason for the trip, call{" "}
               <a href={`tel:${STORE_NAP.phoneIntl}`}>{STORE_NAP.phoneDisplay}</a>{" "}
@@ -582,7 +584,7 @@ export default function HomePageClient({ initialFlowers }: { initialFlowers: Par
           {LOCAL_FAQS.map((faq, i) => (
             <details key={i} className={styles.faqItem}>
               <summary className={styles.faqQuestion}>{faq.q}</summary>
-              <p className={styles.faqAnswer}>{faq.a}</p>
+              <p className={styles.faqAnswer}>{scrubCigaretteCopy(faq.a)}</p>
             </details>
           ))}
         </div>

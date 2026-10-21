@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SHOW_CIGARETTES, mentionsCigaretteCopy, scrubCigaretteCopy } from "../lib/showCigarettes";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { TIER_CONFIG } from "../lib/products";
@@ -170,12 +171,23 @@ const FAQ_CATEGORIES = [
   },
 ];
 
+function visibleFaqs<T extends { q: string; a: string }>(faqs: T[]): T[] {
+  if (SHOW_CIGARETTES) return faqs;
+  return faqs.flatMap((faq) => {
+    if (mentionsCigaretteCopy(faq.q)) return [];
+    const answer = scrubCigaretteCopy(faq.a);
+    if (!answer.trim() || mentionsCigaretteCopy(answer)) return [];
+    return [{ ...faq, a: answer }];
+  });
+}
+
 export default function FAQPage() {
+  const categories = FAQ_CATEGORIES.map((cat) => ({ ...cat, faqs: visibleFaqs(cat.faqs) })).filter((cat) => cat.faqs.length > 0);
   // JSON-LD for FAQ page
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: FAQ_CATEGORIES.flatMap((cat) =>
+    mainEntity: categories.flatMap((cat) =>
       cat.faqs.map((faq) => ({
         "@type": "Question",
         name: faq.q,
@@ -219,7 +231,7 @@ export default function FAQPage() {
             Dundas West / Roncesvalles. Adults 19+.
           </p>
 
-          {FAQ_CATEGORIES.map((cat) => (
+          {categories.map((cat) => (
             <div key={cat.title} className={styles.category}>
               <h2 className={styles.categoryTitle}>{cat.title}</h2>
               {cat.faqs.map((faq) => (

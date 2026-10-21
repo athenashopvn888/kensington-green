@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { allFlowers, allItems } from "../../lib/products";
+import { SHOW_CIGARETTES, isHiddenCigaretteProduct } from "../../lib/showCigarettes";
 import { getTvData } from "../../lib/tvStock";
 
 export const runtime = "nodejs";
@@ -15,6 +16,13 @@ export async function GET(request: Request) {
     staticFlowers: allFlowers,
     staticItems: allItems,
   });
+
+  if (!SHOW_CIGARETTES && type === "items" && Array.isArray(body)) {
+    const filtered = body.filter((item) => !isHiddenCigaretteProduct(item));
+    return NextResponse.json(filtered, {
+      headers: { ...headers, "x-tv-data-item-count": String(filtered.length) },
+    });
+  }
 
   return NextResponse.json(body, { headers });
 }

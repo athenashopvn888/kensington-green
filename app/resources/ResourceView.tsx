@@ -2,13 +2,75 @@ import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import styles from "./resources.module.css";
-import type { ResourcePage } from "./resourceData";
+import type { ResourceCard, ResourcePage, ResourceSection } from "./resourceData";
+import { SHOW_CIGARETTES, isHiddenCigaretteHref, mentionsCigaretteCopy, scrubCigaretteCopy } from "../lib/showCigarettes";
 
 type ResourceViewProps = {
   page: ResourcePage;
 };
 
-export default function ResourceView({ page }: ResourceViewProps) {
+function keptLine(value: string): string {
+  return scrubCigaretteCopy(value).trim();
+}
+
+function keptLines(values: string[] | undefined): string[] | undefined {
+  if (!values) return values;
+  const next = values.map(keptLine).filter((line) => line && !mentionsCigaretteCopy(line));
+  return next;
+}
+
+function keptCard(card: ResourceCard): ResourceCard | null {
+  if (isHiddenCigaretteHref(card.href)) return null;
+  const title = keptLine(card.title);
+  const text = keptLine(card.text);
+  if (!title || !text || mentionsCigaretteCopy(`${title} ${text}`)) return null;
+  return { ...card, title, text };
+}
+
+function presentResource(page: ResourcePage): ResourcePage {
+  if (SHOW_CIGARETTES) return page;
+  const sections: ResourceSection[] = page.sections.flatMap((section) => {
+    const heading = keptLine(section.heading);
+    const bodySource = Array.isArray(section.body) ? section.body : [section.body];
+    const body = bodySource.map(keptLine).filter((line) => line && !mentionsCigaretteCopy(line));
+    const bullets = keptLines(section.bullets);
+    const afterBullets = keptLines(section.afterBullets);
+    const link = section.link ? keptCard(section.link) : undefined;
+    if (!heading || mentionsCigaretteCopy(heading)) return [];
+    if (body.length === 0 && (!bullets || bullets.length === 0) && (!afterBullets || afterBullets.length === 0)) return [];
+    return [{
+      ...section,
+      heading,
+      body: Array.isArray(section.body) ? body : (body[0] || ""),
+      bullets,
+      afterBullets,
+      link: link || undefined,
+    }];
+  });
+  return {
+    ...page,
+    title: keptLine(page.title),
+    seoTitle: keptLine(page.seoTitle),
+    description: keptLine(page.description),
+    eyebrow: keptLine(page.eyebrow),
+    intro: keptLine(page.intro),
+    cards: page.cards.flatMap((card) => {
+      const next = keptCard(card);
+      return next ? [next] : [];
+    }),
+    sections,
+    ownerLink: page.ownerLink ? keptCard(page.ownerLink) || undefined : undefined,
+    faqs: (page.faqs || []).flatMap((faq) => {
+      if (mentionsCigaretteCopy(faq.question)) return [];
+      const question = keptLine(faq.question);
+      const answer = keptLine(faq.answer);
+      return question && answer && !mentionsCigaretteCopy(`${question} ${answer}`) ? [{ question, answer }] : [];
+    }),
+  };
+}
+
+export default function ResourceView({ page: source }: ResourceViewProps) {
+  const page = presentResource(source);
   const canonical = `https://www.kensingtongreencannabis.com${page.slug ? `/resources/${page.slug}` : "/resources"}`;
   const schema = {
     "@context": "https://schema.org",
@@ -81,7 +143,7 @@ export default function ResourceView({ page }: ResourceViewProps) {
         {page.sections.map((section) => (
           <article key={section.heading} className={styles.section}>
             <h2>{section.heading}</h2>
-            {(Array.isArray(section.body) ? section.body : [section.body]).map((paragraph) => (
+            {(Array.isArray(section.body) ? section.body : [section.body]).filter(Boolean).map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
             {section.bullets && (
