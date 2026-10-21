@@ -2,12 +2,23 @@ import Link from "next/link";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 import { DELIVERY_GUIDE_STORE, type DeliveryGuideEntry } from "../../lib/deliveryGuideRegistry";
-import { isHiddenCigaretteHref } from "../../lib/showCigarettes";
+import { SHOW_CIGARETTES, isHiddenCigaretteHref, mentionsGrabba } from "../../lib/showCigarettes";
 import DeliveryGuideBody, { stripDeliveryMarkdown } from "./DeliveryGuideBody";
 import styles from "./guide.module.css";
 
 const BASE = `https://${DELIVERY_GUIDE_STORE.domain}`;
-export default function DeliveryGuidePage({ guide }: { guide: DeliveryGuideEntry }) {
+
+function visibleDeliveryGuide(guide: DeliveryGuideEntry): DeliveryGuideEntry {
+  if (SHOW_CIGARETTES) return guide;
+  return {
+    ...guide,
+    body_md: guide.body_md.split("\n").filter((line) => !mentionsGrabba(line)).join("\n"),
+    faq_items: guide.faq_items.filter((faq) => !mentionsGrabba(`${faq.question} ${faq.answer}`)),
+  };
+}
+
+export default function DeliveryGuidePage({ guide: source }: { guide: DeliveryGuideEntry }) {
+  const guide = visibleDeliveryGuide(source);
   const categoryHref = isHiddenCigaretteHref(guide.category_path) ? "/visit" : guide.category_path;
   const canonical = `${BASE}/guides/${guide.slug}`;
   const jsonLd = { "@context": "https://schema.org", "@graph": [

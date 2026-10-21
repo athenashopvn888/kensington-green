@@ -14,7 +14,7 @@ import {
 import DeliveryGuidePage from "./DeliveryGuidePage";
 import styles from "./guide.module.css";
 import strainGuideExtra from "../../lib/strainGuideExtra.json";
-import { CIGARETTE_REDIRECT_PATH, isHiddenCigaretteGuide, isHiddenCigaretteHref, scrubCigaretteCopy, visibleGuideTitle } from "../../lib/showCigarettes";
+import { CIGARETTE_REDIRECT_PATH, isHiddenCigaretteGuide, isHiddenCigaretteHref, isHiddenCigaretteProduct, scrubCigaretteCopy, visibleGuideTitle } from "../../lib/showCigarettes";
 
 const BASE = "https://www.kensingtongreencannabis.com";
 
@@ -109,7 +109,8 @@ export default async function GuidePage({ params }: GuidePageProps) {
 
   const lane = laneCopy[guide.lane];
   const guideTitle = visibleGuideTitle(guide.title);
-  const product = resolveGuideProduct(guide);
+  const matchedProduct = resolveGuideProduct(guide);
+  const product = matchedProduct && !isHiddenCigaretteProduct(matchedProduct) ? matchedProduct : undefined;
   const productHref = product
     ? `${guide.lane === "strain" ? "/flower" : "/item"}/${product.slug}`
     : undefined;

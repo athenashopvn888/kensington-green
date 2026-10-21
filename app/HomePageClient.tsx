@@ -20,7 +20,7 @@ import {
   HOME_DELIVERY_H2,
   HOME_DELIVERY_PARAGRAPHS,
 } from "./lib/homeDelivery";
-import { scrubCigaretteCopy, SHOW_CIGARETTES } from "./lib/showCigarettes";
+import { mentionsGrabba, scrubCigaretteCopy, SHOW_CIGARETTES } from "./lib/showCigarettes";
 import { HOME_FAQS, HOME_H1, STORE_NAP, faqPageJsonLd } from "./lib/storeNap";
 import Papa from "papaparse";
 import { useLiveFlowers } from "./lib/useLiveMenu";
@@ -203,6 +203,7 @@ export default function HomePageClient({ initialFlowers }: { initialFlowers: Par
 
           const comment = row.Comment || "";
           if (!comment || comment.length < 10) return;
+          if (!SHOW_CIGARETTES && mentionsGrabba(comment)) return;
           const name = rn || "Customer";
           const dateStr = row.CreateTime || "";
           reviewsPool.push({ name, comment, date: dateStr });
