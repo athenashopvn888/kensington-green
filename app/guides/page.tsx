@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import JsonLd from "../components/JsonLd";
 import Navbar from "../components/Navbar";
 import { getGuidesByLane } from "../lib/guideRegistry";
+import { scrubCigaretteCopy } from "../lib/showCigarettes";
 import styles from "./guides-index.module.css";
 
 const BASE = "https://www.kensingtongreencannabis.com";
@@ -11,15 +12,16 @@ const CANONICAL = `${BASE}/guides`;
 const TITLE = "Guides | Kensington Green Cannabis";
 const DESCRIPTION =
   "Browse Kensington Green's adult 19+ name guides for strains, Native Cigarettes, Nicotine Vape, and THC Vape, then check today's menu boards.";
+const VISIBLE_DESCRIPTION = scrubCigaretteCopy(DESCRIPTION);
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
-  description: DESCRIPTION,
+  description: VISIBLE_DESCRIPTION,
   alternates: { canonical: CANONICAL },
   robots: { index: true, follow: true },
   openGraph: {
     title: TITLE,
-    description: DESCRIPTION,
+    description: VISIBLE_DESCRIPTION,
     url: CANONICAL,
     type: "website",
   },
@@ -33,7 +35,7 @@ const jsonLd = {
       "@id": CANONICAL,
       url: CANONICAL,
       name: TITLE,
-      description: DESCRIPTION,
+      description: VISIBLE_DESCRIPTION,
       isPartOf: { "@id": `${BASE}/#website` },
     },
     {
@@ -66,10 +68,7 @@ export default function GuidesPage() {
           <p className={styles.eyebrow}>Adult 19+ name guide directory</p>
           <h1>{TITLE}</h1>
           <p className={styles.lede}>
-            Browse name guides for Kensington Green on Dundas West, grouped by
-            strains, Native Cigarettes, Nicotine Vape, and THC Vape. Selection
-            rotates, so use each guide to find the right lane and check today&apos;s
-            menu board before visiting.
+            {scrubCigaretteCopy("Browse name guides for Kensington Green on Dundas West, grouped by strains, Native Cigarettes, Nicotine Vape, and THC Vape. Selection rotates, so use each guide to find the right lane and check today's menu board before visiting.")}
           </p>
           <div className={styles.actions}>
             <Link className={styles.primary} href="/resources">Browse Resources</Link>

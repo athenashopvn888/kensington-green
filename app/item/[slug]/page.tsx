@@ -1,5 +1,5 @@
 import { getLiveMenu } from "../../lib/liveMenu";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "../../components/Navbar";
@@ -7,6 +7,7 @@ import Footer from "../../components/Footer";
 import { CATEGORY_CONFIG, type ItemProduct } from "../../lib/products";
 import { getItemData } from "../../lib/itemData";
 import { getItemPriceDisplay } from "../../lib/itemPricing";
+import { CIGARETTE_REDIRECT_PATH, isHiddenCigaretteProduct, visibleMenuCategory } from "../../lib/showCigarettes";
 import { resolveDocumentTitle } from "../../lib/storeNap";
 import Magnifier from "../../components/Magnifier";
 import styles from "../../flower/[slug]/flower.module.css";
@@ -36,12 +37,14 @@ export async function generateMetadata({
     await __loadMenuData();
   const { slug } = await params;
   const item = __menu.items.find((i) => i.slug === slug);
+  if (item && isHiddenCigaretteProduct(item)) redirect(CIGARETTE_REDIRECT_PATH);
   if (!item) return {};
 
   const itemData = getItemData(item.category, item.name);
+  const category = visibleMenuCategory(item.category);
 
   return {
-    title: resolveDocumentTitle(`${item.name} | ${item.category} | Kensington Green Toronto`),
+    title: resolveDocumentTitle(category ? `${item.name} | ${category} | Kensington Green Toronto` : `${item.name} | Kensington Green Toronto`),
     description: itemData.metaDescription,
     alternates: {
       canonical: `https://www.kensingtongreencannabis.com/item/${slug}`,
@@ -89,7 +92,7 @@ function getJsonLd(item: ItemProduct) {
     "@type": "Product",
     name: item.name,
     image: item.image ? [item.image.startsWith('http') ? item.image : `https://www.kensingtongreencannabis.com${item.image.startsWith('/') ? '' : '/'}${item.image}`] : undefined,
-    description: itemData.description,
+    description: visibleMenuCategory(item.category) ? itemData.description : `${item.name} is listed at Kensington Green. Review the current menu and package details before visiting.`,
     brand: { "@type": "Brand", name: "Kensington Green" },
     sku: cleanSku(item.sku || item.slug),
     offers,
@@ -98,30 +101,34 @@ function getJsonLd(item: ItemProduct) {
 
 /* -- Breadcrumb JSON-LD -- */
 function getBreadcrumbJsonLd(item: ItemProduct) {
+  const category = visibleMenuCategory(item.category);
   const catSlug = item.category.toLowerCase().replace(' ', '-');
+  const crumbs = [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://www.kensingtongreencannabis.com",
+    },
+    ...(category
+      ? [{
+          "@type": "ListItem",
+          position: 2,
+          name: category,
+          item: `https://www.kensingtongreencannabis.com/items/${catSlug}`,
+        }]
+      : []),
+    {
+      "@type": "ListItem",
+      position: category ? 3 : 2,
+      name: item.name,
+      item: `https://www.kensingtongreencannabis.com/item/${item.slug}`,
+    },
+  ];
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://www.kensingtongreencannabis.com"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": item.category,
-        "item": `https://www.kensingtongreencannabis.com/items/${catSlug}`
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": item.name,
-        "item": `https://www.kensingtongreencannabis.com/item/${item.slug}`
-      }
-    ]
+    itemListElement: crumbs,
   };
 }
 
@@ -134,13 +141,16 @@ export default async function ItemPage({
     await __loadMenuData();
   const { slug } = await params;
   const item = __menu.items.find((i) => i.slug === slug);
+  if (item && isHiddenCigaretteProduct(item)) redirect(CIGARETTE_REDIRECT_PATH);
   if (!item) notFound();
 
+  const publicCategory = visibleMenuCategory(item.category);
   const catInfo = Object.values(CATEGORY_CONFIG).find(c => c.name.toUpperCase() === item.category.toUpperCase() || c.name === item.category);
   const catColor = catInfo?.color || "#94a3b8";
   const catIcon = catInfo?.icon || "🏷️";
   
   const itemData = getItemData(item.category, item.name);
+  const itemDescription = publicCategory ? itemData.description : `${item.name} is listed at Kensington Green. Review the current menu and package details before visiting.`;
   const itemPrice = getItemPriceDisplay(item.price, item.sku);
 
   return (
@@ -161,8 +171,12 @@ export default async function ItemPage({
           {/* Breadcrumb */}
           <nav className={styles.breadcrumb}>
             <Link href="/">Home</Link>
-            <span>/</span>
-            <Link href={`/items/${catInfo?.slug || item.category.toLowerCase().replace(' ', '-')}`}>{item.category}</Link>
+            {publicCategory ? (
+              <>
+                <span>/</span>
+                <Link href={`/items/${catInfo?.slug || item.category.toLowerCase().replace(' ', '-')}`}>{publicCategory}</Link>
+              </>
+            ) : null}
             <span>/</span>
             <span className={styles.breadcrumbCurrent}>{item.name}</span>
           </nav>
@@ -186,9 +200,11 @@ export default async function ItemPage({
 
             {/* -- Details -- */}
             <div className={styles.details}>
-              <div className={styles.tierBadge} style={{ color: catColor, borderColor: `${catColor}33`, background: `${catColor}10` }}>
-                {catIcon} {item.category}
-              </div>
+              {publicCategory ? (
+                <div className={styles.tierBadge} style={{ color: catColor, borderColor: `${catColor}33`, background: `${catColor}10` }}>
+                  {catIcon} {publicCategory}
+                </div>
+              ) : null}
 
               <h1 className={styles.strainName}>{item.name}</h1>
 
@@ -260,7 +276,7 @@ export default async function ItemPage({
               {/* -- Description (SEO) -- */}
               <div className={styles.descSection}>
                 <h2 className={styles.descTitle}>About {item.name}</h2>
-                <p className={styles.descText}>{itemData.description}</p>
+                <p className={styles.descText}>{itemDescription}</p>
               </div>
 
               {/* -- Item details -- */}

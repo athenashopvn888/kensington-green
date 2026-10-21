@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import ResourceView from "./ResourceView";
+import { scrubCigaretteCopy } from "../lib/showCigarettes";
 import { RESOURCE_HOME } from "./resourceData";
 
 export const metadata: Metadata = {
   title: { absolute: RESOURCE_HOME.seoTitle },
-  description: RESOURCE_HOME.description,
+  description: scrubCigaretteCopy(RESOURCE_HOME.description),
   alternates: { canonical: "https://www.kensingtongreencannabis.com/resources" },
 };
 

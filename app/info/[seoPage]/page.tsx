@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import type { Metadata } from "next";
 import Image from "next/image";
 import fs from "fs";
@@ -6,7 +6,8 @@ import path from "path";
 import Link from "next/link";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import { SEO_PAGES, getSeoPageBySlug } from "../../lib/seoPages";
+import { SEO_PAGES, getSeoPageBySlug, type SeoPageData } from "../../lib/seoPages";
+import { CIGARETTE_REDIRECT_PATH, SHOW_CIGARETTES, isHiddenCigaretteHref, mentionsCigaretteCopy, scrubCigaretteCopy } from "../../lib/showCigarettes";
 import { TIER_CONFIG } from "../../lib/products";
 import styles from "./seo.module.css";
 import JsonLd from "../../components/JsonLd";
@@ -18,6 +19,30 @@ export function generateStaticParams() {
   return SEO_PAGES.map((p) => ({ seoPage: p.slug }));
 }
 
+function visibleSeoPage(page: SeoPageData): SeoPageData {
+  if (SHOW_CIGARETTES) return page;
+  return {
+    ...page,
+    title: scrubCigaretteCopy(page.title),
+    metaDescription: scrubCigaretteCopy(page.metaDescription),
+    h1: scrubCigaretteCopy(page.h1),
+    heroTagline: scrubCigaretteCopy(page.heroTagline),
+    sections: page.sections
+      .map((section) => ({ heading: scrubCigaretteCopy(section.heading), body: scrubCigaretteCopy(section.body) }))
+      .filter((section) => section.heading && section.body && !mentionsCigaretteCopy(`${section.heading} ${section.body}`)),
+    faqs: page.faqs.flatMap((faq) => {
+      if (mentionsCigaretteCopy(faq.q)) return [];
+      const a = scrubCigaretteCopy(faq.a);
+      const q = scrubCigaretteCopy(faq.q);
+      return q && a && !mentionsCigaretteCopy(`${q} ${a}`) ? [{ q, a }] : [];
+    }),
+    links: (page.links || [])
+      .filter((link) => !isHiddenCigaretteHref(link.href))
+      .map((link) => ({ ...link, label: scrubCigaretteCopy(link.label) }))
+      .filter((link) => link.label && !mentionsCigaretteCopy(link.label)),
+  };
+}
+
 /* Metadata */
 export async function generateMetadata({
   params,
@@ -25,12 +50,14 @@ export async function generateMetadata({
   params: Promise<{ seoPage: string }>;
 }): Promise<Metadata> {
   const { seoPage: slug } = await params;
+  if (isHiddenCigaretteHref(`/info/${slug}`)) redirect(CIGARETTE_REDIRECT_PATH);
   const page = getSeoPageBySlug(slug);
   if (!page) return {};
+  const visible = visibleSeoPage(page);
 
   return {
-    title: resolveDocumentTitle(page.title, { absolute: page.absoluteTitle }),
-    description: page.metaDescription,
+    title: resolveDocumentTitle(visible.title, { absolute: page.absoluteTitle }),
+    description: visible.metaDescription,
     alternates: {
       canonical: `https://www.kensingtongreencannabis.com/info/${slug}`,
     },
@@ -44,8 +71,10 @@ export default async function SeoLandingPage({
   params: Promise<{ seoPage: string }>;
 }) {
   const { seoPage: slug } = await params;
-  const page = getSeoPageBySlug(slug);
-  if (!page) notFound();
+  if (isHiddenCigaretteHref(`/info/${slug}`)) redirect(CIGARETTE_REDIRECT_PATH);
+  const source = getSeoPageBySlug(slug);
+  if (!source) notFound();
+  const page = visibleSeoPage(source);
 
   const tiers = Object.values(TIER_CONFIG);
   const heroPreview = page.heroPreview;

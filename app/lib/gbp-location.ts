@@ -1,3 +1,5 @@
+import { scrubCigaretteCopy } from "./showCigarettes";
+
 export const gbpLocation = {
   storeName: "Kensington Green",
   domain: "www.kensingtongreencannabis.com",
@@ -42,8 +44,9 @@ export const gbpLocation = {
   metaDescription:
     "Walk-in cannabis shop at 2257 Dundas St W for Dundas West, Roncesvalles, and High Park South. Adults 19+. Open 24 Hours Daily.",
   localLandmarks: ["Dundas St W", "Roncesvalles", "High Park"],
-  introVariant:
+  introVariant: scrubCigaretteCopy(
     "Kensington Green is a local weed dispensary at 2257 Dundas St W in Toronto. Adults 19+ can browse flower tiers and category pages for pre-rolls, edibles, vapes, concentrates, cigarettes, and accessories before visiting.",
+  ),
   neighborhoodDescription:
     "Located in the vibrant Dundas West / Roncesvalles / High Park district, our cannabis store fits right into this active and historic community, surrounded by local retail shops and convenient transit links.",
   parkingNote: "Street parking is available on Dundas Street West",

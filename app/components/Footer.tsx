@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./Footer.module.css";
+import { SHOW_CIGARETTES } from "../lib/showCigarettes";
 import { STORE_NAP } from "../lib/storeNap";
 
 export default function Footer() {
@@ -56,7 +57,7 @@ export default function Footer() {
               <Link href="/aa-weed">AA Weed</Link>
               <Link href="/budget-weed">Budget Weed</Link>
               <Link href="/items/edibles">Edibles</Link>
-              <Link href="/items/cigarettes">Cigarettes</Link>
+              {SHOW_CIGARETTES ? <Link href="/items/cigarettes">Cigarettes</Link> : null}
               <Link href="/items/vapes">Nicotine Vape</Link>
               <Link href="/info/nicotine-vapes-dundas-west">Nicotine Vapes Dundas West</Link>
               <Link href="/faq">FAQ</Link>
@@ -70,9 +71,11 @@ export default function Footer() {
               <Link href="/info/cheap-weed-dundas-west">
                 Value Weed Dundas West
               </Link>
-              <Link href="/info/native-cigarettes-dundas-west">
-                Native Cigarettes
-              </Link>
+              {SHOW_CIGARETTES ? (
+                <Link href="/info/native-cigarettes-dundas-west">
+                  Native Cigarettes
+                </Link>
+              ) : null}
               <Link href="/info/weed-store-near-dundas-west">
                 Dundas West Weed Store
               </Link>

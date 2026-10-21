@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./WeedDiscoveryModule.module.css";
+import { SHOW_CIGARETTES } from "../lib/showCigarettes";
 import { weedOwner as store } from "../lib/weedDiscovery";
 
 export function WeedDiscoveryModule() {
@@ -7,7 +8,7 @@ export function WeedDiscoveryModule() {
     { href: "/info/dundas-west-weed-dispensary", title: "Dundas West Weed Dispensary", text: "Store-focused guidance for the Dundas West and Roncesvalles corridor." },
     { href: "/info/24-hour-weed-dispensary-dundas-west", title: "Open 24 Hours", text: "Plan a late-night or early-morning walk-in at the Dundas West storefront." },
     { href: "/weed-delivery-toronto", title: "Weed Delivery", text: "Review the separate neighbourhood delivery guide and its current service details." },
-    { href: "/info/native-cigarettes-dundas-west", title: "Native Cigarettes", text: "Read the Dundas West cigarette guide, then check the current menu before visiting." },
+    ...(SHOW_CIGARETTES ? [{ href: "/info/native-cigarettes-dundas-west", title: "Native Cigarettes", text: "Read the Dundas West cigarette guide, then check the current menu before visiting." }] : []),
     { href: "/info/nicotine-vapes-dundas-west", title: "Nicotine Vapes", text: "Compare adult nicotine-vape formats and confirm current details in the category." },
     { href: "/visit", title: "Visit Kensington Green", text: "Find the address, phone, transit notes and parking guidance in one place." },
   ];

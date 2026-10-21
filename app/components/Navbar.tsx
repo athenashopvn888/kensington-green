@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "./Navbar.module.css";
 
+import { SHOW_CIGARETTES } from "../lib/showCigarettes";
 import { STORE_NAP } from "../lib/storeNap";
 import FlowerBogoStrip from "./FlowerBogoStrip";
 
@@ -33,7 +34,8 @@ const ALL_LINKS = [
 
 export default function Navbar() {
   const pathname = usePathname();
-  const storeMenuLinks = ALL_LINKS.filter((link) => link.href.startsWith("/items/") || ["/exotic-weed", "/premium-weed", "/aaa-weed", "/aa-weed", "/budget-weed"].includes(link.href));
+  const links = SHOW_CIGARETTES ? ALL_LINKS : ALL_LINKS.filter((link) => link.href !== "/items/cigarettes");
+  const storeMenuLinks = links.filter((link) => link.href.startsWith("/items/") || ["/exotic-weed", "/premium-weed", "/aaa-weed", "/aa-weed", "/budget-weed"].includes(link.href));
   const isStoreMenuActive = storeMenuLinks.some((link) => pathname === link.href);
   const isDeliveryActive = pathname === "/weed-delivery-toronto";
   const scrollBarRef = useRef<HTMLDivElement>(null);
@@ -84,7 +86,7 @@ export default function Navbar() {
       <div className={styles.scrollShell}>
         <div ref={scrollBarRef} id="store-menu-scrollbar" className={styles.scrollBar}>
           <div className={styles.scrollInner}>
-          {ALL_LINKS.map((link) => {
+          {links.map((link) => {
             const isActive = pathname === link.href;
             return (
               <Link

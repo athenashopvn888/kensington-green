@@ -4,6 +4,7 @@ import { DELIVERY_GUIDE_REGISTRY } from "./lib/deliveryGuideRegistry";
 import { TIER_CONFIG, CATEGORY_CONFIG } from "./lib/products";
 import { SEO_PAGES } from "./lib/seoPages";
 import { RESOURCE_PAGES } from "./resources/resourceData";
+import { isHiddenCigarettePathname } from "./lib/cigarettePaths";
 import { GUIDE_REGISTRY } from "./lib/guideRegistry";
 
 // Products come from the same loader as /api/tv-data on every request.
@@ -94,5 +95,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.75,
   }));
 
-  return [...staticPages, ...tierPages, ...itemPages, ...flowerPages, ...itemDetailPages, ...resourcePages, ...seoPages, ...guideIndex, ...guidePages];
+  return [...staticPages, ...tierPages, ...itemPages, ...flowerPages, ...itemDetailPages, ...resourcePages, ...seoPages, ...guideIndex, ...guidePages].filter(
+    (entry) => !isHiddenCigarettePathname(new URL(entry.url).pathname),
+  );
 }

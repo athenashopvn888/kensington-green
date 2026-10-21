@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import CigaretteSeasonalNotice from "../../components/CigaretteSeasonalNotice";
 import type { Metadata } from "next";
 import fs from "fs";
@@ -18,6 +18,7 @@ import {
 import styles from "./items.module.css";
 import { getCategoryGuideGroups } from "../../lib/guideRegistry";
 import { liveItemsByCategory } from "../../lib/liveMenu";
+import { CIGARETTE_REDIRECT_PATH, SHOW_CIGARETTES, isHiddenCigaretteProduct } from "../../lib/showCigarettes";
 import VapeActionPanel from "../../components/VapeActionPanel";
 
 // Read the live menu feed on every request (never a build-time snapshot).
@@ -35,6 +36,7 @@ export async function generateMetadata({
   params: Promise<{ category: string }>;
 }): Promise<Metadata> {
   const { category: catSlug } = await params;
+  if (!SHOW_CIGARETTES && catSlug === "cigarettes") redirect(CIGARETTE_REDIRECT_PATH);
   const catInfo = getCategoryFromSlug(catSlug);
   if (!catInfo) return {};
   const items = (await liveItemsByCategory(catInfo.key));
@@ -56,15 +58,16 @@ export default async function ItemsCategoryPage({
   params: Promise<{ category: string }>;
 }) {
   const { category: catSlug } = await params;
+  if (!SHOW_CIGARETTES && catSlug === "cigarettes") redirect(CIGARETTE_REDIRECT_PATH);
   const catInfo = getCategoryFromSlug(catSlug);
   if (!catInfo) notFound();
 
   /* Pre-Rolls also shows accessories (ADD ONS) */
-  let items = (await liveItemsByCategory(catInfo.key));
+  let items = (await liveItemsByCategory(catInfo.key)).filter((item) => !isHiddenCigaretteProduct(item));
   if (catInfo.key === "PREROLLS") {
     const accessories = (await liveItemsByCategory("ADD ONS"));
     const existingIds = new Set(items.map(i => i.sku));
-    const uniqueAccessories = accessories.filter(a => !existingIds.has(a.sku));
+    const uniqueAccessories = accessories.filter((a) => !existingIds.has(a.sku) && !isHiddenCigaretteProduct(a));
     items = [...items, ...uniqueAccessories];
   }
   const { config } = catInfo;

@@ -1,5 +1,7 @@
 /** Single source of KSC01 NAP, hours, and local-pack copy. Do not invent new hours, phones, or inventory. */
 
+import { SHOW_CIGARETTES, mentionsCigaretteCopy, scrubCigaretteCopy } from "./showCigarettes";
+
 export const STORE_NAP = {
   name: "Kensington Green",
   domain: "www.kensingtongreencannabis.com",
@@ -155,17 +157,18 @@ export function faqPageJsonLd(
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => {
+    mainEntity: faqs.flatMap((faq) => {
       const name = "q" in faq ? faq.q : faq.question;
       const text = "a" in faq ? faq.a : faq.answer;
-      return {
+      if (!SHOW_CIGARETTES && mentionsCigaretteCopy(name)) return [];
+      return [{
         "@type": "Question",
-        name,
+        name: scrubCigaretteCopy(name),
         acceptedAnswer: {
           "@type": "Answer",
-          text,
+          text: scrubCigaretteCopy(text),
         },
-      };
+      }];
     }),
   };
 }

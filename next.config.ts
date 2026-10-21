@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { SHOW_CIGARETTES } from "./app/lib/showCigarettes";
 
 const nextConfig: NextConfig = {
   images: {
@@ -36,11 +37,15 @@ const nextConfig: NextConfig = {
         destination: "/info/cheap-weed-dundas-west",
         permanent: true,
       },
-      {
-        source: "/info/native-cigarettes-york",
-        destination: "/info/native-cigarettes-dundas-west",
-        permanent: true,
-      },
+      ...(SHOW_CIGARETTES
+        ? [
+            {
+              source: "/info/native-cigarettes-york",
+              destination: "/info/native-cigarettes-dundas-west",
+              permanent: true,
+            },
+          ]
+        : []),
       {
         source: "/info/weed-store-near-toronto",
         destination: "/info/weed-store-near-dundas-west",
@@ -80,11 +85,15 @@ const nextConfig: NextConfig = {
       },
       { source: "/prerolls", destination: "/items/prerolls", permanent: true },
       { source: "/add-ons", destination: "/items/add-ons", permanent: true },
-      {
-        source: "/cigarettes",
-        destination: "/items/cigarettes",
-        permanent: true,
-      },
+      ...(SHOW_CIGARETTES
+        ? [
+            {
+              source: "/cigarettes",
+              destination: "/items/cigarettes",
+              permanent: true,
+            },
+          ]
+        : []),
       { source: "/magic", destination: "/items/magic", permanent: true },
     ];
   },
