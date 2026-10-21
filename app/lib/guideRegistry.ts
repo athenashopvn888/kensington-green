@@ -126,7 +126,7 @@ const GUIDE_LANES: { lane: GuideLane; label: string }[] = [
 export function getGuidesByLane() {
   return GUIDE_LANES.map(({ lane, label }) => ({
     lane,
-    label: !SHOW_CIGARETTES && lane === "native_cig" ? "Backwoods and Grabba" : label,
+    label: !SHOW_CIGARETTES && lane === "native_cig" ? "Backwoods" : label,
     guides: GUIDE_REGISTRY.filter((guide) => guide.lane === lane && !isHiddenCigaretteGuide(guide)),
   })).filter((group) => group.guides.length > 0);
 }
@@ -147,7 +147,9 @@ export function getTierGuideLinks(categoryPath: string, limit = 6) {
 
 export function getCategoryGuideGroups(categoryPath: string) {
   if (categoryPath === "/items/cigarettes") {
-    return [{ label: "Native Cigarettes brand guides", guides: GUIDE_REGISTRY.filter((guide) => guide.lane === "native_cig") }];
+    const guides = GUIDE_REGISTRY.filter((guide) => guide.lane === "native_cig" && !isHiddenCigaretteGuide(guide));
+    if (guides.length === 0) return [];
+    return [{ label: SHOW_CIGARETTES ? "Native Cigarettes brand guides" : "Backwoods", guides }];
   }
   if (categoryPath === "/items/vapes") {
     return [

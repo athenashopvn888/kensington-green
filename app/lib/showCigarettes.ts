@@ -18,8 +18,9 @@ export const SHOW_CIGARETTES = readShowCigarettes(process.env.NEXT_PUBLIC_SHOW_C
 /** Dedicated vape page. Cigarette URLs 302 here while the switch is off. */
 export const CIGARETTE_REDIRECT_PATH = "/vape-shop-dundas-west";
 
-/** Rolling papers, Backwoods, and cigarillos stay on their own URLs. */
-const KEPT_ACCESSORY = /\b(backwoods|grabba|cigarillos?|rolling papers?|raw papers?)\b/i;
+/** Rolling papers, Backwoods, and cigarillos stay on their own URLs. Grabba follows the cigarette switch. */
+const KEPT_ACCESSORY = /\b(backwoods|cigarillos?|rolling papers?|raw papers?)\b/i;
+const GRABBA_WORD = /\bgrabba\b/i;
 
 export const HIDDEN_BRAND_GUIDE_SLUGS = new Set([
   "canadian-classics",
@@ -45,12 +46,17 @@ export function isKeptTobaccoAccessory(name: string): boolean {
   return KEPT_ACCESSORY.test(name);
 }
 
+export function mentionsGrabba(text: string): boolean {
+  return GRABBA_WORD.test(text);
+}
+
 export function isHiddenCigaretteProduct(
   item: { name?: string; category?: string; slug?: string },
   showCigarettes = SHOW_CIGARETTES,
 ): boolean {
   if (showCigarettes) return false;
   const label = `${item.name || ""} ${item.slug || ""}`;
+  if (mentionsGrabba(label)) return true;
   if (isKeptTobaccoAccessory(label)) return false;
   return String(item.category || "").trim().toUpperCase() === "CIGARETTES";
 }
@@ -60,6 +66,7 @@ export function isHiddenCigaretteGuide(
   showCigarettes = SHOW_CIGARETTES,
 ): boolean {
   if (showCigarettes) return false;
+  if (mentionsGrabba(guide.slug)) return true;
   if (isKeptTobaccoAccessory(guide.slug)) return false;
   if (guide.lane === "native_cig") return true;
   return HIDDEN_BRAND_GUIDE_SLUGS.has(guide.slug);
@@ -82,6 +89,8 @@ export function isHiddenCigaretteHref(href: string, showCigarettes = SHOW_CIGARE
   if (showCigarettes) return false;
   const path = normalizePublicPath(href);
   if (STATIC_CIGARETTE_PATHS.has(path)) return true;
+  const item = path.match(/^\/item\/([^/]+)$/);
+  if (item && mentionsGrabba(decodeURIComponent(item[1]))) return true;
   const guide = path.match(/^\/guides\/([^/]+)$/);
   if (!guide) return false;
   return isHiddenCigaretteGuide({ slug: decodeURIComponent(guide[1]) });
@@ -97,7 +106,26 @@ export function mentionsCigaretteCopy(text: string): boolean {
  */
 export function visibleGuideTitle(title: string, showCigarettes = SHOW_CIGARETTES): string {
   if (showCigarettes || !title) return title;
-  return title.replace(/ Native Cigarettes/g, "").replace(/\s{2,}/g, " ").trim();
+  return title.replace(/\bNative [Cc]igarettes?\b/g, "").replace(/\s{2,}/g, " ").replace(/\s+\|/g, " |").trim();
+}
+
+/**
+ * Grabba-only lines disappear while the switch is off. A line that also names
+ * Backwoods, cigarillos, or rolling papers keeps that accessory and loses Grabba.
+ */
+export function scrubGrabbaCopy(text: string, showCigarettes = SHOW_CIGARETTES): string {
+  if (showCigarettes || !text || !mentionsGrabba(text)) return text;
+  if (!isKeptTobaccoAccessory(text)) return "";
+  const value = text
+    .replace(/\bgrabba(?:\s+shaker)?\b/gi, "")
+    .replace(/\s+\band\b(?=\s*(?:[,.]|$))/gi, "")
+    .replace(/\s+,/g, ",")
+    .replace(/,\s*,/g, ", ")
+    .replace(/\(\s*\)/g, "")
+    .replace(/\s{2,}/g, " ")
+    .replace(/\s+([,.])/g, "$1")
+    .trim();
+  return /[a-z]/i.test(value) ? value : "";
 }
 
 /** Kept accessories stay, but the cigarettes category label does not. */
@@ -129,11 +157,12 @@ export function scrubCigaretteCopy(text: string, showCigarettes = SHOW_CIGARETTE
     [/cigarettes, /gi, ""],
     [/ and tobacco-terminology/gi, ""],
     [/Native Cigarettes, /g, ""],
+    [/\bnative cigarettes?\b/gi, ""],
   ];
   for (const [pattern, replacement] of phrases) value = value.replace(pattern, replacement);
   value = value
     .split(/(?<=[.!?])\s+/)
-    .filter((sentence) => sentence.trim() && !CIGARETTE_MENTION.test(sentence))
+    .filter((sentence) => /[A-Za-z]/.test(sentence) && !CIGARETTE_MENTION.test(sentence))
     .join(" ");
   value = value
     .replace(/\s+,/g, ",")

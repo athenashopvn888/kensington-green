@@ -1,19 +1,38 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import type { DeliveryGuideFaq } from "../../lib/deliveryGuideRegistry";
+import { SHOW_CIGARETTES, isHiddenCigaretteHref, mentionsGrabba } from "../../lib/showCigarettes";
 import styles from "./guide.module.css";
+
+function hiddenDeliveryLink(label: string, href: string): boolean {
+  return !SHOW_CIGARETTES && (isHiddenCigaretteHref(href) || mentionsGrabba(label) || mentionsGrabba(href));
+}
 
 function renderInline(markdown: string): ReactNode[] {
   const tokens = markdown.split(/(\*\*\[[^\]]+\]\([^)]+\)\*\*|\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/g);
-  return tokens.filter(Boolean).map((token, index) => {
+  const nodes: ReactNode[] = [];
+  tokens.forEach((token, index) => {
+    if (!token) return;
     const strongLink = token.match(/^\*\*\[([^\]]+)\]\(([^)]+)\)\*\*$/);
-    if (strongLink) return <strong key={index}><Link href={strongLink[2]}>{strongLink[1]}</Link></strong>;
+    if (strongLink) {
+      if (hiddenDeliveryLink(strongLink[1], strongLink[2])) return;
+      nodes.push(<strong key={index}><Link href={strongLink[2]}>{strongLink[1]}</Link></strong>);
+      return;
+    }
     const strong = token.match(/^\*\*(.+)\*\*$/);
-    if (strong) return <strong key={index}>{strong[1]}</strong>;
+    if (strong) {
+      nodes.push(<strong key={index}>{strong[1]}</strong>);
+      return;
+    }
     const link = token.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
-    if (link) return <Link key={index} href={link[2]}>{link[1]}</Link>;
-    return token;
+    if (link) {
+      if (hiddenDeliveryLink(link[1], link[2])) return;
+      nodes.push(<Link key={index} href={link[2]}>{link[1]}</Link>);
+      return;
+    }
+    nodes.push(token);
   });
+  return nodes;
 }
 
 export function stripDeliveryMarkdown(markdown: string) {

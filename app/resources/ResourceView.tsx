@@ -3,14 +3,14 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import styles from "./resources.module.css";
 import type { ResourceCard, ResourcePage, ResourceSection } from "./resourceData";
-import { SHOW_CIGARETTES, isHiddenCigaretteHref, mentionsCigaretteCopy, scrubCigaretteCopy } from "../lib/showCigarettes";
+import { SHOW_CIGARETTES, isHiddenCigaretteHref, mentionsCigaretteCopy, scrubCigaretteCopy, scrubGrabbaCopy } from "../lib/showCigarettes";
 
 type ResourceViewProps = {
   page: ResourcePage;
 };
 
 function keptLine(value: string): string {
-  return scrubCigaretteCopy(value).trim();
+  return scrubGrabbaCopy(scrubCigaretteCopy(value)).trim();
 }
 
 function keptLines(values: string[] | undefined): string[] | undefined {
