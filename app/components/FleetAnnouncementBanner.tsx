@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import KitFleetAnnouncementBanner from "./fleet/FleetAnnouncementBanner";
 import HomeTitleBlock from "./HomeTitleBlock";
+import type { ResolvedBanner } from "../lib/fleet/types";
 import { useEffect, useRef, useState } from "react";
 import { SHOW_CIGARETTES } from "../lib/showCigarettes";
 import CigaretteSeasonalNotice from "./CigaretteSeasonalNotice";
@@ -37,7 +39,7 @@ const imageStyle = { display: "block", width: "100%", maxWidth: "100%", height: 
 const linkStyle = { display: "block", width: "100%" } as const;
 const captionStyle = { margin: 0, padding: "10px 14px", background: "#111827", color: "#ffffff", textAlign: "center" as const, fontWeight: 800, lineHeight: 1.35 };
 
-export default function FleetAnnouncementBanner({ title }: { title?: string } = {}) {
+function CodedFleetAnnouncementBanner({ title }: { title?: string } = {}) {
   const announcementRef = useRef<HTMLElement>(null);
   const [navClearance, setNavClearance] = useState<number | null>(null);
   const [showHalloweenNotice, setShowHalloweenNotice] = useState(false);
@@ -88,4 +90,9 @@ export default function FleetAnnouncementBanner({ title }: { title?: string } = 
       {showHalloweenNotice ? <p data-halloween-hours-notice="">Happy Halloween! Kensington Green is open regular hours on Saturday, October 31.</p> : null}
     </aside>
   );
+}
+
+export default function FleetAnnouncementBanner({ title, banners }: { title?: string; banners?: ResolvedBanner[] } = {}) {
+  if (banners) return <KitFleetAnnouncementBanner title={title} banners={banners} />;
+  return <CodedFleetAnnouncementBanner title={title} />;
 }

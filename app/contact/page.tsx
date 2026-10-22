@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { CODED_NAP, CODED_PAGES } from "../lib/fleet/config";
+import { getFleetContent } from "../lib/fleetContent";
 import styles from "./contact.module.css";
 
-export const metadata: Metadata = {
+export const dynamic = "force-dynamic";
+
+const CONTACT_METADATA: Metadata = {
   title: { absolute: "Contact Kensington Green | 2257 Dundas St W, Dundas West" },
   description:
     "Visit Kensington Green at 2257 Dundas St W, Toronto, ON M6R 1X6. Dundas West / Roncesvalles walk-in. Open 24 hours daily. Adults 19+.",
@@ -17,7 +21,24 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ContactPage() {
+export async function generateMetadata(): Promise<Metadata> {
+  const fleet = await getFleetContent();
+  const description = fleet.pages.Contact?.metaDescription || "";
+  if (!fleet.active || !description || description === CODED_PAGES.Contact.metaDescription) return CONTACT_METADATA;
+  const title = fleet.pages.Contact.metaTitle;
+  return {
+    ...CONTACT_METADATA,
+    description,
+    title: title ? { absolute: title } : CONTACT_METADATA.title,
+    openGraph: { ...CONTACT_METADATA.openGraph, description },
+  };
+}
+
+export default async function ContactPage() {
+  const fleet = await getFleetContent();
+  const street = fleet.active && fleet.nap.street !== CODED_NAP.street ? fleet.nap.street : "2257 Dundas St W";
+  const cityLine = fleet.active && fleet.nap.cityLine !== CODED_NAP.cityLine ? fleet.nap.cityLine : "Toronto, ON M6R 1X6";
+  const areaLine = fleet.active && fleet.nap.areaLine !== CODED_NAP.areaLine ? fleet.nap.areaLine : "Dundas West and Roncesvalles";
   return (
     <main className={styles.main}>
       <Navbar />
@@ -50,12 +71,12 @@ export default function ContactPage() {
               <div className={styles.infoIcon}></div>
               <h2 className={styles.infoTitle}>Location</h2>
               <p className={styles.infoText}>
-                2257 Dundas St W
+                {street}
                 <br />
-                Toronto, ON M6R 1X6
+                {cityLine}
                 <br />
                 <span className={styles.infoMuted}>
-                  Dundas West and Roncesvalles
+                  {areaLine}
                 </span>
               </p>
             </div>
