@@ -18,9 +18,6 @@ import {
 import styles from "./items.module.css";
 import { getCategoryGuideGroups } from "../../lib/guideRegistry";
 import { liveItemsByCategory } from "../../lib/liveMenu";
-import CigaretteUnavailable from "../../components/CigaretteUnavailable";
-import { cigaretteWebGate } from "../../lib/cigaretteGate";
-import { getCigaretteSnapshot } from "../../lib/cigaretteFeed";
 import { CIGARETTE_REDIRECT_PATH, SHOW_CIGARETTES, isHiddenCigaretteProduct } from "../../lib/showCigarettes";
 import VapeActionPanel from "../../components/VapeActionPanel";
 
@@ -33,26 +30,13 @@ export function generateStaticParams() {
 }
 
 /* ── SEO ── */
-async function cigarettesGate(catSlug: string) {
-  if (catSlug !== "cigarettes") return "show" as const;
-  try {
-    return cigaretteWebGate((await getCigaretteSnapshot()).web);
-  } catch {
-    return SHOW_CIGARETTES ? "show" as const : "redirect" as const;
-  }
-}
-
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ category: string }>;
 }): Promise<Metadata> {
   const { category: catSlug } = await params;
-  const gate = await cigarettesGate(catSlug);
-  if (gate === "redirect") redirect(CIGARETTE_REDIRECT_PATH);
-  if (gate === "unavailable") {
-    return { robots: { index: false, follow: false }, title: resolveDocumentTitle("Cigarettes") };
-  }
+  if (!SHOW_CIGARETTES && catSlug === "cigarettes") redirect(CIGARETTE_REDIRECT_PATH);
   const catInfo = getCategoryFromSlug(catSlug);
   if (!catInfo) return {};
   const items = (await liveItemsByCategory(catInfo.key));
@@ -74,17 +58,7 @@ export default async function ItemsCategoryPage({
   params: Promise<{ category: string }>;
 }) {
   const { category: catSlug } = await params;
-  const gate = await cigarettesGate(catSlug);
-  if (gate === "redirect") redirect(CIGARETTE_REDIRECT_PATH);
-  if (gate === "unavailable") {
-    return (
-      <>
-        <Navbar />
-        <CigaretteUnavailable />
-        <Footer />
-      </>
-    );
-  }
+  if (!SHOW_CIGARETTES && catSlug === "cigarettes") redirect(CIGARETTE_REDIRECT_PATH);
   const catInfo = getCategoryFromSlug(catSlug);
   if (!catInfo) notFound();
 
