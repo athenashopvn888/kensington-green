@@ -3,10 +3,19 @@ import type { NextRequest } from "next/server";
 import { cigaretteWebGate, type CigaretteWebGate } from "./app/lib/cigaretteGate";
 import { getCigaretteSnapshot } from "./app/lib/cigaretteFeed";
 import { cigaretteRedirectForPath } from "./app/lib/cigarettePaths";
-import { CIGARETTE_REDIRECT_PATH, SHOW_CIGARETTES, isHiddenCigaretteHref } from "./app/lib/showCigarettes";
+import { CIGARETTE_REDIRECT_PATH, SHOW_CIGARETTES, isHiddenCigaretteHref, normalizePublicPath } from "./app/lib/showCigarettes";
 
 export async function proxy(request: NextRequest) {
-  const path = request.nextUrl.pathname;
+  const path = normalizePublicPath(request.nextUrl.pathname);
+  // These two URLs stay on the coded switch: 302 to the vape page while it is off.
+  // The sheet feed must not rewrite them to the unavailable block.
+  if (path === "/cigarettes" || path === "/items/cigarettes") {
+    if (SHOW_CIGARETTES) return NextResponse.next();
+    const url = request.nextUrl.clone();
+    url.pathname = CIGARETTE_REDIRECT_PATH;
+    url.search = "";
+    return NextResponse.redirect(url, 302);
+  }
   const codedDestination = cigaretteRedirectForPath(path);
   const controlled = Boolean(codedDestination) || isHiddenCigaretteHref(path, false);
   if (!controlled) return NextResponse.next();
