@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import FlowerCard from "./components/FlowerCard";
 import JsonLd from "./components/JsonLd";
 import { WeedDiscoveryModule } from "./components/WeedDiscoveryModule";
+import type { ResolvedBanner } from "./lib/fleet/types";
 import { allFlowers, TIER_CONFIG, type FlowerProduct } from "./lib/products";
 import {
   formatAsLowAsAfterPromos,
@@ -148,7 +149,13 @@ interface ReviewStats {
   avg: number;
 }
 
-export default function HomePageClient({ initialFlowers }: { initialFlowers: Parameters<typeof storeTierRange>[0] }) {
+export default function HomePageClient({
+  initialFlowers,
+  contentBanners,
+}: {
+  initialFlowers: Parameters<typeof storeTierRange>[0];
+  contentBanners?: ResolvedBanner[];
+}) {
   const __liveFlowers = useLiveFlowers();
   const feedFlowers = __liveFlowers.length > 0 ? __liveFlowers : allFlowers;
   const featuredStrains = pickFeaturedStrains(feedFlowers);
@@ -228,7 +235,7 @@ export default function HomePageClient({ initialFlowers }: { initialFlowers: Par
       <JsonLd data={faqPageJsonLd([...HOME_DELIVERY_FAQS, ...HOME_FAQS])} />
       {/* -- NAVBAR — fixed under the delivery bar, flush to the top of the viewport -- */}
       <Navbar />
-      <FleetAnnouncementBanner title={HOME_H1} />
+      <FleetAnnouncementBanner title={HOME_H1} banners={contentBanners} />
 
       <section className={styles.hero}>
         <div className={styles.heroBg} />

@@ -1,9 +1,14 @@
+import CigaretteStateProvider from "./components/CigaretteStateProvider";
+import FleetContentProvider from "./components/FleetContentProvider";
 import FullNameNap from "./components/FullNameNap";
 import type { Metadata } from "next";
 import "./globals.css";
 import PinnedNavClearance from "./components/PinnedNavClearance";
 import DeliveryAnnouncement from "./components/DeliveryAnnouncement";
 import JsonLd from "./components/JsonLd";
+import { CIG_WORDING_FALLBACK } from "./lib/cigDecision";
+import { getFleetContent } from "./lib/fleetContent";
+import { SHOW_CIGARETTES } from "./lib/showCigarettes";
 import {
   STORE_NAP,
   HOME_TITLE,
@@ -13,7 +18,7 @@ import {
   cannabisStoreJsonLd,
 } from "./lib/storeNap";
 
-export const metadata: Metadata = {
+const ROOT_METADATA: Metadata = {
   metadataBase: new URL(STORE_NAP.origin),
   title: {
     default: HOME_TITLE,
@@ -79,6 +84,19 @@ export const metadata: Metadata = {
   },
 };
 
+export async function generateMetadata(): Promise<Metadata> {
+  const fleet = await getFleetContent();
+  if (!fleet.active) return ROOT_METADATA;
+  const description = fleet.pages.Home?.metaDescription || "";
+  if (!description || description === ROOT_METADATA.description) return ROOT_METADATA;
+  return {
+    ...ROOT_METADATA,
+    description,
+    openGraph: { ...ROOT_METADATA.openGraph, description },
+    twitter: { ...ROOT_METADATA.twitter, description },
+  };
+}
+
 function homepageStoreJsonLd() {
   const base = cannabisStoreJsonLd();
   return {
@@ -98,16 +116,23 @@ function homepageStoreJsonLd() {
   };
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   const nap = STORE_NAP;
+  const fleet = await getFleetContent();
+  const cigarettes = {
+    web: SHOW_CIGARETTES,
+    tv: SHOW_CIGARETTES,
+    wording: CIG_WORDING_FALLBACK,
+  };
 
   return (
     <html lang="en">
       <head>
+        <meta name="fleet-content-version" content={fleet.version} />
         <meta name="geo.region" content="CA-ON" />
         <meta name="geo.placename" content="Dundas West, Toronto" />
         <meta name="geo.position" content={`${nap.latitude};${nap.longitude}`} />
@@ -139,10 +164,23 @@ export default function RootLayout({
           Kensington Green · {nap.addressLine} · {nap.phoneDisplay} ·{" "}
           {nap.hoursLabel} · {nap.ageLine}
         </noscript>
-        <DeliveryAnnouncement />
-        {children}
-        <FullNameNap />
-        <PinnedNavClearance />
+        {fleet.active ? (
+          <FleetContentProvider value={{ active: fleet.active, version: fleet.version, nap: fleet.nap }}>
+            <CigaretteStateProvider value={cigarettes}>
+              <DeliveryAnnouncement />
+              {children}
+              <FullNameNap />
+              <PinnedNavClearance />
+            </CigaretteStateProvider>
+          </FleetContentProvider>
+        ) : (
+          <>
+            <DeliveryAnnouncement />
+            {children}
+            <FullNameNap />
+            <PinnedNavClearance />
+          </>
+        )}
       </body>
     </html>
   );

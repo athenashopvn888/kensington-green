@@ -102,6 +102,7 @@ function staticDataset(staticFlowers, staticItems) {
     flowers: Array.isArray(staticFlowers) ? staticFlowers : [],
     items: Array.isArray(staticItems) ? staticItems : [],
     stockDate: "",
+    cig: null,
   };
 }
 
@@ -196,6 +197,7 @@ async function resolveDataset(options) {
       flowers: data.flowers,
       items: data.items,
       stockDate: data.stockDate == null ? "" : String(data.stockDate),
+      cig: data.cig && typeof data.cig === "object" ? data.cig : null,
     };
     cached = { expiresAt: now + TV_STOCK_CACHE_MS, dataset };
     lastGood = dataset;
@@ -234,6 +236,19 @@ async function getTvData(options) {
   return selectTvPayload(dataset, options.type);
 }
 
+async function getCigaretteDataset(options) {
+  await getTvData({
+    type: "items",
+    staticFlowers: options.staticFlowers,
+    staticItems: options.staticItems,
+    fetchImpl: options.fetchImpl,
+    appsScriptUrl: options.appsScriptUrl,
+    now: options.now,
+    timeoutMs: options.timeoutMs,
+  });
+  return (cached && cached.dataset) || lastGood || null;
+}
+
 module.exports = {
   DEFAULT_APPS_SCRIPT_URL,
   TV_STORE,
@@ -246,5 +261,6 @@ module.exports = {
   postprocessItems,
   resolveAppsScriptUrl,
   getTvData,
+  getCigaretteDataset,
   resetTvStockCache,
 };

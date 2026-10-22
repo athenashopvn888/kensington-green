@@ -1,3 +1,4 @@
+import { loadFleetArticles } from "./lib/fleet/articles";
 import { getLiveMenu } from "./lib/liveMenu";
 import type { MetadataRoute } from "next";
 import { DELIVERY_GUIDE_REGISTRY } from "./lib/deliveryGuideRegistry";
@@ -75,6 +76,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
+  let fleetArticlePages: MetadataRoute.Sitemap = [];
+  try {
+    const loaded = await loadFleetArticles();
+    if (loaded.ok) {
+      const codedSlugs = new Set(RESOURCE_PAGES.map((page) => page.slug).filter(Boolean));
+      fleetArticlePages = loaded.articles.filter((article) => !codedSlugs.has(article.slug)).map((article) => ({
+        url: `${BASE}/articles/${article.slug}`,
+        lastModified: article.publishedAt,
+        changeFrequency: "weekly" as const,
+        priority: 0.6,
+      }));
+    }
+  } catch {
+    fleetArticlePages = [];
+  }
+
   /* Resource pages */
   const resourcePages: MetadataRoute.Sitemap = RESOURCE_PAGES.map((page) => ({
     url: page.slug ? `${BASE}/resources/${page.slug}` : `${BASE}/resources`,
@@ -95,7 +112,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.75,
   }));
 
-  return [...staticPages, ...tierPages, ...itemPages, ...flowerPages, ...itemDetailPages, ...resourcePages, ...seoPages, ...guideIndex, ...guidePages].filter(
+  return [...staticPages, ...tierPages, ...itemPages, ...flowerPages, ...itemDetailPages, ...resourcePages, ...seoPages, ...guideIndex, ...guidePages, ...fleetArticlePages].filter(
     (entry) => !isHiddenCigarettePathname(new URL(entry.url).pathname),
   );
 }
