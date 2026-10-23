@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import { cigarettePublicHeaders } from "../../lib/cigDecision";
-import { getCigaretteSnapshot } from "../../lib/cigaretteFeed";
+import { cigarettePublicHeaders, reconcileSurfaceItems } from "../../lib/cigDecision";
+import { getCigaretteSnapshot, toPublicCigaretteState } from "../../lib/cigaretteFeed";
 import { allFlowers, allItems } from "../../lib/products";
-import { isHiddenCigaretteProduct } from "../../lib/showCigarettes";
+import { SHOW_CIGARETTES } from "../../lib/showCigarettes";
 import { getTvData } from "../../lib/tvStock";
 
 export const runtime = "nodejs";
@@ -21,10 +21,15 @@ export async function GET(request: Request) {
     }),
     getCigaretteSnapshot(),
   ]);
-  const cigHeaders = cigarettePublicHeaders({ web: cig.web.show, tv: cig.tv.show, wording: cig.wording });
+  const published = toPublicCigaretteState(cig);
+  const cigHeaders = cigarettePublicHeaders({
+    web: SHOW_CIGARETTES ? published.web : false,
+    tv: published.tv,
+    wording: published.wording,
+  });
 
-  if (!cig.tv.show && type === "items" && Array.isArray(body)) {
-    const filtered = body.filter((item) => !isHiddenCigaretteProduct(item));
+  if (!published.tv && type === "items" && Array.isArray(body)) {
+    const filtered = reconcileSurfaceItems(body, body, false);
     return NextResponse.json(filtered, {
       headers: { ...headers, ...cigHeaders, "x-tv-data-item-count": String(filtered.length) },
     });

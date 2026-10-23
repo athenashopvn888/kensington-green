@@ -6,7 +6,7 @@ import "./globals.css";
 import PinnedNavClearance from "./components/PinnedNavClearance";
 import DeliveryAnnouncement from "./components/DeliveryAnnouncement";
 import JsonLd from "./components/JsonLd";
-import { CIG_WORDING_FALLBACK } from "./lib/cigDecision";
+import { getCigaretteSnapshot, toPublicCigaretteState } from "./lib/cigaretteFeed";
 import { getFleetContent } from "./lib/fleetContent";
 import { SHOW_CIGARETTES } from "./lib/showCigarettes";
 import {
@@ -122,11 +122,12 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const nap = STORE_NAP;
-  const fleet = await getFleetContent();
+  const [fleet, cigaretteSnapshot] = await Promise.all([getFleetContent(), getCigaretteSnapshot()]);
+  const published = toPublicCigaretteState(cigaretteSnapshot);
   const cigarettes = {
-    web: SHOW_CIGARETTES,
-    tv: SHOW_CIGARETTES,
-    wording: CIG_WORDING_FALLBACK,
+    web: SHOW_CIGARETTES ? published.web : false,
+    tv: published.tv,
+    wording: published.wording,
   };
 
   return (
@@ -174,12 +175,12 @@ export default async function RootLayout({
             </CigaretteStateProvider>
           </FleetContentProvider>
         ) : (
-          <>
+          <CigaretteStateProvider value={cigarettes}>
             <DeliveryAnnouncement />
             {children}
             <FullNameNap />
             <PinnedNavClearance />
-          </>
+          </CigaretteStateProvider>
         )}
       </body>
     </html>
