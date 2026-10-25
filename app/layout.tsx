@@ -1,6 +1,7 @@
 import CigaretteStateProvider from "./components/CigaretteStateProvider";
 import FleetContentProvider from "./components/FleetContentProvider";
 import FullNameNap from "./components/FullNameNap";
+import MobileBottomBar from "./components/MobileBottomBar";
 import type { Metadata } from "next";
 import "./globals.css";
 import PinnedNavClearance from "./components/PinnedNavClearance";
@@ -172,6 +173,7 @@ export default async function RootLayout({
               {children}
               <FullNameNap />
               <PinnedNavClearance />
+              <MobileBottomBar />
             </CigaretteStateProvider>
           </FleetContentProvider>
         ) : (
@@ -180,6 +182,7 @@ export default async function RootLayout({
             {children}
             <FullNameNap />
             <PinnedNavClearance />
+            <MobileBottomBar />
           </CigaretteStateProvider>
         )}
       </body>
