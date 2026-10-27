@@ -112,7 +112,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.75,
   }));
 
-  return [...staticPages, ...tierPages, ...itemPages, ...flowerPages, ...itemDetailPages, ...resourcePages, ...seoPages, ...guideIndex, ...guidePages, ...fleetArticlePages].filter(
+  const curingGlossaryPage: MetadataRoute.Sitemap = [
+    {
+      url: `${BASE}/resources/cannabis-curing-terms-glossary`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+  ];
+
+  return [...staticPages, ...tierPages, ...itemPages, ...flowerPages, ...itemDetailPages, ...resourcePages, ...curingGlossaryPage, ...seoPages, ...guideIndex, ...guidePages, ...fleetArticlePages].filter(
     (entry) => !isHiddenCigarettePathname(new URL(entry.url).pathname),
   );
 }
