@@ -121,7 +121,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  return [...staticPages, ...tierPages, ...itemPages, ...flowerPages, ...itemDetailPages, ...resourcePages, ...curingGlossaryPage, ...seoPages, ...guideIndex, ...guidePages, ...fleetArticlePages].filter(
+  const plantLifeCyclePage: MetadataRoute.Sitemap = [
+    {
+      url: `${BASE}/resources/cannabis-plant-life-cycle`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+  ];
+
+  return [...staticPages, ...tierPages, ...itemPages, ...flowerPages, ...itemDetailPages, ...resourcePages, ...curingGlossaryPage, ...plantLifeCyclePage, ...seoPages, ...guideIndex, ...guidePages, ...fleetArticlePages].filter(
     (entry) => !isHiddenCigarettePathname(new URL(entry.url).pathname),
   );
 }
