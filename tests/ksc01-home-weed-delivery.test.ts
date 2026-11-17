@@ -6,21 +6,32 @@ import {
   HOME_DELIVERY_FAQS,
   HOME_DELIVERY_PARAGRAPHS,
 } from "../app/lib/homeDelivery.ts";
-import { HOME_H1, HOME_SCHEMA_NAME, HOME_TITLE } from "../app/lib/storeNap.ts";
+import { HOME_H1, HOME_PAGE_TITLE, HOME_SCHEMA_NAME, HOME_TITLE } from "../app/lib/storeNap.ts";
 
 const page = fs.readFileSync("app/page.tsx", "utf8");
+const home = fs.readFileSync("app/HomePageClient.tsx", "utf8");
 const globals = fs.readFileSync("app/globals.css", "utf8");
 
 test("homepage H1, title, and schema use the locked Cannabis Dispensary phrase", () => {
   const locked = "Kensington Green Cannabis Dispensary - Weed Delivery in Dundas West";
+  const layout = fs.readFileSync("app/layout.tsx", "utf8");
   assert.equal(HOME_H1, locked);
-  assert.equal(HOME_TITLE, locked);
-  assert.equal(HOME_SCHEMA_NAME, "Kensington Green Weed Delivery & Cannabis Dispensary");
-  assert.match(page, /\{HOME_H1\}/);
+  assert.equal(
+    HOME_PAGE_TITLE,
+    "Kensington Green Cannabis Dispensary near me | Weed Delivery | Dundas West",
+  );
+  assert.equal(
+    HOME_TITLE,
+    "Kensington Green Cannabis Dispensary Weed Delivery | Dundas West",
+  );
+  assert.equal(HOME_SCHEMA_NAME, "Kensington Green Cannabis Dispensary Weed Delivery");
+  assert.match(page, /title:\s*\{\s*absolute:\s*HOME_PAGE_TITLE\s*\}/);
+  assert.match(home, /title=\{HOME_H1\}/);
   assert.doesNotMatch(page, /Weed Delivery & Dispensary/);
   assert.doesNotMatch(page, /Cannabis Delivery & Dispensary/);
-  assert.match(fs.readFileSync("app/layout.tsx", "utf8"), /HOME_TITLE/);
-  assert.match(fs.readFileSync("app/layout.tsx", "utf8"), /name: HOME_SCHEMA_NAME/);
+  assert.match(layout, /default:\s*HOME_TITLE/);
+  assert.match(layout, /title:\s*HOME_PAGE_TITLE/);
+  assert.match(layout, /name: HOME_SCHEMA_NAME/);
 });
 
 test("hero keeps gold STORE MENU and secondary Delivery without dropping URLs", () => {
