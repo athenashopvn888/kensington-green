@@ -13,6 +13,7 @@ import { SHOW_CIGARETTES } from "./lib/showCigarettes";
 import {
   STORE_NAP,
   HOME_TITLE,
+  HOME_PAGE_TITLE,
   HOME_DESCRIPTION,
   HOME_SCHEMA_NAME,
   HOME_SCHEMA_NAME_PREVIOUS,
@@ -47,7 +48,7 @@ const ROOT_METADATA: Metadata = {
     locale: "en_CA",
     url: STORE_NAP.origin,
     siteName: "Kensington Green",
-    title: HOME_TITLE,
+    title: HOME_PAGE_TITLE,
     description: HOME_DESCRIPTION,
     images: [
       {
@@ -60,7 +61,7 @@ const ROOT_METADATA: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: HOME_TITLE,
+    title: HOME_PAGE_TITLE,
     description: HOME_DESCRIPTION,
     images: [
       "https://www.kensingtongreencannabis.com/wp-content/uploads/2026/04/46Oi5.jpg",

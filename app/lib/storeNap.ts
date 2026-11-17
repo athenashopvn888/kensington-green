@@ -33,8 +33,12 @@ export const STORE_NAP = {
 
 export const HOME_H1 =
   "Kensington Green Cannabis Dispensary - Weed Delivery in Dundas West";
+/** Root `title.default`. Routes that do not set a title keep this `<title>`. */
 export const HOME_TITLE =
   "Kensington Green Cannabis Dispensary Weed Delivery | Dundas West";
+/** Document title for `/` only. Social titles use this where they rendered `HOME_TITLE`. */
+export const HOME_PAGE_TITLE =
+  "Kensington Green Cannabis Dispensary near me | Weed Delivery | Dundas West";
 export const HOME_SCHEMA_NAME = "Kensington Green Cannabis Dispensary Weed Delivery";
 /** Previous schema name order, kept as an alternate name. */
 export const HOME_SCHEMA_NAME_PREVIOUS = "Kensington Green Weed Delivery & Cannabis Dispensary";
