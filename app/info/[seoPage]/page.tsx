@@ -7,6 +7,7 @@ import Link from "next/link";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { SEO_PAGES, getSeoPageBySlug, type SeoPageData } from "../../lib/seoPages";
+import { getCigaretteSnapshot, toPublicCigaretteState } from "../../lib/cigaretteFeed";
 import { CIGARETTE_REDIRECT_PATH, SHOW_CIGARETTES, isHiddenCigaretteHref, mentionsCigaretteCopy, scrubCigaretteCopy } from "../../lib/showCigarettes";
 import { TIER_CONFIG } from "../../lib/products";
 import styles from "./seo.module.css";
@@ -50,7 +51,7 @@ export async function generateMetadata({
   params: Promise<{ seoPage: string }>;
 }): Promise<Metadata> {
   const { seoPage: slug } = await params;
-  if (isHiddenCigaretteHref(`/info/${slug}`)) redirect(CIGARETTE_REDIRECT_PATH);
+  if (isHiddenCigaretteHref(`/info/${slug}`, toPublicCigaretteState(await getCigaretteSnapshot()).web)) redirect(CIGARETTE_REDIRECT_PATH);
   const page = getSeoPageBySlug(slug);
   if (!page) return {};
   const visible = visibleSeoPage(page);
@@ -71,7 +72,7 @@ export default async function SeoLandingPage({
   params: Promise<{ seoPage: string }>;
 }) {
   const { seoPage: slug } = await params;
-  if (isHiddenCigaretteHref(`/info/${slug}`)) redirect(CIGARETTE_REDIRECT_PATH);
+  if (isHiddenCigaretteHref(`/info/${slug}`, toPublicCigaretteState(await getCigaretteSnapshot()).web)) redirect(CIGARETTE_REDIRECT_PATH);
   const source = getSeoPageBySlug(slug);
   if (!source) notFound();
   const page = visibleSeoPage(source);

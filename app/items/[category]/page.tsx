@@ -18,7 +18,8 @@ import {
 import styles from "./items.module.css";
 import { getCategoryGuideGroups } from "../../lib/guideRegistry";
 import { liveItemsByCategory } from "../../lib/liveMenu";
-import { CIGARETTE_REDIRECT_PATH, SHOW_CIGARETTES, isHiddenCigaretteProduct } from "../../lib/showCigarettes";
+import { getCigaretteSnapshot, toPublicCigaretteState } from "../../lib/cigaretteFeed";
+import { CIGARETTE_REDIRECT_PATH, isHiddenCigaretteProduct } from "../../lib/showCigarettes";
 import VapeActionPanel from "../../components/VapeActionPanel";
 
 // Read the live menu feed on every request (never a build-time snapshot).
@@ -36,7 +37,8 @@ export async function generateMetadata({
   params: Promise<{ category: string }>;
 }): Promise<Metadata> {
   const { category: catSlug } = await params;
-  if (!SHOW_CIGARETTES && catSlug === "cigarettes") redirect(CIGARETTE_REDIRECT_PATH);
+  const showCigarettes = toPublicCigaretteState(await getCigaretteSnapshot()).web;
+  if (!showCigarettes && catSlug === "cigarettes") redirect(CIGARETTE_REDIRECT_PATH);
   const catInfo = getCategoryFromSlug(catSlug);
   if (!catInfo) return {};
   const items = (await liveItemsByCategory(catInfo.key));
@@ -58,12 +60,13 @@ export default async function ItemsCategoryPage({
   params: Promise<{ category: string }>;
 }) {
   const { category: catSlug } = await params;
-  if (!SHOW_CIGARETTES && catSlug === "cigarettes") redirect(CIGARETTE_REDIRECT_PATH);
+  const showCigarettes = toPublicCigaretteState(await getCigaretteSnapshot()).web;
+  if (!showCigarettes && catSlug === "cigarettes") redirect(CIGARETTE_REDIRECT_PATH);
   const catInfo = getCategoryFromSlug(catSlug);
   if (!catInfo) notFound();
 
   /* Pre-Rolls also shows accessories (ADD ONS) */
-  const revealCigarettes = catSlug === "cigarettes" || SHOW_CIGARETTES;
+  const revealCigarettes = catSlug === "cigarettes" || showCigarettes;
   let items = (await liveItemsByCategory(catInfo.key)).filter((item) => !isHiddenCigaretteProduct(item, revealCigarettes));
   if (catInfo.key === "PREROLLS") {
     const accessories = (await liveItemsByCategory("ADD ONS"));

@@ -22,6 +22,7 @@ import {
   HOME_DELIVERY_PARAGRAPHS,
 } from "./lib/homeDelivery";
 import { mentionsGrabba, scrubCigaretteCopy, SHOW_CIGARETTES } from "./lib/showCigarettes";
+import { useCigaretteState } from "./components/CigaretteStateProvider";
 import { HOME_FAQS, HOME_H1, STORE_NAP, faqPageJsonLd } from "./lib/storeNap";
 import Papa from "papaparse";
 import { useLiveFlowers } from "./lib/useLiveMenu";
@@ -134,9 +135,6 @@ const EXPLORE_CATEGORIES = [
 ];
 
 const LOCAL_FAQS = HOME_FAQS;
-const EXPLORE_CATEGORIES_VISIBLE = SHOW_CIGARETTES
-  ? EXPLORE_CATEGORIES
-  : EXPLORE_CATEGORIES.filter((cat) => cat.slug !== "items/cigarettes");
 
 interface Review {
   name: string;
@@ -156,6 +154,7 @@ export default function HomePageClient({
   initialFlowers: Parameters<typeof storeTierRange>[0];
   contentBanners?: ResolvedBanner[];
 }) {
+  const showCigarettes = useCigaretteState().web;
   const __liveFlowers = useLiveFlowers();
   const feedFlowers = __liveFlowers.length > 0 ? __liveFlowers : allFlowers;
   const featuredStrains = pickFeaturedStrains(feedFlowers);
@@ -379,7 +378,7 @@ export default function HomePageClient({
           </div>
 
           <div className={styles.categoriesGrid}>
-            {EXPLORE_CATEGORIES_VISIBLE.map((cat) => (
+            {EXPLORE_CATEGORIES.filter((category) => showCigarettes || category.slug !== "items/cigarettes").map((cat) => (
               <Link
                 key={cat.slug}
                 href={`/${cat.slug}`}
